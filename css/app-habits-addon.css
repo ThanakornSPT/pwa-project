@@ -1,0 +1,309 @@
+/* Good Vibes Tracker - Habits Addon Styles */
+/* Add this to your existing app.css or use as separate file */
+
+/* Habits Section */
+.habits-section {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    box-shadow: var(--shadow);
+}
+
+.habits-section h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-lg);
+    color: var(--primary-color);
+}
+
+/* Add Habit */
+.add-habit-container {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md);
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    background: #f8f9fa;
+}
+
+.habit-input {
+    width: 100%;
+    padding: var(--space-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: var(--font-size-md);
+    margin-bottom: var(--space-md);
+    transition: border-color 0.3s ease;
+}
+
+.habit-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.habit-actions {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.add-habit-btn, .cancel-habit-btn {
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    touch-action: manipulation;
+}
+
+.add-habit-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.add-habit-btn:hover {
+    background: var(--primary-dark);
+}
+
+.cancel-habit-btn {
+    background: var(--border-color);
+    color: var(--text-color);
+}
+
+.cancel-habit-btn:hover {
+    background: #ccc;
+}
+
+.show-add-habit-btn {
+    width: 100%;
+    padding: var(--space-md);
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px dashed var(--primary-color);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: var(--space-lg);
+    touch-action: manipulation;
+}
+
+.show-add-habit-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-style: solid;
+}
+
+/* Habits List */
+.habits-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.habit-item {
+    background: #ffffff;
+    border-radius: var(--border-radius);
+    padding: var(--space-md);
+    border-left: 4px solid var(--primary-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.habit-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.habit-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+}
+
+.habit-info {
+    flex: 1;
+}
+
+.habit-name {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.habit-streak {
+    font-size: var(--font-size-sm);
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.habit-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.habit-toggle {
+    width: 32px;
+    height: 31px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    transition: all 0.3s ease;
+    touch-action: manipulation;
+}
+
+.habit-toggle.completed {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+.habit-toggle:hover {
+    transform: scale(1.05);
+}
+
+.habit-toggle.completed:hover {
+    transform: scale(1.15);
+}
+
+.delete-habit-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    touch-action: manipulation;
+}
+
+.delete-habit-btn:hover {
+    opacity: 1;
+    background: #ffebee;
+}
+
+.habit-completion-time {
+    margin-top: var(--space-sm);
+    padding-left: var(--space-md);
+}
+
+.habit-completion-time small {
+    color: var(--text-light);
+    font-size: var(--font-size-sm);
+}
+
+/* Empty State */
+.habits-empty-state {
+    text-align: center;
+    padding: var(--space-xl);
+    color: var(--text-light);
+}
+
+.habits-empty-state p {
+    margin-bottom: var(--space-sm);
+}
+
+.habits-empty-state small {
+    font-size: var(--font-size-sm);
+}
+
+/* Habits Stats */
+.habits-stats {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.habit-progress {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.progress-label {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: var(--font-size-sm);
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.progress-text {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+/* Responsive Design for Habits */
+@media (min-width: 768px) {
+    .habit-content {
+        align-items: center;
+    }
+    
+    .habit-actions {
+        flex-direction: row;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .habits-list {
+        gap: var(--space-lg);
+    }
+    
+    .habit-item {
+        padding: var(--space-lg);
+    }
+}

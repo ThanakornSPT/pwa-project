@@ -1,0 +1,34 @@
+{
+  "name": "good-vibes-tracker-pwa",
+  "version": "1.0.0",
+  "description": "PWA for tracking daily mood and energy levels",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "python -m SimpleHTTPServer 8000",
+    "build": "echo 'No build process needed for Phase 1'",
+    "test": "echo 'Tests will be added in future phases'"
+  },
+  "keywords": [
+    "pwa",
+    "mood-tracker",
+    "wellbeing",
+    "angularjs",
+    "offline-first"
+  ],
+  "author": "Good Vibes Development Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goodvibes/tracker-pwa"
+  },
+  "bugs": {
+    "url": "https://github.com/goodvibes/tracker-pwa/issues"
+  },
+  "homepage": "https://goodvibes-tracker.app",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

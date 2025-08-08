@@ -1,0 +1,21 @@
+📱 Icon Creation Instructions:
+
+Create the following icon sizes using your preferred design tool:
+- icon-72x72.png (for maskable icon)
+- icon-96x96.png
+- icon-128x128.png  
+- icon-192x192.png (main icon)
+- icon-512x512.png (large icon)
+
+Design Guidelines:
+- Use Good Vibes theme colors (green #4CAF50, yellow #FFD54F)
+- Include mood/emotion elements (smile, heart, sun)
+- Keep it simple and recognizable at small sizes
+- Ensure good contrast for visibility
+
+For now, you can use online PWA icon generators:
+1. https://www.pwabuilder.com/imageGenerator
+2. https://favicon.io/favicon-generator/
+3. Create a simple colored square with app name
+
+Once created, place the PNG files in this directory.

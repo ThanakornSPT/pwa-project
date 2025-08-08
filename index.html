@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="th" ng-app="goodVibesApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4CAF50">
+    <title>Good Vibes Tracker</title>
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/app-habits-addon.css">
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="MoodController as vm">
+    <div id="app" class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>Good Vibes Tracker</h1>
+            <p class="date-display">{{ vm.getCurrentDate() }}</p>
+        </header>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Daily Mood Tracker -->
+            <section class="mood-tracker-section">
+                <h2>How are you feeling today?</h2>
+                <!-- Mood Level Slider -->
+                <div class="mood-slider-container">
+                    <label for="moodSlider">Your Energy Level:</label>
+                    <input type="range" id="moodSlider" class="mood-slider" min="1" max="10" ng-model="vm.currentMood" ng-change="vm.updateMoodDisplay()">
+                    <!-- Mood Display -->
+                    <div class="mood-display">
+                        <span class="mood-emoji">{{ vm.getMoodEmoji() }}</span>
+                        <span class="mood-text">{{ vm.getMoodText() }}</span>
+                        <span class="mood-level">Level: {{ vm.currentMood }}/10</span>
+                    </div>
+                </div>
+                <!-- Mood Note -->
+                <div class="mood-note-container">
+                    <label for="moodNote">Optional Note:</label>
+                    <textarea id="moodNote" class="mood-note" placeholder="What's making you feel this way? (optional)" ng-model="vm.currentNote" maxlength="200"></textarea>
+                    <small class="char-count">{{ vm.currentNote ? vm.currentNote.length : 0 }}/200</small>
+                </div>
+                <!-- Save Button -->
+                <button class="save-mood-btn" ng-click="vm.saveMood()" ng-disabled="!vm.currentMood">
+                    Save Today's Mood
+                </button>
+            </section>
+            <!-- Today's Entries -->
+            <section class="todays-entries" ng-if="vm.todaysEntries.length > 0">
+                <h3>Today's Mood Records</h3>
+                <div class="entries-list">
+                    <div class="mood-entry" ng-repeat="entry in vm.todaysEntries track by $index">
+                        <span class="entry-time">{{ entry.time }}</span>
+                        <span class="entry-mood">{{ vm.getEmojiForLevel(entry.level) }} {{ entry.level }}/10</span>
+                        <span class="entry-note" ng-if="entry.note">{{ entry.note }}</span>
+                    </div>
+                </div>
+            </section>
+            <!-- Simple Stats -->
+            <section class="mood-stats" ng-if="vm.stats">
+                <h3>Your Mood Stats</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Today's Average:</span>
+                        <span class="stat-value">{{ vm.stats.todayAverage }}/10</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Records:</span>
+                        <span class="stat-value">{{ vm.stats.totalRecords }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Days Tracked:</span>
+                        <span class="stat-value">{{ vm.stats.daysTracked }}</span>
+                    </div>
+                </div>
+            </section>
+            <!-- Daily Habits Checklist -->
+            <section class="habits-section">
+                <h3>Daily Habits</h3>
+                <!-- Add New Habit -->
+                <div class="add-habit-container" ng-if="vm.showAddHabit">
+                    <input type="text" class="habit-input" placeholder="Enter new habit (e.g., Drink 8 glasses of water)" ng-model="vm.newHabitName" ng-keypress="vm.addHabitOnEnter($event)" maxlength="50">
+                    <div class="habit-actions">
+                        <button class="add-habit-btn" ng-click="vm.addHabit()">Add</button>
+                        <button class="cancel-habit-btn" ng-click="vm.cancelAddHabit()">Cancel</button>
+                    </div>
+                </div>
+                <!-- Add Habit Button -->
+                <button class="show-add-habit-btn" ng-click="vm.showAddHabit = true" ng-if="!vm.showAddHabit">
+                    ➕ Add New Habit
+                </button>
+                <!-- Habits List -->
+                <div class="habits-list" ng-if="vm.habits.length > 0">
+                    <div class="habit-item" ng-repeat="habit in vm.habits track by habit.id">
+                        <div class="habit-content">
+                            <div class="habit-info">
+                                <span class="habit-name">{{ habit.name }}</span>
+                                <div class="habit-streak" ng-if="habit.streak > 0">
+                                    🔥 {{ habit.streak }} day{{ habit.streak > 1 ? 's' : '' }}
+                                </div>
+                            </div>
+                            <div class="habit-controls">
+                                <button class="habit-toggle" ng-class="{'completed': habit.completedToday}" ng-click="vm.toggleHabit(habit.id)">
+                                    <span ng-if="habit.completedToday">✓</span>
+                                    <span ng-if="!habit.completedToday" class="check-list">○</span>
+                                </button>
+                                <button class="delete-habit-btn icon-side" ng-click="vm.deleteHabit(habit.id)" title="Delete habit">
+                                    🗑️
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Completion time -->
+                        <div class="habit-completion-time" ng-if="habit.completedToday && habit.completedTime">
+                            <small>Completed at {{ habit.completedTime }}</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- Empty State -->
+                <div class="habits-empty-state" ng-if="vm.habits.length === 0">
+                    <p>Start building good habits today!</p>
+                    <p><small>Add your first habit to get started</small></p>
+                </div>
+                <!-- Habits Stats -->
+                <div class="habits-stats" ng-if="vm.habits.length > 0">
+                    <div class="habit-progress">
+                        <span class="progress-label">Today's Progress:</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{ vm.getTodayCompletionPercentage() }}%"></div>
+                        </div>
+                        <span class="progress-text">
+                            {{ vm.getCompletedHabitsCount() }}/{{ vm.habits.length }} completed
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <!-- เพิ่มส่วนนี้หลังจาก Mood Tracker และก่อน Habits Section -->
+            <!-- Daily Gratitude Journal -->
+            <section class="gratitude-section">
+                <h3>What are you grateful for today?</h3>
+                <!-- Gratitude Entry Form -->
+                <div class="gratitude-form">
+                    <div class="gratitude-input-container">
+                        <textarea class="gratitude-input" ng-model="vm.currentGratitude" placeholder="I'm grateful for..." maxlength="200" rows="3"></textarea>
+                        <small class="char-count">{{ vm.currentGratitude ? vm.currentGratitude.length : 0 }}/200</small>
+                    </div>
+                    <button class="add-gratitude-btn" ng-click="vm.addGratitude()" ng-disabled="!vm.currentGratitude || vm.currentGratitude.trim() === ''">
+                        Add Gratitude
+                    </button>
+                </div>
+                <!-- Today's Gratitude Entries -->
+                <div class="todays-gratitude" ng-if="vm.todaysGratitude.length > 0">
+                    <h4>Today's Gratitude List</h4>
+                    <div class="gratitude-list">
+                        <div class="gratitude-entry" ng-repeat="entry in vm.todaysGratitude track by $index">
+                            <div class="gratitude-content">
+                                <span class="gratitude-emoji">🌟</span>
+                                <span class="gratitude-text">{{ entry.text }}</span>
+                                <span class="gratitude-time">{{ entry.time }}</span>
+                            </div>
+                            <button class="delete-gratitude-btn" ng-click="vm.deleteGratitude($index)" title="Delete gratitude entry">
+                                ✕
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gratitude Prompts -->
+                <div class="gratitude-prompts" ng-if="vm.todaysGratitude.length === 0">
+                    <h4>💡 Need inspiration? Try these:</h4>
+                    <div class="prompt-buttons">
+                        <button class="prompt-btn" ng-repeat="prompt in vm.gratitudePrompts" ng-click="vm.usePrompt(prompt)">
+                            {{ prompt }}
+                        </button>
+                    </div>
+                </div>
+                <!-- Gratitude Stats -->
+                <div class="gratitude-stats" ng-if="vm.gratitudeStats">
+                    <div class="stat-item">
+                        <span class="stat-label">Today's Count:</span>
+                        <span class="stat-value">{{ vm.todaysGratitude.length }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Gratitudes:</span>
+                        <span class="stat-value">{{ vm.gratitudeStats.totalEntries }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Days Practiced:</span>
+                        <span class="stat-value">{{ vm.gratitudeStats.daysPracticed }}</span>
+                    </div>
+                </div>
+            </section>
+            <section class="mood-stats" ng-if="vm.stats">
+                <h3>Your Stats</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Today's Mood:</span>
+                        <span class="stat-value">{{ vm.stats.todayAverage }}/10</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Habits Done:</span>
+                        <span class="stat-value">{{ vm.getCompletedHabitsCount() }}/{{ vm.habits.length }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Gratitudes:</span>
+                        <span class="stat-value">{{ vm.todaysGratitude.length }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Days Tracked:</span>
+                        <span class="stat-value">{{ vm.stats.daysTracked }}</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <p>✨ Keep tracking your good vibes! ✨</p>
+                <!-- Settings/Reset Section -->
+                <div class="footer-actions">
+                    <button class="settings-toggle-btn" ng-click="vm.showSettings = !vm.showSettings">
+                        ⚙️ Settings
+                    </button>
+                </div>
+                <!-- Settings Panel -->
+                <div class="settings-panel" ng-if="vm.showSettings">
+                    <div class="settings-content">
+                        <h4>🛠️ App Settings</h4>
+                        <!-- Data Management -->
+                        <div class="settings-section">
+                            <h5>Data Management</h5>
+                            <!-- Export Data -->
+                            <button class="export-btn" ng-click="vm.exportData()">
+                                Export All Data
+                            </button>
+                            <!-- Reset Data -->
+                            <div class="reset-section">
+                                <p class="reset-warning">Danger Zone</p>
+                                <button class="reset-btn" ng-click="vm.showResetConfirm = true">
+                                    Reset All Data
+                                </button>
+                            </div>
+                        </div>
+                        <!-- App Info -->
+                        <div class="settings-section">
+                            <h5>App Information</h5>
+                            <div class="app-info">
+                                <p><strong>Version:</strong> 1.0.0 - Phase 1</p>
+                                <p><strong>Storage Used:</strong> {{ vm.getStorageUsage() }}</p>
+                                <p><strong>Total Records:</strong> {{ vm.getTotalRecords() }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Reset Confirmation Modal -->
+                <div class="reset-modal" ng-if="vm.showResetConfirm">
+                    <div class="modal-backdrop" ng-click="vm.cancelReset()"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>⚠️ Confirm Data Reset</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p><strong>This action cannot be undone!</strong></p>
+                            <p>All of your data will be permanently deleted:</p>
+                            <ul class="reset-items">
+                                <li>All mood entries</li>
+                                <li>All habits and progress</li>
+                                <li>All gratitude entries</li>
+                                <li>All statistics</li>
+                            </ul>
+                            <p>Are you absolutely sure you want to reset everything?</p>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="cancel-btn" ng-click="vm.cancelReset()">
+                                Cancel
+                            </button>
+                            <button class="confirm-reset-btn" ng-click="vm.confirmReset()">
+                                Yes, Delete Everything
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Install Prompt -->
+        <div id="installPrompt" class="install-prompt" style="display: none;">
+            <p>📱 Install Good Vibes Tracker for better experience!</p>
+            <button onclick="installApp()">Install</button>
+            <button onclick="dismissInstall()">Later</button>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/habits.service.js"></script>
+    <script src="js/controllers/mood.controller.js"></script>
+    <script src="js/components/install-prompt.js"></script>
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(registration => console.log('SW registered'))
+                .catch(error => console.log('SW registration failed'));
+        });
+    }
+    </script>
+</body>
+
+</html>
