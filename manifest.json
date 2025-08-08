@@ -3,7 +3,7 @@
     "short_name": "GoodVibes",
     "description": "Track your daily mood and energy levels",
     "version": "1.0.0",
-    "start_url": "/",
+    "start_url": "./",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#FFD54F",
@@ -40,3 +40,5 @@
         }
     ]
 }
+
+https://thanakornspt.github.io/pwa-project/
