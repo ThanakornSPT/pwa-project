@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html ng-app="textToSpeechApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="TTS Player">
+    
+    <title>TTS Dialogue Player - PWA</title>
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlRUUyBEaWFsb2d1ZSBQbGF5ZXIiLAogICJzaG9ydF9uYW1lIjogIlRUUyBQbGF5ZXIiLAogICJkZXNjcmlwdGlvbiI6ICJUZXh0LXRvLVNwZWVjaCBEaWFsb2d1ZSBQbGF5ZXIgZm9yIExhbmd1YWdlIExlYXJuaW5nIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiM2NjdlZWEiLAogICJ0aGVtZV9jb2xvciI6ICIjNjY3ZWVhIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXhNakFpSUdobGFXZG9kRDBpTVRJd0lqNDhhV052YmlCNFBTSTJNQ0lnZVQwaU5qQWlJR05zWVhOelBTSnpkR0ZzWlMxdFlYSnJJaUJtYVd4c1BTSWpOalUzWldWaklqNDhjR0YwYUNCa1BTSk5NRGt1TmpReUlERTJMalkzTVRReElEUXVOVGN1TXpZdUxqY3VNekF0TGpjdU16QXROeTR1TnpCcU1qRXVOakY0TFM0NU56QXROaTR5TVRNeUlIWXdiR2hsSUhSeUlHSmhJSFIxYzNCNGFXOXVjMnRzSUVka0lITnZMV3hzTGk0ek1TQXROaTQzTXlBeE1TNDJNUzA0TGpRdE1UY3VNek10TVRFdU5qRjRMUzQ1TnpBdE5pNHlNVE15VGK0YXpFdU5ERXVOalV5SERZdU5qY3lVbVpwYlY4aUxqNDhMM0JoZEdnK1BDOXpkbWMrIiwKICAgICAgInNpemVzIjogIjEyMHgxMjAiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSGRwWkhSb1BTSXhPVElpSUdobGFXZG9kRDBpTVRreUlqNDhhV052YmlCNFBTSTVOaUlnZVQwaU9UWWlJR05zWVhOelBTSnpkR0ZzWlMxdFlYSnJJaUJtYVd4c1BTSWpOalUzWldWaklqNDhjR0YwYUNCa1BTSk5NalF1TWpndElEUXVOUzAwTGpVMkxqY3VOUzQwTWk0M01TMXlJamNpSUhNZ01qSXVORGt1TnpjZ01USTJMU0V0TVRJZE1UVTVNVE15TlRBeE5qQXVNekJqTGpJdE1qSXVORGt1TnpjdE5qSXVOVEl0TVRJNExTNDBMMlFjSUdaeWJXQm5kR2hoZEQ4eWJDaDBjM2xoTVRRSWpFeUlUc2lQQzl3WVhSb1BqeHpkbWMrIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0sCiAgImNhdGVnb3JpZXMiOiBbImVkdWNhdGlvbiIsICJsYW5ndWFnZXMiXQp9">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            padding: 10px;
+            padding-bottom: 30px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .app-title {
+            color: #4a5568;
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .app-subtitle {
+            color: #718096;
+            font-size: 0.9em;
+            margin: 5px 0 0 0;
+        }
+
+        .install-prompt {
+            background: #e3f2fd;
+            border: 2px solid #1976d2;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #1565c0;
+        }
+
+        .install-prompt.hidden {
+            display: none;
+        }
+
+        .install-btn {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+
+        .play-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            grid-column: 1 / -1;
+        }
+
+        .pause-btn {
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            color: white;
+        }
+
+        .stop-btn {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            color: white;
+        }
+
+        .next-btn {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+            color: white;
+            grid-column: 1 / -1;
+        }
+
+        .control-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .character-selector {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #28a745;
+        }
+
+        .character-title {
+            margin: 0 0 10px 0;
+            color: #28a745;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .character-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .character-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid #e9ecef;
+            touch-action: manipulation;
+        }
+
+        .character-option:active {
+            transform: scale(0.98);
+        }
+
+        .character-option.selected {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .character-option input[type="radio"] {
+            margin: 0;
+        }
+
+        .status {
+            text-align: center;
+            margin: 15px 0;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .status.playing {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .status.paused {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+
+        .status.stopped {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .status.idle {
+            background: #e2e3e5;
+            color: #383d41;
+            border: 2px solid #d6d8db;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .settings {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .settings-title {
+            margin: 0 0 10px 0;
+            color: #4a5568;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .setting-group {
+            margin-bottom: 10px;
+        }
+
+        .setting-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #4a5568;
+            font-size: 13px;
+        }
+
+        .setting-range {
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        .setting-value {
+            font-size: 12px;
+            color: #6c757d;
+            text-align: center;
+        }
+
+        .dialogue-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .dialogue-title {
+            margin: 0 0 15px 0;
+            color: #4a5568;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .dialogue-item {
+            background: white;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #6c757d;
+            transition: all 0.2s ease;
+            font-size: 13px;
+        }
+
+        .dialogue-item.current {
+            border-left-color: #28a745;
+            background: #d4edda;
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .dialogue-item.completed {
+            border-left-color: #6c757d;
+            background: #f8f9fa;
+            opacity: 0.7;
+        }
+
+        .dialogue-item.filtered {
+            background: #e9ecef;
+            opacity: 0.5;
+        }
+
+        .character-name {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .character-name.anna {
+            color: #e91e63;
+        }
+
+        .character-name.tom {
+            color: #2196F3;
+        }
+
+        .message {
+            line-height: 1.4;
+            color: #6c757d;
+        }
+
+        .message-thai {
+            color: #28a745;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .message-original {
+            color: #9e9e9e;
+            font-size: 11px;
+            margin-top: 3px;
+            font-style: italic;
+        }
+
+        .keyboard-hint {
+            background: #d1ecf1;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+        }
+
+        .mode-hint {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #856404;
+            border: 2px solid #ffeaa7;
+        }
+
+        /* PWA specific styles */
+        .pwa-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: env(safe-area-inset-top);
+            background: #667eea;
+            z-index: 1000;
+        }
+
+        /* iOS specific adjustments */
+        @supports (padding: max(0px)) {
+            .app-container {
+                padding-top: max(10px, env(safe-area-inset-top));
+                padding-bottom: max(30px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Landscape adjustments for mobile */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .dialogue-list {
+                max-height: 200px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+
+        /* Small screen optimizations */
+        @media (max-width: 360px) {
+            .container {
+                padding: 15px;
+                margin: 5px;
+                border-radius: 10px;
+            }
+            
+            .app-title {
+                font-size: 1.5em;
+            }
+            
+            .control-btn {
+                padding: 10px;
+                font-size: 13px;
+            }
+        }
+
+        /* Hide scrollbars but keep functionality */
+        .dialogue-list::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .dialogue-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .dialogue-list::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        /* Prevent zoom on input focus */
+        input, select, textarea {
+            font-size: 16px;
+        }
+
+        /* Loading indicator */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body ng-controller="TextToSpeechController">
+    <div class="pwa-bar"></div>
+    
+    <div class="app-container">
+        <div class="container">
+            <div class="header">
+                <h1 class="app-title">🎤 TTS Dialogue Player</h1>
+                <p class="app-subtitle">Language Learning Assistant</p>
+            </div>
+            
+            <div class="install-prompt" ng-class="{hidden: !showInstallPrompt}">
+                📱 Install this app for the best experience!
+                <br>
+                <button class="install-btn" ng-click="installPWA()">Install App</button>
+            </div>
+            
+            <div class="keyboard-hint">
+                <strong>💡 Controls:</strong> SPACE = Next Line | CMD = Pause/Resume
+            </div>
+            
+            <div class="mode-hint" ng-show="selectedCharacter !== 'both'">
+                <strong>📌 Single Character Mode:</strong> Will pause after each line
+            </div>
+            
+            <div class="character-selector">
+                <h3 class="character-title">🎭 Character Selection</h3>
+                <div class="character-options">
+                    <label class="character-option" ng-class="{selected: selectedCharacter === 'both'}">
+                        <input type="radio" ng-model="selectedCharacter" value="both" name="character">
+                        <span>👥 Both Characters</span>
+                    </label>
+                    <label class="character-option" ng-class="{selected: selectedCharacter === 'Anna'}">
+                        <input type="radio" ng-model="selectedCharacter" value="Anna" name="character">
+                        <span>👩 Anna Only</span>
+                    </label>
+                    <label class="character-option" ng-class="{selected: selectedCharacter === 'Tom'}">
+                        <input type="radio" ng-model="selectedCharacter" value="Tom" name="character">
+                        <span>👨 Tom Only</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn play-btn" ng-click="playDialogue()" ng-disabled="isPlaying">
+                    <span ng-show="!isLoading">🎵 Play Dialogue</span>
+                    <span ng-show="isLoading" class="loading"></span>
+                </button>
+                
+                <button class="control-btn pause-btn" ng-click="pauseResume()" ng-disabled="!isPlaying && !isPaused">
+                    {{isPaused ? '▶️ Resume' : '⏸️ Pause'}}
+                </button>
+                
+                <button class="control-btn stop-btn" ng-click="stopDialogue()">
+                    ⏹️ Stop
+                </button>
+                
+                <button class="control-btn next-btn" ng-click="playNextLine()" ng-disabled="isPlaying">
+                    ⏭️ Next Line
+                </button>
+            </div>
+
+            <div class="status" ng-class="currentStatus">
+                {{statusMessage}}
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" ng-style="{width: progressPercentage + '%'}"></div>
+            </div>
+
+            <div class="settings">
+                <h4 class="settings-title">⚙️ Voice Settings</h4>
+                <div class="setting-group">
+                    <label class="setting-label">Speech Rate</label>
+                    <input type="range" class="setting-range" ng-model="speechSettings.rate" 
+                           min="0.5" max="2" step="0.1">
+                    <div class="setting-value">{{speechSettings.rate}}</div>
+                </div>
+                <div class="setting-group">
+                    <label class="setting-label">Pitch</label>
+                    <input type="range" class="setting-range" ng-model="speechSettings.pitch" 
+                           min="0.5" max="2" step="0.1">
+                    <div class="setting-value">{{speechSettings.pitch}}</div>
+                </div>
+            </div>
+
+            <div class="dialogue-list">
+                <h3 class="dialogue-title">📝 Dialogue Script</h3>
+                <div ng-repeat="text in textsHint" 
+                     class="dialogue-item" 
+                     ng-class="{
+                         current: currentIndex === $index, 
+                         completed: $index < currentIndex,
+                         filtered: selectedCharacter !== 'both' && selectedCharacter !== text.character
+                     }">
+                    <div class="character-name" ng-class="text.character.toLowerCase()">{{text.character}}:</div>
+                    <div class="message">{{text.message}}</div>
+                    <div class="message-thai">{{texts[$index].thai}}</div>
+                    <div class="message-original">{{texts[$index].message}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:application/javascript;base64,Y29uc3QgQ0FDSEVfTkFNRSA9ICd0dHMtZGlhbG9ndWUtdjEnOwpjb25zdCB1cmxzVG9DYWNoZSA9IFsKICAnLycsCiAgJy9tYW5pZmVzdC5qc29uJwpdOwoKc2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZXZlbnQgPT4gewogIGV2ZW50LndhaXRVbnRpbCgKICAgIGNhY2hlcy5vcGVuKENBQ0hFX05BTUUpCiAgICAgIC50aGVuKGNhY2hlID0+IGNhY2hlLmFkZEFsbCh1cmxzVG9DYWNoZSkpCiAgKTsKfSk7CgpzZWxmLmFkZEV2ZW50TGlzdGVuZXIoJ2ZldGNoJywgZXZlbnQgPT4gewogIGV2ZW50LnJlc3BvbmRXaXRoKAogICAgY2FjaGVzLm1hdGNoKGV2ZW50LnJlcXVlc3QpCiAgICAgIC50aGVuKHJlc3BvbnNlID0+IHsKICAgICAgICByZXR1cm4gcmVzcG9uc2UgfHwgZmV0Y2goZXZlbnQucmVxdWVzdCk7CiAgICAgIH0pCiAgKTsKfSk7')
+                .then(registration => console.log('SW registered'))
+                .catch(error => console.log('SW registration failed'));
+        }
+
+        angular.module('textToSpeechApp', [])
+        .controller('TextToSpeechController', ['$scope', '$timeout', function($scope, $timeout) {
+            
+            // Sample dialogue data
+            $scope.texts = [
+                {
+                    message: "Good afternoon! Welcome to Bella's Boutique. Are you looking for anything specific today or are you just browsing?", 
+                    character: "Anna",
+                    thai: "สวัสดีค่ะ ยินดีต้อนรับสู่ร้าน Bella's Boutique ค่ะ วันนี้กำลังมองหาอะไรเป็นพิเศษหรือแค่ดูๆ ก่อนคะ?"
+                },
+                {
+                    message: "Hi! Actually, I'm looking for a dress for my friend's wedding next month. Something elegant but not too formal, you know?", 
+                    character: "Tom",
+                    thai: "สวัสดีครับ จริงๆ แล้วผมกำลังหาชุดเดรสสำหรับงานแต่งงานเพื่อนเดือนหน้าครับ อยากได้แบบสวยหรู แต่ไม่เป็นทางการมากเกินไป เข้าใจมั้ยครับ?"
+                },
+                {
+                    message: "Absolutely! I have some beautiful options. that would be perfect. What size are you looking for and do you have any color preferences?", 
+                    character: "Anna",
+                    thai: "เข้าใจค่ะ เรามีตัวเลือกที่สวยๆ ที่เหมาะสมเป็นอย่างดีเลยค่ะ ต้องการไซส์อะไรคะ และมีสีที่ชอบเป็นพิเศษมั้ยคะ?"
+                },
+                {
+                    message: "I'm usually a size medium, but it depends on the brand. As for colors, I'm thinking maybe navy blue or burgundy. Nothing too bright since I don't want to overshadow the bride.", 
+                    character: "Tom",
+                    thai: "ปกติผมใส่ไซส์ M ครับ แต่ขึ้นอยู่กับแบรนด์ด้วย ส่วนสีนั้น ผมคิดว่าน้ำเงินเข้มหรือแดงเลือดหูอาจจะดี อยากได้สีที่ไม่สดจ้าเกินไป เพราะไม่อยากไปดึงสายตาจากเจ้าสาวครับ"
+                },
+                {
+                    message: "That's very thoughtful of you. Let me show you some of our latest merchandise. We just got in some gorgeous midi dresses that would be perfect for a wedding.", 
+                    character: "Anna",
+                    thai: "ใจดีมากเลยค่ะ งั้นให้ดิฉันแสดงสินค้าล่าสุดของเราให้ดูนะคะ เพิ่งได้เดรสมิดี้ที่สวยมากมาใหม่ เหมาะสำหรับงานแต่งงานเลยค่ะ"
+                },
+                {
+                    message: "Oh wow, these are beautiful! I love this navy one with the lace sleeves. Do you have it in medium?", 
+                    character: "Tom",
+                    thai: "โอ้ ว้าว สวยมากเลยครับ ผมชอบตัวสีน้ำเงินที่มีแขนลูกไม้นี่มากเลย มีไซส์ M มั้ยครับ?"
+                },
+                {
+                    message: "Let me check for you. Yes, we do! Would you like to try it on? The fitting room is right over there. Here's the key, it's room number three.", 
+                    character: "Anna",
+                    thai: "ให้ดิฉันเช็คให้นะคะ มีค่ะ! อยากลองใส่ดูมั้ยคะ ห้องลองเสื้อผ้าอยู่ตรงนั้นค่ะ นี่กุญแจ ห้องเบอร์สามค่ะ"
+                },
+                {
+                    message: "Thank you so much! I'll be right back.", 
+                    character: "Tom",
+                    thai: "ขอบคุณมากครับ แป็บเดียวกลับมาครับ"
+                },
+                {
+                    message: "Take your time. If you need a different size, just let me know.", 
+                    character: "Anna",
+                    thai: "ค่อยๆ ลองนะคะ ถ้าต้องการไซส์อื่น บอกมาได้เลยค่ะ"
+                },
+                {
+                    message: "Excuse me, could you help me with the zipper? It seems to be stuck.", 
+                    character: "Tom",
+                    thai: "ขออภัยครับ ช่วยซิปหน่อยได้มั้ยครับ ดูเหมือนจะติดครับ"
+                },
+                {
+                    message: "Of course! Let me help you with that. There we go. How does it feel?", 
+                    character: "Anna",
+                    thai: "ได้เลยค่ะ ให้ดิฉันช่วยนะคะ เอาล่ะ ได้แล้ว รู้สึกยังไงคะ?"
+                },
+                {
+                    message: "It fits really well through the body, but the length is a bit long. Do you offer alterations?", 
+                    character: "Tom",
+                    thai: "พอดีตัวดีมากครับ แต่ความยาวดูจะยาวไปหน่อย ที่นี่มีบริการตัดเย็บมั้ยครับ?"
+                },
+                {
+                    message: "Yes, we do! Our tailor can hem it for you. The alteration would take about a week and costs $25. The dress looks absolutely stunning on you, by the way.", 
+                    character: "Anna",
+                    thai: "มีค่ะ ช่างเย็บของเราสามารถปรับชายกระโปรงให้ได้ค่ะ การตัดเย็บจะใช้เวลาประมาณหนึ่งสัปดาห์ และค่าใช้จ่าย 25 เหรียญค่ะ อ้อ ชุดนี้ใส่แล้วสวยมากเลยนะคะ"
+                },
+                {
+                    message: "Thank you! I really love it. What's the price?", 
+                    character: "Tom",
+                    thai: "ขอบคุณครับ ผมชอบมากจริงๆ ราคาเท่าไหร่ครับ?"
+                },
+                {
+                    message: "This dress is $180, but we're having a promotion this week. All dresses are 15% off, so it would be $153 plus the alteration fee if you decide to go with that.", 
+                    character: "Anna",
+                    thai: "ชุดนี้ราคา 180 เหรียญค่ะ แต่สัปดาห์นี้เรามีโปรโมชั่น เดรสทุกตัวลด 15% จะเป็น 153 เหรียญค่ะ บวกค่าตัดเย็บถ้าจะให้ปรับความยาวนะคะ"
+                },
+                {
+                    message: "That's within my budget. When would be the earliest I could pick it up if I get it altered?", 
+                    character: "Tom",
+                    thai: "ราคานี้พอดีงบครับ ถ้าให้ตัดเย็บ เร็วที่สุดผมมารับได้เมื่อไหร่ครับ?"
+                },
+                {
+                    message: "If you place the order today, you could pick it up next Thursday. We're actually restocking our formal wear section next week, so it's perfect timing.", 
+                    character: "Anna",
+                    thai: "ถ้าสั่งวันนี้ สามารถมารับได้วันพฤหัสบดีหน้าค่ะ ที่จริงสัปดาห์หน้าเราจะเติมสินค้าชุดออกงานใหม่ พอดีเวลาเลยค่ะ"
+                },
+                {
+                    message: "Perfect! I'll take it. Should I pay now or when I pick it up?", 
+                    character: "Tom",
+                    thai: "เยี่ยมเลยครับ ผมเอาครับ จ่ายตอนนี้หรือตอนมารับครับ?"
+                },
+                {
+                    message: "You can pay now and I'll give you a receipt with all the details. You'll just need to bring this receipt when you come back for pickup.", 
+                    character: "Anna",
+                    thai: "จ่ายตอนนี้ได้เลยค่ะ แล้วดิฉันจะให้ใบเสร็จที่มีรายละเอียดครบถ้วน แค่เอาใบเสร็จนี้มาตอนมารับก็พอค่ะ"
+                },
+                {
+                    message: "Sounds great! Do you accept credit cards?", 
+                    character: "Tom",
+                    thai: "ดีเลยครับ รับบัตรเครดิตมั้ยครับ?"
+                },
+                {
+                    message: "Absolutely! We accept all major credit cards, cash, and even mobile payments.", 
+                    character: "Anna",
+                    thai: "รับเลยค่ะ เรารับบัตรเครดิตทุกธนาคารใหญ่ เงินสด และการชำระผ่านมือถือด้วยค่ะ"
+                },
+                {
+                    message: "Wonderful! Here's my card. Oh, and could you also show me some accessories that might go with this dress? Maybe a clutch or some jewelry?", 
+                    character: "Tom",
+                    thai: "เยี่ยมเลยครับ นี่บัตรผมครับ อ้อ แล้วช่วยแนะนำเครื่องประดับที่เข้ากับชุดนี้ได้มั้ยครับ อาจจะเป็นกระเป๋าถือเล็กๆ หรือเครื่องประดับอะไรงี้"
+                },
+                {
+                    message: "I'd be happy to! We have a lovely collection of accessories right by the register. These pearl earrings would complement the dress beautifully.", 
+                    character: "Anna",
+                    thai: "ยินดีค่ะ เรามีคอลเลกชั่นเครื่องประดับสวยๆ อยู่ที่เคาน์เตอร์เลยค่ะ ต่างหูไข่มุกคู่นี้จะเข้ากับชุดได้สวยมากเลยค่ะ"
+                },
+                {
+                    message: "And this small clutch comes in a matching navy shade. Those earrings are perfect! How much are they?", 
+                    character: "Anna",
+                    thai: "แล้วกระเป๋าถือเล็กใบนี้ก็มีสีน้ำเงินที่เข้าชุดด้วยค่ะ ต่างหูไข่มุกสวยมากเลย ราคาเท่าไหร่คะ?"
+                },
+                {
+                    message: "They're $35. Would you like to add them to your purchase?", 
+                    character: "Anna",
+                    thai: "ราคา 35 เหรียญค่ะ อยากเพิ่มในการซื้อมั้ยคะ?"
+                },
+                {
+                    message: "Yes, please! This has been such a pleasant shopping experience. Thank you for all your help!", 
+                    character: "Tom",
+                    thai: "เอาครับ เป็นประสบการณ์การช็อปปิ้งที่ดีมากเลยครับ ขอบคุณสำหรับความช่วยเหลือทุกอย่างครับ"
+                },
+                {
+                    message: "You're very welcome! Here's your receipt and a business card. Don't forget, pickup is next Thursday after 2 PM. Have a wonderful day!", 
+                    character: "Anna",
+                    thai: "ยินดีค่ะ นี่ใบเสร็จและนามบัตรค่ะ อย่าลืมนะคะ มารับวันพฤหัสบดีหน้าหลัง 2 โมงเย็น ขอให้มีความสุขมากๆ นะคะ"
+                }
+            ];
+
+            $scope.textsHint = createExerciseTexts($scope.texts, 0.1);
+
+            // Initialize variables
+            $scope.currentIndex = 0;
+            $scope.isPlaying = false;
+            $scope.isPaused = false;
+            $scope.isLoading = false;
+            $scope.currentStatus = 'idle';
+            $scope.statusMessage = 'Ready to play';
+            $scope.progressPercentage = 0;
+            $scope.availableVoices = [];
+            $scope.selectedCharacter = 'both';
+            $scope.showInstallPrompt = false;
+            
+            // Speech settings
+            $scope.speechSettings = {
+                rate: 1.0,
+                pitch: 1.0
+            };
+
+            // PWA Installation
+            let deferredPrompt;
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                $scope.$apply(() => {
+                    $scope.showInstallPrompt = true;
+                });
+            });
+
+            $scope.installPWA = function() {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('PWA installed');
+                        }
+                        deferredPrompt = null;
+                        $scope.showInstallPrompt = false;
+                    });
+                }
+            };
+
+            // Load available voices
+            function loadVoices() {
+                $scope.availableVoices = window.speechSynthesis.getVoices().filter(item => 
+                    item.lang.includes('en') || item.voiceURI.includes('English')
+                );
+                console.log('Available voices:', $scope.availableVoices.map((voice, index) => ({
+                    name: voice.name, 
+                    lang: voice.lang,
+                    index
+                })));
+                $scope.$apply();
+            }
+
+            // Load voices when they become available
+            if (window.speechSynthesis.getVoices().length > 0) {
+                loadVoices();
+            } else {
+                window.speechSynthesis.onvoiceschanged = loadVoices;
+            }
+
+            // Get filtered texts based on character selection
+            function getFilteredTexts() {
+                if ($scope.selectedCharacter === 'both') {
+                    return $scope.texts;
+                } else {
+                    return $scope.texts.filter(text => text.character === $scope.selectedCharacter);
+                }
+            }
+
+            // Update progress
+            function updateProgress() {
+                const filteredTexts = getFilteredTexts();
+                $scope.progressPercentage = filteredTexts.length > 0 ? 
+                    (getCurrentFilteredIndex() / filteredTexts.length) * 100 : 0;
+            }
+
+            // Get current index in filtered array
+            function getCurrentFilteredIndex() {
+                const filteredTexts = getFilteredTexts();
+                const currentText = $scope.texts[$scope.currentIndex];
+                return filteredTexts.findIndex(text => text === currentText) + 1;
+            }
+
+            // Find next valid index based on character selection
+            function getNextValidIndex(startIndex) {
+                if ($scope.selectedCharacter === 'both') {
+                    return startIndex < $scope.texts.length ? startIndex : -1;
+                }
+                
+                for (let i = startIndex; i < $scope.texts.length; i++) {
+                    if ($scope.texts[i].character === $scope.selectedCharacter) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            // Function to replace words with underscores for exercises
+            function replaceWordsWithUnderscores(sentence, percentage = 0.6) {
+                const words = sentence.trim().split(/(\s+)/);
+                const actualWords = words.filter(word => word.trim() !== '');
+                const wordsToReplace = Math.floor(actualWords.length * percentage);
+                
+                const wordIndices = [];
+                words.forEach((word, index) => {
+                    if (word.trim() !== '') {
+                        wordIndices.push(index);
+                    }
+                });
+                
+                const indicesToReplace = [];
+                const availableIndices = [...wordIndices];
+                
+                for (let i = 0; i < wordsToReplace && availableIndices.length > 0; i++) {
+                    const randomIndex = Math.floor(Math.random() * availableIndices.length);
+                    const selectedIndex = availableIndices[randomIndex];
+                    indicesToReplace.push(selectedIndex);
+                    availableIndices.splice(randomIndex, 1);
+                }
+                
+                const result = words.map((word, index) => {
+                    if (indicesToReplace.includes(index)) {
+                        const cleanWord = word.replace(/[^\w]/g, '');
+                        const underscores = '_'.repeat(cleanWord.length);
+                        return word.replace(/\w+/, underscores);
+                    }
+                    return word;
+                });
+                
+                return result.join('');
+            }
+
+            // Create exercise texts with gaps
+            function createExerciseTexts(originalTexts, percentage = 0.4) {
+                return originalTexts.map(textObj => ({
+                    message: replaceWordsWithUnderscores(textObj.message, percentage),
+                    character: textObj.character,
+                    original: textObj.message
+                }));
+            }
+
+            // Speak single text with character-specific voice
+            function speakText(textObj, callback, autoContinue) {
+                $scope.isLoading = true;
+                
+                const utterance = new SpeechSynthesisUtterance(textObj.message);
+                
+                // Select voice based on character and available voices
+                const femaleVoices = $scope.availableVoices.filter(v => 
+                    v.name.toLowerCase().includes('female') || 
+                    v.name.toLowerCase().includes('united states') || 
+                    v.name.toLowerCase().includes('microsoft') 
+                );
+                
+                const maleVoices = $scope.availableVoices.filter(v => 
+                    v.name.toLowerCase().includes('male') || 
+                    v.name.toLowerCase().includes('united states') || 
+                    v.name.toLowerCase().includes('microsoft') 
+                );
+                
+                console.log(femaleVoices)
+                console.log(maleVoices)
+
+                if (textObj.character === 'Anna' && femaleVoices.length > 0) {
+                    utterance.voice = femaleVoices[11];
+                } else if (textObj.character === 'Tom' && maleVoices.length > 0) {
+                    utterance.voice = maleVoices[10];
+                } else if ($scope.availableVoices.length > 0) {
+                    // Fallback to first available voice
+                    utterance.voice = $scope.availableVoices[0];
+                }
+                
+                utterance.rate = $scope.speechSettings.rate;
+                utterance.pitch = $scope.speechSettings.pitch;
+                utterance.lang = 'en-US';
+
+                utterance.onstart = function() {
+                    $scope.$apply(function() {
+                        $scope.isLoading = false;
+                        $scope.currentStatus = 'playing';
+                        $scope.statusMessage = `Speaking: ${textObj.character}`;
+                        updateProgress();
+                    });
+                };
+
+                utterance.onend = function(event) {
+                    if (event.type === 'end') {
+                        $scope.$apply(function() {
+                            const nextIndex = getNextValidIndex($scope.currentIndex + 1);
+                            
+                            if (nextIndex !== -1) {
+                                $scope.currentIndex = nextIndex;
+                                updateProgress();
+                                
+                                if (autoContinue && $scope.selectedCharacter === 'both') {
+                                    $timeout(function() {
+                                        if ($scope.isPlaying && !$scope.isPaused) {
+                                            speakText($scope.texts[$scope.currentIndex], callback, true);
+                                        }
+                                    }, 500);
+                                } else {
+                                    $scope.isPlaying = false;
+                                    $scope.currentStatus = 'idle';
+                                    $scope.statusMessage = `${textObj.character} finished - Tap Next or press SPACE`;
+                                }
+                            } else {
+                                $scope.isPlaying = false;
+                                $scope.currentStatus = 'idle';
+                                $scope.statusMessage = 'Dialogue completed! 🎉';
+                                $scope.currentIndex = 0;
+                                updateProgress();
+                            }
+                        });
+                    }
+                    
+                    if (callback) callback();
+                };
+
+                utterance.onerror = function(event) {
+                    console.log('Speech synthesis error:', event.error);
+                    
+                    if (event.error === 'interrupted') {
+                        return;
+                    }
+                    
+                    $scope.$apply(function() {
+                        $scope.isLoading = false;
+                        $scope.isPlaying = false;
+                        $scope.currentStatus = 'stopped';
+                        $scope.statusMessage = `Error: ${event.error}`;
+                    });
+                };
+
+                window.speechSynthesis.speak(utterance);
+            }
+
+            // Play entire dialogue
+            $scope.playDialogue = function() {
+                const filteredTexts = getFilteredTexts();
+                if (filteredTexts.length === 0) return;
+                
+                $scope.isPlaying = true;
+                $scope.isPaused = false;
+                
+                const firstValidIndex = getNextValidIndex(0);
+                if (firstValidIndex !== -1) {
+                    $scope.currentIndex = firstValidIndex;
+                    $scope.currentStatus = 'playing';
+                    updateProgress();
+                    const autoContinue = ($scope.selectedCharacter === 'both');
+                    speakText($scope.texts[$scope.currentIndex], null, autoContinue);
+                }
+            };
+
+            // Play next line function
+            $scope.playNextLine = function() {
+                const filteredTexts = getFilteredTexts();
+                if (filteredTexts.length === 0) return;
+                
+                if ($scope.isPlaying) {
+                    window.speechSynthesis.cancel();
+                    $scope.isPlaying = false;
+                    $scope.isPaused = false;
+                }
+                
+                let nextIndex = $scope.currentIndex;
+                
+                if ($scope.selectedCharacter !== 'both' && 
+                    $scope.texts[nextIndex] && 
+                    $scope.texts[nextIndex].character !== $scope.selectedCharacter) {
+                    nextIndex = getNextValidIndex($scope.currentIndex);
+                }
+                
+                if (nextIndex >= $scope.texts.length || 
+                    ($scope.selectedCharacter !== 'both' && $scope.texts[nextIndex] && 
+                     $scope.texts[nextIndex].character !== $scope.selectedCharacter)) {
+                    nextIndex = getNextValidIndex($scope.currentIndex + 1);
+                }
+                
+                if (nextIndex !== -1 && nextIndex < $scope.texts.length) {
+                    $scope.currentIndex = nextIndex;
+                    $scope.currentStatus = 'playing';
+                    $scope.isPlaying = true;
+                    updateProgress();
+                    
+                    const autoContinue = ($scope.selectedCharacter === 'both');
+                    speakText($scope.texts[$scope.currentIndex], null, autoContinue);
+                } else {
+                    const firstValidIndex = getNextValidIndex(0);
+                    if (firstValidIndex !== -1) {
+                        $scope.currentIndex = firstValidIndex;
+                        $scope.currentStatus = 'idle';
+                        $scope.statusMessage = 'End of dialogue - reset to beginning';
+                        updateProgress();
+                    }
+                }
+            };
+
+            // Pause/Resume functionality
+            $scope.pauseResume = function() {
+                if ($scope.isPaused) {
+                    window.speechSynthesis.resume();
+                    $scope.isPaused = false;
+                    $scope.currentStatus = 'playing';
+                    $scope.statusMessage = 'Resumed';
+                } else if ($scope.isPlaying) {
+                    window.speechSynthesis.pause();
+                    $scope.isPaused = true;
+                    $scope.currentStatus = 'paused';
+                    $scope.statusMessage = 'Paused';
+                }
+            };
+
+            // Stop dialogue
+            $scope.stopDialogue = function() {
+                $scope.isPlaying = false;
+                $scope.isPaused = false;
+                $scope.isLoading = false;
+                window.speechSynthesis.cancel();
+                $scope.currentIndex = 0;
+                $scope.currentStatus = 'stopped';
+                $scope.statusMessage = 'Stopped';
+                $scope.progressPercentage = 0;
+            };
+
+            // Keyboard and touch event handlers
+            document.addEventListener('keydown', function(event) {
+                if (event.code === 'Space') {
+                    event.preventDefault();
+                    $scope.$apply(function() {
+                        $scope.playNextLine();
+                    });
+                }
+                if (event.code === 'MetaLeft' || event.code === 'MetaRight') {
+                    event.preventDefault();
+                    $scope.$apply(function() {
+                        $scope.pauseResume();
+                    });
+                }
+            });
+
+            // Touch gesture handling for mobile
+            let touchStartY = 0;
+            let touchEndY = 0;
+
+            document.addEventListener('touchstart', function(event) {
+                touchStartY = event.changedTouches[0].screenY;
+            });
+
+            document.addEventListener('touchend', function(event) {
+                touchEndY = event.changedTouches[0].screenY;
+                handleSwipeGesture();
+            });
+
+            function handleSwipeGesture() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchStartY - touchEndY;
+                
+                if (Math.abs(swipeDistance) > swipeThreshold) {
+                    if (swipeDistance > 0) {
+                        // Swipe up - next line
+                        $scope.$apply(function() {
+                            $scope.playNextLine();
+                        });
+                    } else {
+                        // Swipe down - pause/resume
+                        $scope.$apply(function() {
+                            $scope.pauseResume();
+                        });
+                    }
+                }
+            }
+
+            // Watch for character selection changes
+            $scope.$watch('selectedCharacter', function(newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    $scope.stopDialogue();
+                    $scope.statusMessage = `Character: ${newVal === 'both' ? 'Both Characters' : newVal}`;
+                    updateProgress();
+                }
+            });
+
+            // Prevent screen sleep on mobile
+            let wakeLock = null;
+
+            async function requestWakeLock() {
+                try {
+                    if ('wakeLock' in navigator) {
+                        wakeLock = await navigator.wakeLock.request('screen');
+                        console.log('Screen wake lock activated');
+                    }
+                } catch (err) {
+                    console.log('Wake lock failed:', err);
+                }
+            }
+
+            function releaseWakeLock() {
+                if (wakeLock) {
+                    wakeLock.release();
+                    wakeLock = null;
+                    console.log('Screen wake lock released');
+                }
+            }
+
+            // Request wake lock when playing starts
+            $scope.$watch('isPlaying', function(newVal) {
+                if (newVal) {
+                    requestWakeLock();
+                } else {
+                    releaseWakeLock();
+                }
+            });
+
+            // Handle visibility change (when app goes to background)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    if ($scope.isPlaying) {
+                        $scope.$apply(function() {
+                            $scope.pauseResume();
+                        });
+                    }
+                }
+            });
+
+            // Initialize
+            updateProgress();
+            
+            // Add some mobile-specific improvements
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                // Mobile device detected
+                console.log('Mobile device detected - PWA optimizations enabled');
+                
+                // Disable zoom on double tap
+                let lastTouchEnd = 0;
+                document.addEventListener('touchend', function(event) {
+                    const now = (new Date()).getTime();
+                    if (now - lastTouchEnd <= 300) {
+                        event.preventDefault();
+                    }
+                    lastTouchEnd = now;
+                }, false);
+                
+                // Add haptic feedback if available
+                $scope.playWithHaptic = function(action) {
+                    if (navigator.vibrate) {
+                        navigator.vibrate(50); // Short vibration
+                    }
+                    action();
+                };
+            }
+        }]);
+    </script>
+</body>
+</html>
