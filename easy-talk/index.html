@@ -12,6 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Easy Talk">
+<link rel="manifest" href="./manifest.json">
 
 <!-- PWA Manifest -->
 <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlNtYWxsIFRhbGsgRW5nbGlzaCBQcmFjdGljZSIsCiAgInNob3J0X25hbWUiOiAiRW5nbGlzaCBQcmFjdGljZSIsCiAgImRlc2NyaXB0aW9uIjogIlByYWN0aWNlIEVuZ2xpc2ggc21hbGwgdGFsayBjb252ZXJzYXRpb25zIiwKICAic3RhcnRfdXJsIjogIi4vIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJ0aGVtZV9jb2xvciI6ICIjODBjNmI1IiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZTBmNGYzIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRJNElpQm9aV2xuYUhROUlqRXlPQ0lnZG1sbGQwSnZlRDBpTUNBd0lERXlPQ0F4TWpnaUlIaHRiRzV6UFNKb2RIUndPaTh2ZDNkM0xuY3pMbTl5Wnk4eU1EQXdMM04yWnlJK1BISmxZM1FnZUQwaU1UWWlJSGs5SWpFMklpQjNhV1IwYUQwaU9UWWlJR2hsYVdkb2REMGlPVFlpSUhKNFBTSTVJaUJtYVd4c1BTSWpPREJqTm1JMUlpOCtQSFJsZUhRZ2VEMGlOalFpSUhrOUlqUTBJaUJtYjI1MExYTnBlbVU5SWpJNGNIZ2lJR1pwYkd3OUlpTm1abVptWmlJZ1ptOXVkQzEzWldsbmFIUTlJaUkrUlR3dmRHVjRkRDQ4TDNOMlp6ND0iLAogICAgICAic2l6ZXMiOiAiMTI4eDEyOCIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ2RtbGxkMEp2ZUQwaU1DQXdJRFV4TWlBMU1USWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQSEpsWTNRZ2VEMGlOalFpSUhrOUlqWTBJaUIzYVdSMGFEMGlNemd6SWlCb1pXbG5hSFE5SWpNNE15SWdjbmc5SWpNNElpQm1hV3hzUFNJak9EQmpObUkxSWk4K1BIUmxlSFFnZUQwaU1qVTJJaUI1UFNJeU5UWWlJR1p2Ym5RdGMybDZaVDBpTWpnd2NIZ2lJR1pwYkd3OUlpTm1abVptWmlJZ1ptOXVkQzEzWldsbmFIUTlJaUkrUlR3dmRHVjRkRDQ4TDNOMlp6ND0iLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9">
@@ -926,42 +927,48 @@
                 vm.initVoices();
 
                 // Service Worker registration for offline functionality
-        function registerServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                var swCode = `
-                    const CACHE_NAME = 'easy-talk';
-                    const urlsToCache = [
-                        '/',
-                        'data:text/html;charset=utf-8,${encodeURIComponent(document.documentElement.outerHTML)}'
-                    ];
+        // function registerServiceWorker() {
+        //     if ('serviceWorker' in navigator) {
+        //         var swCode = `
+        //             const CACHE_NAME = 'easy-talk';
+        //             const urlsToCache = [
+        //                 '/',
+        //                 'data:text/html;charset=utf-8,${encodeURIComponent(document.documentElement.outerHTML)}'
+        //             ];
                     
-                    self.addEventListener('install', event => {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME)
-                                .then(cache => cache.addAll(urlsToCache))
-                        );
-                    });
+        //             self.addEventListener('install', event => {
+        //                 event.waitUntil(
+        //                     caches.open(CACHE_NAME)
+        //                         .then(cache => cache.addAll(urlsToCache))
+        //                 );
+        //             });
                     
-                    self.addEventListener('fetch', event => {
-                        event.respondWith(
-                            caches.match(event.request)
-                                .then(response => response || fetch(event.request))
-                        );
-                    });
-                `;
+        //             self.addEventListener('fetch', event => {
+        //                 event.respondWith(
+        //                     caches.match(event.request)
+        //                         .then(response => response || fetch(event.request))
+        //                 );
+        //             });
+        //         `;
                 
-                var blob = new Blob([swCode], { type: 'application/javascript' });
-                var swUrl = URL.createObjectURL(blob);
+        //         var blob = new Blob([swCode], { type: 'application/javascript' });
+        //         var swUrl = URL.createObjectURL(blob);
                 
-                navigator.serviceWorker.register(swUrl)
-                    .then(function() { console.log('SW registered'); })
-                    .catch(function(err) { console.log('SW registration failed'); });
-            }
-        }
+        //         navigator.serviceWorker.register(swUrl)
+        //             .then(function() { console.log('SW registered'); })
+        //             .catch(function(err) { console.log('SW registration failed'); });
+        //     }
+        // }
         
-        // Register service worker when page loads
-        window.addEventListener('load', registerServiceWorker);
-
+        // // Register service worker when page loads
+        // window.addEventListener('load', registerServiceWorker);
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
 
             }]);
 
