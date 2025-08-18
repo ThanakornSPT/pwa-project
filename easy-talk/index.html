@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="th" ng-app="easyTalk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small talk English Practice</title>
+
+
+    <!-- PWA Meta Tags -->
+<meta name="theme-color" content="#e0f4f3">
+<meta name="description" content="Practice English small talk conversations with interactive quizzes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Easy Talk">
+
+<!-- PWA Manifest -->
+<link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlNtYWxsIFRhbGsgRW5nbGlzaCBQcmFjdGljZSIsCiAgInNob3J0X25hbWUiOiAiRW5nbGlzaCBQcmFjdGljZSIsCiAgImRlc2NyaXB0aW9uIjogIlByYWN0aWNlIEVuZ2xpc2ggc21hbGwgdGFsayBjb252ZXJzYXRpb25zIiwKICAic3RhcnRfdXJsIjogIi4vIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJ0aGVtZV9jb2xvciI6ICIjODBjNmI1IiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZTBmNGYzIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRJNElpQm9aV2xuYUhROUlqRXlPQ0lnZG1sbGQwSnZlRDBpTUNBd0lERXlPQ0F4TWpnaUlIaHRiRzV6UFNKb2RIUndPaTh2ZDNkM0xuY3pMbTl5Wnk4eU1EQXdMM04yWnlJK1BISmxZM1FnZUQwaU1UWWlJSGs5SWpFMklpQjNhV1IwYUQwaU9UWWlJR2hsYVdkb2REMGlPVFlpSUhKNFBTSTVJaUJtYVd4c1BTSWpPREJqTm1JMUlpOCtQSFJsZUhRZ2VEMGlOalFpSUhrOUlqUTBJaUJtYjI1MExYTnBlbVU5SWpJNGNIZ2lJR1pwYkd3OUlpTm1abVptWmlJZ1ptOXVkQzEzWldsbmFIUTlJaUkrUlR3dmRHVjRkRDQ4TDNOMlp6ND0iLAogICAgICAic2l6ZXMiOiAiMTI4eDEyOCIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ2RtbGxkMEp2ZUQwaU1DQXdJRFV4TWlBMU1USWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQSEpsWTNRZ2VEMGlOalFpSUhrOUlqWTBJaUIzYVdSMGFEMGlNemd6SWlCb1pXbG5hSFE5SWpNNE15SWdjbmc5SWpNNElpQm1hV3hzUFNJak9EQmpObUkxSWk4K1BIUmxlSFFnZUQwaU1qVTJJaUI1UFNJeU5UWWlJR1p2Ym5RdGMybDZaVDBpTWpnd2NIZ2lJR1pwYkd3OUlpTm1abVptWmlJZ1ptOXVkQzEzWldsbmFIUTlJaUkrUlR3dmRHVjRkRDQ4TDNOMlp6ND0iLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9">
+
+<!-- Apple Touch Icons -->
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3QgeD0iMTYiIHk9IjE2IiB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHJ4PSI5IiBmaWxsPSIjODBjNmI1Ii8+PHRleHQgeD0iNjQiIHk9IjQ0IiBmb250LXNpemU9IjI4cHgiIGZpbGw9IiNmZmZmZmYiIGZvbnQtd2VpZ2h0PSJiIj5FPC90ZXh0Pjwvc3ZnPg==">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+     <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        background: linear-gradient(180deg, #e0f4f3 0%, #d4eae9 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .top-section {
+        display: flex;
+        gap: 9px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .page-dropdown {
+        flex: 1;
+        background: #f8f9fa;
+        border: none;
+        border-radius: 10px;
+        padding: 20px 20px;
+        width: 100%;
+        font-size: 16px;
+        color: #495057;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 12px center;
+        background-repeat: no-repeat;
+        background-size: 16px;
+    }
+
+    .control-buttons {
+        display: flex;
+        gap: 4px;
+    }
+
+    .control-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 19%;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        background: #80c6b5;
+    }
+
+    .control-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-card {
+        flex: 1;
+        margin: 0 20px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        position: relative;
+        min-height: 400px;
+    }
+
+    .quiz-question {
+        font-size: 36px;
+        font-weight: 300;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+        height: 110px;
+    }
+
+    .thai-answer {
+        font-size: 18px;
+        color: #888;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .score-circle {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: #80c6b5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 64px;
+        font-weight: bold;
+        color: white;
+        margin: 20px auto;
+        cursor: pointer;
+        top: 50%;
+        left: 50%;
+    }
+
+    .hints {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+    .hint-word {
+        padding: 8px 16px;
+        background: #f0f0f0;
+        border-radius: 20px;
+        font-size: 16px;
+        color: #666;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s ease;
+    }
+
+    .hint-word.visible {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 20px;
+        margin-top: 30px;
+        justify-content: center;
+    }
+
+    .action-btn {
+        padding: 12px 30px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        min-width: 80px;
+    }
+
+    .btn-keep {
+        background: #ddd;
+        color: #666;
+    }
+
+    .btn-show {
+        background: white;
+        color: #80c6b5;
+        border: 2px solid #80c6b5;
+    }
+
+    .btn-pass {
+        background: #80c6b5;
+        color: white;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-section {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .progress-info {
+        font-size: 18px;
+        color: #80c6b5;
+        font-weight: 600;
+    }
+
+    .progress-bar {
+        flex: 1;
+        height: 8px;
+        background: #ade3d6;
+        border-radius: 4px;
+        margin: 0 20px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: #80c6b5;
+        border-radius: 4px;
+        transition: width 0.3s ease;
+    }
+
+    .completion-screen {
+        text-align: center;
+        color: #333;
+    }
+
+    .completion-score {
+        font-size: 48px;
+        font-weight: bold;
+        color: #80c6b5;
+        margin: 20px 0;
+    }
+
+    .restart-btn {
+        background: #80c6b5;
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 25px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .quiz-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+    }
+
+    .card-top {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-main {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .container-1 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    </style>
+</head>
+<body ng-controller="QuizController as quiz">
+
+    <div class="container-main">
+        <div class="top-section">
+            <select class="page-dropdown" 
+                    ng-model="quiz.currentPage" 
+                    ng-change="quiz.loadCurrentPage()"
+                    ng-options="page.value as page.label for page in quiz.pageOptions">
+            </select>
+            
+            <div class="control-buttons">
+                <button class="control-btn btn-m" ng-click="quiz.shuffleQuizzes()">M</button>
+                <button class="control-btn btn-5" ng-click="quiz.changeItemsPerPage()">{{quiz.itemsPerPage}}</button>
+                <button class="control-btn btn-r" ng-click="quiz.resetQuiz()">R</button>
+                <button class="control-btn btn-sound" ng-click="quiz.toggleSound()" title="Toggle Sound">S</button>
+            </div>
+        </div>
+        
+        <div class="container-1">
+            <div class="main-card">
+                <div class="quiz-content" ng-show="!quiz.showCompletion">
+                    <div class="card-top">
+                        <div class="quiz-question" ng-click="quiz.repeatQuestion()" style="cursor: pointer;" title="Click to repeat question">{{quiz.currentQuiz.quiz}}</div>
+                        <div class="thai-answer">{{quiz.currentAnswer.thai}}</div>
+                        
+                        <div class="score-circle" ng-click="quiz.showNextHint()">
+                            {{quiz.currentScore}}
+                        </div>
+                        
+                        <div class="hints">
+                            <div class="hint-word" 
+                                 ng-repeat="word in quiz.hintWords track by $index"
+                                 ng-class="{visible: word.visible}">
+                                {{word.text}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn btn-keep" ng-click="quiz.keepQuestion()">KEEP</button>
+                        <button class="action-btn btn-show" ng-click="quiz.showAnswer()">SHOW</button>
+                        <button class="action-btn btn-pass" ng-click="quiz.passQuestion()">PASS</button>
+                    </div>
+                </div>
+                
+                <div class="completion-screen" ng-show="quiz.showCompletion">
+                    <h2>Quiz Completed!</h2>
+                    <div class="completion-score">{{quiz.totalScore}} / {{quiz.maxScore}}</div>
+                    <div>{{quiz.completionMessage}}</div>
+                    <button class="restart-btn" ng-click="quiz.resetQuiz()">Start Again</button>
+                </div>
+            </div>
+            
+            <div class="progress-section">
+                <div class="progress-info">
+                    <span>{{quiz.progressPercent}} %</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" ng-style="{'width': quiz.progressPercent + '%'}"></div>
+                </div>
+                <div class="progress-info">
+                    <span>{{quiz.completedQuestions}} / {{quiz.currentQuizzes.length}}</span>
+                    <span style="margin-left: 20px;">({{quiz.totalScore}} POINTS)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        angular.module('easyTalk', [])
+            .service('TextToSpeechService', function() {
+                var vm = this;
+
+                vm.speak = function(text, lang, voicesEN) {
+                    // ตรวจสอบว่า browser รองรับ Speech Synthesis API หรือไม่
+                    if ('speechSynthesis' in window) {
+                        // หยุดการพูดที่อาจกำลังทำงานอยู่
+                        speechSynthesis.cancel();
+                        
+                        var utterance = new SpeechSynthesisUtterance(text);
+                        console.log({en: voicesEN})
+
+                        const r = Math.floor(Math.random() * 24);
+                        console.log(r)
+
+                        // if(voicesEN)
+                        // utterance.voice = voicesEN[24];
+
+                        utterance.lang = lang || 'en-US';
+                        utterance.rate = 1.0; // ความเร็วในการพูด
+                        utterance.pitch = 1; // ระดับเสียง
+                        utterance.volume = 0.8; // ระดับความดัง
+                        
+                        speechSynthesis.speak(utterance);
+                    } else {
+                        console.log('Text-to-Speech ไม่รองรับใน browser นี้');
+                    }
+                };
+                
+                vm.stop = function() {
+                    if ('speechSynthesis' in window) {
+                        speechSynthesis.cancel();
+                    }
+                };
+            })
+            .service('QuizDataService', function() {
+                this.getQuizData = function() {
+                    return [
+                        {
+                            "quiz": "Hey, Sarah, how was your weekend?",
+                            "answers": [
+                                {
+                                    "thai": "สบายดี ไปเที่ยว Paris กับครอบครัวมา",
+                                    "english": "It was good, went to Paris with family."
+                                },
+                                {
+                                    "thai": "วันหยุดที่ยอดเยี่ยม ได้พักผ่อนเต็มที่",
+                                    "english": "It was amazing, got to relax completely."
+                                },
+                                {
+                                    "thai": "เหนื่อยมาก มีงานเยอะ",
+                                    "english": "Very tiring, had a lot of work."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "What did you do yesterday?",
+                            "answers": [
+                                {
+                                    "thai": "ไปดูหนังกับเพื่อน",
+                                    "english": "Went to see a movie with friends."
+                                },
+                                {
+                                    "thai": "อยู่บ้านอ่านหนังสือ",
+                                    "english": "Stayed home and read books."
+                                },
+                                {
+                                    "thai": "ไปช็อปปิ้งที่ห้างสรรพสินค้า",
+                                    "english": "Went shopping at the mall."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "How do you feel today?",
+                            "answers": [
+                                {
+                                    "thai": "รู้สึกดีมาก มีพลังงาน",
+                                    "english": "Feeling great, full of energy."
+                                },
+                                {
+                                    "thai": "เหนื่อยนิดหน่อย",
+                                    "english": "A little bit tired."
+                                },
+                                {
+                                    "thai": "ตื่นเต้นกับการทำงานใหม่",
+                                    "english": "Excited about the new job."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "Where are you from?",
+                            "answers": [
+                                {
+                                    "thai": "มาจากประเทศไทย กรุงเทพมหานคร",
+                                    "english": "I'm from Thailand, Bangkok."
+                                },
+                                {
+                                    "thai": "เกิดที่เชียงใหม่ แต่อยู่กรุงเทพ",
+                                    "english": "Born in Chiang Mai but live in Bangkok."
+                                },
+                                {
+                                    "thai": "อยู่จังหวัดภูเก็ต ใต้ของไทย",
+                                    "english": "From Phuket, southern Thailand."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "What's your favorite food?",
+                            "answers": [
+                                {
+                                    "thai": "ชอบก๋วยเตี๋ยวและส้มตำ",
+                                    "english": "I love noodles and som tam."
+                                },
+                                {
+                                    "thai": "ชอบพิซซ่าและเบอร์เกอร์",
+                                    "english": "I like pizza and burgers."
+                                },
+                                {
+                                    "thai": "ชอบอาหารญี่ปุ่น โดยเฉพาะซูชิ",
+                                    "english": "I love Japanese food, especially sushi."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "Do you have any hobbies?",
+                            "answers": [
+                                {
+                                    "thai": "ชอบอ่านหนังสือและฟังเพลง",
+                                    "english": "I like reading books and listening to music."
+                                },
+                                {
+                                    "thai": "ชอบเล่นกีฬาและออกกำลังกาย",
+                                    "english": "I enjoy playing sports and exercising."
+                                },
+                                {
+                                    "thai": "ชอบทำอาหารและเบเกอรี่",
+                                    "english": "I love cooking and baking."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "What time do you wake up?",
+                            "answers": [
+                                {
+                                    "thai": "ตื่นเวลา 6 โมงเช้าทุกวัน",
+                                    "english": "I wake up at 6 AM every day."
+                                },
+                                {
+                                    "thai": "ตื่นสาย ประมาณ 9 โมง",
+                                    "english": "I wake up late, around 9 o'clock."
+                                },
+                                {
+                                    "thai": "ขึ้นอยู่กับงาน บางทีเช้า บางทีสาย",
+                                    "english": "Depends on work, sometimes early, sometimes late."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "How do you go to work?",
+                            "answers": [
+                                {
+                                    "thai": "ขับรถไปทำงาน",
+                                    "english": "I drive to work."
+                                },
+                                {
+                                    "thai": "นั่งรถไฟฟ้า BTS",
+                                    "english": "I take the BTS train."
+                                },
+                                {
+                                    "thai": "ทำงานที่บ้าน work from home",
+                                    "english": "I work from home."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "What's the weather like today?",
+                            "answers": [
+                                {
+                                    "thai": "อากาศดี แดดไม่แรง",
+                                    "english": "Nice weather, not too sunny."
+                                },
+                                {
+                                    "thai": "ร้อนมาก อบอ้าว",
+                                    "english": "Very hot and humid."
+                                },
+                                {
+                                    "thai": "ฝนตก เปียกปอน",
+                                    "english": "It's raining, very wet."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "What are your plans for tonight?",
+                            "answers": [
+                                {
+                                    "thai": "จะไปทานข้าวเย็นกับครอบครัว",
+                                    "english": "Going to have dinner with family."
+                                },
+                                {
+                                    "thai": "อยู่บ้านดูซีรีส์ Netflix",
+                                    "english": "Staying home to watch Netflix series."
+                                },
+                                {
+                                    "thai": "ไปออกกำลังกายที่ฟิตเนส",
+                                    "english": "Going to exercise at the gym."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "Do you like your job?",
+                            "answers": [
+                                {
+                                    "thai": "ชอบมาก ได้เรียนรู้สิ่งใหม่",
+                                    "english": "Love it, get to learn new things."
+                                },
+                                {
+                                    "thai": "โอเค ได้เงินดี",
+                                    "english": "It's okay, good salary."
+                                },
+                                {
+                                    "thai": "กำลังมองหางานใหม่",
+                                    "english": "Looking for a new job."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "What did you study?",
+                            "answers": [
+                                {
+                                    "thai": "เรียนคอมพิวเตอร์และเทคโนโลยี",
+                                    "english": "Studied computer science and technology."
+                                },
+                                {
+                                    "thai": "เรียนบริหารธุรกิจ",
+                                    "english": "Studied business administration."
+                                },
+                                {
+                                    "thai": "เรียนภาษาอังกฤษและการแปล",
+                                    "english": "Studied English and translation."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "How long have you been learning English?",
+                            "answers": [
+                                {
+                                    "thai": "เรียนมา 5 ปีแล้ว",
+                                    "english": "I've been learning for 5 years."
+                                },
+                                {
+                                    "thai": "เพิ่งเริ่มเรียนปีนี้",
+                                    "english": "Just started learning this year."
+                                },
+                                {
+                                    "thai": "เรียนมาตั้งแต่เด็ก",
+                                    "english": "Been learning since I was a child."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "What's your favorite movie?",
+                            "answers": [
+                                {
+                                    "thai": "ชอบหนังแอคชั่นและผจญภัย",
+                                    "english": "I like action and adventure movies."
+                                },
+                                {
+                                    "thai": "ชอบหนังรักโรแมนติก",
+                                    "english": "I love romantic movies."
+                                },
+                                {
+                                    "thai": "ชอบหนังสยองขวัญ",
+                                    "english": "I enjoy horror movies."
+                                }
+                            ]
+                        },
+                        {
+                            "quiz": "Do you have any pets?",
+                            "answers": [
+                                {
+                                    "thai": "เลี้ยงแมว 2 ตัว น่ารักมาก",
+                                    "english": "I have 2 cats, they're very cute."
+                                },
+                                {
+                                    "thai": "เลี้ยงสุนัขชื่อ Lucky",
+                                    "english": "I have a dog named Lucky."
+                                },
+                                {
+                                    "thai": "ไม่เลี้ยง อยู่คอนโด",
+                                    "english": "No pets, I live in a condo."
+                                }
+                            ]
+                        }
+                    ];
+                };
+                
+                this.shuffleArray = function(array) {
+                    var shuffled = angular.copy(array);
+                    for (var i = shuffled.length - 1; i > 0; i--) {
+                        var j = Math.floor(Math.random() * (i + 1));
+                        var temp = shuffled[i];
+                        shuffled[i] = shuffled[j];
+                        shuffled[j] = temp;
+                    }
+                    return shuffled;
+                };
+            })
+            .controller('QuizController', ['QuizDataService', 'TextToSpeechService', '$timeout', function(QuizDataService, TextToSpeechService, $timeout) {
+                var vm = this;
+                
+                // Initialize data
+                vm.quizData = QuizDataService.getQuizData();
+                vm.shuffledQuizData = angular.copy(vm.quizData);
+                vm.currentQuizzes = [];
+                vm.availableQuizzes = [];
+                vm.currentQuiz = {};
+                vm.currentAnswer = {};
+                vm.hintWords = [];
+                vm.randomHintOrder = [];
+                
+                // State variables
+                vm.currentPage = 0;
+                vm.itemsPerPage = 5;
+                vm.currentHintLevel = 0;
+                vm.currentScore = 5;
+                vm.totalScore = 0;
+                vm.completedQuestions = 0;
+                vm.showCompletion = false;
+                vm.pageOptions = [];
+                vm.soundEnabled = true; // เปิดเสียงเป็นค่าเริ่มต้น
+                
+                // Computed properties
+                vm.progressPercent = 0;
+                vm.maxScore = 0;
+                vm.completionMessage = '';
+                
+                // Initialize the app
+                vm.init = function() {
+                    vm.shuffleQuizzes();
+                    vm.updatePageDropdown();
+                    vm.loadCurrentPage();
+                };
+                
+                vm.shuffleQuizzes = function() {
+                    vm.shuffledQuizData = QuizDataService.shuffleArray(vm.quizData);
+                    vm.updatePageDropdown();
+                    vm.loadCurrentPage();
+                };
+                
+                vm.changeItemsPerPage = function() {
+                    vm.itemsPerPage += 5;
+                    if (vm.itemsPerPage > 20) {
+                        vm.itemsPerPage = 5;
+                    }
+                    vm.resetQuiz();
+                };
+                
+                vm.resetQuiz = function() {
+                    vm.currentPage = 0;
+                    vm.totalScore = 0;
+                    vm.completedQuestions = 0;
+                    vm.showCompletion = false;
+                    vm.shuffleQuizzes();
+                };
+                
+                vm.updatePageDropdown = function() {
+                    var totalPages = Math.ceil(vm.shuffledQuizData.length / vm.itemsPerPage);
+                    vm.pageOptions = [];
+                    
+                    for (var i = 0; i < totalPages; i++) {
+                        var startNum = (i * vm.itemsPerPage) + 1;
+                        var endNum = Math.min((i + 1) * vm.itemsPerPage, vm.shuffledQuizData.length);
+                        vm.pageOptions.push({
+                            value: i,
+                            label: 'Page ' + (i + 1) + ' (' + startNum + '-' + endNum + ')'
+                        });
+                    }
+                };
+                
+                vm.loadCurrentPage = function() {
+                    var startIndex = vm.currentPage * vm.itemsPerPage;
+                    var endIndex = Math.min(startIndex + vm.itemsPerPage, vm.shuffledQuizData.length);
+                    
+                    // สร้าง currentQuizzes จากการสุ่มเลือกโจทย์และคำตอบ
+                    vm.currentQuizzes = Array.from({length: vm.itemsPerPage}).map(function() {
+                        // สุ่ม index ในขอบเขตของ page (0-4 สำหรับ page 1, 5-9 สำหรับ page 2, etc.)
+                        var randomQuizIndex = startIndex + Math.floor(Math.random() * (endIndex - startIndex));
+                        var selectedQuiz = vm.shuffledQuizData[randomQuizIndex];
+                        var randomAnswer = Math.floor(Math.random() * selectedQuiz.answers.length);
+                        
+                        return {
+                            quiz: selectedQuiz.quiz,
+                            thai: selectedQuiz.answers[randomAnswer].thai,
+                            english: selectedQuiz.answers[randomAnswer].english
+                        };
+                    });
+                    
+                    vm.availableQuizzes = angular.copy(vm.currentQuizzes);
+                    vm.completedQuestions = 0;
+                    vm.totalScore = 0;
+                    vm.loadCurrentQuestion();
+                };
+                
+                vm.loadCurrentQuestion = function() {
+                    if (vm.availableQuizzes.length === 0) {
+                        vm.showCompletionScreen();
+                        return;
+                    }
+                    
+                    // Random select from available quizzes
+                    var randomIndex = Math.floor(Math.random() * vm.availableQuizzes.length);
+                    console.log({randomIndex})
+                    vm.currentQuiz = vm.availableQuizzes[randomIndex];
+                    vm.currentAnswer = {
+                        thai: vm.currentQuiz.thai,
+                        english: vm.currentQuiz.english
+                    };
+                    
+                    vm.currentHintLevel = 0;
+                    vm.currentScore = 5;
+                    
+                    vm.setupHints();
+                    vm.updateProgress();
+                    
+                    // อ่านโจทย์ออกเสียงเมื่อเริ่มข้อใหม่ (เฉพาะเมื่อเปิดเสียง)
+                    if (vm.soundEnabled) {
+                        $timeout(function() {
+                            TextToSpeechService.speak(vm.currentQuiz.quiz, 'en-US', vm.voicesEN);
+                        }, 300); // หน่วงเวลาเล็กน้อยเพื่อให้ UI อัพเดทก่อน
+                    }
+                };
+                
+                vm.setupHints = function() {
+                    var words = vm.currentAnswer.english.split(' ');
+                    vm.hintWords = [];
+                    
+                    // Create random order for hints
+                    vm.randomHintOrder = [];
+                    for (var i = 0; i < words.length; i++) {
+                        vm.randomHintOrder.push(i);
+                        vm.hintWords.push({
+                            text: words[i],
+                            visible: false
+                        });
+                    }
+                    
+                    // Shuffle the order
+                    vm.randomHintOrder = QuizDataService.shuffleArray(vm.randomHintOrder);
+                };
+                
+                vm.showNextHint = function() {
+                    if (vm.currentHintLevel < 5) {
+                        vm.currentHintLevel++;
+                        var wordsToShow = Math.ceil((vm.hintWords.length * vm.currentHintLevel) / 5);
+                        
+                        // Show hints in random order
+                        for (var i = 0; i < wordsToShow && i < vm.randomHintOrder.length; i++) {
+                            var wordIndex = vm.randomHintOrder[i];
+                            if (vm.hintWords[wordIndex]) {
+                                vm.hintWords[wordIndex].visible = true;
+                            }
+                        }
+                        
+                        vm.currentScore = Math.max(0, 5 - vm.currentHintLevel);
+                    }
+                };
+                
+                vm.keepQuestion = function() {
+                    // หยุดการอ่านออกเสียงที่อาจกำลังทำงานอยู่
+                    TextToSpeechService.stop();
+                    
+                    // Reset hints but don't remove the question from available pool
+                    vm.currentHintLevel = 0;
+                    vm.currentScore = 5;
+                    vm.setupHints();
+                    
+                    // Load next random question (keep current question in pool)
+                    vm.loadCurrentQuestion();
+                };
+                
+                vm.showAnswer = function() {
+                    vm.currentHintLevel = 5;
+                    vm.currentScore = 0;
+                    for (var i = 0; i < vm.hintWords.length; i++) {
+                        vm.hintWords[i].visible = true;
+                    }
+                };
+                
+                vm.passQuestion = function() {
+                    // หยุดการอ่านออกเสียงที่อาจกำลังทำงานอยู่
+                    TextToSpeechService.stop();
+                    
+                    var score = Math.max(0, 5 - vm.currentHintLevel);
+                    vm.totalScore += score;
+                    vm.completedQuestions++;
+                    
+                    // Remove current question from available pool
+                    var index = vm.availableQuizzes.findIndex(function(q) {
+                        return q.quiz === vm.currentQuiz.quiz;
+                    });
+                    if (index !== -1) {
+                        vm.availableQuizzes.splice(index, 1);
+                    }
+                    
+                    vm.showAnswer();
+                    
+                    $timeout(function() {
+                        vm.loadCurrentQuestion();
+                    }, 1000);
+                };
+                
+                vm.updateProgress = function() {
+                    vm.progressPercent = Math.round((vm.completedQuestions / vm.currentQuizzes.length) * 100);
+                };
+                
+                vm.showCompletionScreen = function() {
+                    vm.showCompletion = true;
+                    vm.maxScore = vm.currentQuizzes.length * 5;
+                    
+                    var percentage = Math.round((vm.totalScore / vm.maxScore) * 100);
+                    if (percentage >= 80) {
+                        vm.completionMessage = 'Excellent!';
+                    } else if (percentage >= 60) {
+                        vm.completionMessage = 'Good job!';
+                    } else if (percentage >= 40) {
+                        vm.completionMessage = 'Keep practicing!';
+                    } else {
+                        vm.completionMessage = 'Try again!';
+                    }
+                };
+                
+                vm.toggleSound = function() {
+                    vm.soundEnabled = !vm.soundEnabled;
+                    if (!vm.soundEnabled) {
+                        TextToSpeechService.stop();
+                    }
+                };
+                
+                vm.repeatQuestion = function() {
+                    if (vm.soundEnabled && vm.currentQuiz && vm.currentQuiz.quiz) {
+                        TextToSpeechService.speak(vm.currentQuiz.quiz, 'en-US');
+                    }
+                };
+
+
+                // ฟังก์ชันโหลด voices
+                vm.initVoices = function() {
+                    const loadVoices = () => {
+                        const voices = window.speechSynthesis.getVoices();
+                        console.log('Loading voices:', voices.length, voices);
+                        
+                        if (voices.length > 0) {
+                            vm.voicesEN = voices.filter(v => v.lang.includes("en-US"));
+                            vm.voicesTH = voices.filter(v => v.lang === "th-TH");
+                            vm.voicesLoaded = true;
+                            
+                            console.log('Voices loaded successfully:', {EN: vm.voicesEN, TH: vm.voicesTH});
+                            vm.$apply(); // อัปเดต Angular scope
+                        }
+                    };
+
+                    // ลองโหลดทันที (กรณีที่ voices พร้อมแล้ว)
+                    // loadVoices();
+                    
+                    // ลงทะเบียน event listener สำหรับเมื่อ voices พร้อม
+                    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                        window.speechSynthesis.onvoiceschanged = loadVoices;
+                    }
+                    
+                    // วิธีสำรอง: ใช้ timeout เผื่อ event ไม่ทำงาน
+                    $timeout(() => {
+                        if (!vm.voicesLoaded) {
+                            console.log('Fallback: Loading voices after timeout');
+                            loadVoices();
+                        }
+                    }, 1000);
+                };
+                
+                // Initialize the app
+                vm.init();
+                vm.initVoices();
+
+                // Service Worker registration for offline functionality
+        function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                var swCode = `
+                    const CACHE_NAME = 'easy-talk';
+                    const urlsToCache = [
+                        '/',
+                        'data:text/html;charset=utf-8,${encodeURIComponent(document.documentElement.outerHTML)}'
+                    ];
+                    
+                    self.addEventListener('install', event => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(cache => cache.addAll(urlsToCache))
+                        );
+                    });
+                    
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(response => response || fetch(event.request))
+                        );
+                    });
+                `;
+                
+                var blob = new Blob([swCode], { type: 'application/javascript' });
+                var swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl)
+                    .then(function() { console.log('SW registered'); })
+                    .catch(function(err) { console.log('SW registration failed'); });
+            }
+        }
+        
+        // Register service worker when page loads
+        window.addEventListener('load', registerServiceWorker);
+
+
+            }]);
+
+        
+    </script>
+</body>
+</html>
