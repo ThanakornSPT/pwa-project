@@ -3,8 +3,8 @@
   "short_name": "Flash card",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#e0f4f3",
-  "theme_color": "#e0f4f3",
+  "background_color": "#b3d9f2",
+  "theme_color": "#b3d9f2",
   "icons": [
     {
       "src": "icon-192.png",
