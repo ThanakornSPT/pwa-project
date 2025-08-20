@@ -205,9 +205,6 @@
         }
         
         .progress-text {
-            display: flex;
-            justify-content: space-between;
-            
             text-align: center;
             font-size: 18px;
             font-weight: 300;
@@ -254,10 +251,7 @@
             <div class="progress-bar">
                 <div class="progress-fill" ng-style="{'width': getProgressPercentage() + '%'}"></div>
             </div>
-            <div class="progress-text">
-                <div>{{getProgressPercentage()}} %</div>
-                <div>{{totalScore}} points</div>
-            </div>
+            <div class="progress-text">{{getProgressPercentage()}} % | Score: {{totalScore}}</div>
         </div>
     </div>
 
@@ -697,7 +691,7 @@ someone2:[
                     
                     // Initialize hint levels and randomized sequences
                     for (var i = 0; i < $scope.currentExercises.length; i++) {
-                        $scope.hintLevels[i] = 5; // เริ่มต้นที่ 5 แทน 0
+                        $scope.hintLevels[i] = 0; // เริ่มต้นที่ 0 เพื่อซ่อนคำตอบทั้งหมด
                         $scope.passedExercises[i] = false;
                         $scope.hintSequences[i] = $scope.generateRandomSequence($scope.currentExercises[i].words.length);
                     }
@@ -706,7 +700,7 @@ someone2:[
             // Get hint button text
             $scope.getHintButtonText = function(index) {
                 var level = $scope.hintLevels[index];
-                return level.toString(); // แสดงหมายเลขแทนเครื่องหมาย +
+                return (5 - level).toString(); // แสดงคะแนนที่จะได้ (5-0=5, 5-1=4, ฯลฯ)
             };
             
             // Get English text with appropriate visibility
@@ -748,8 +742,8 @@ someone2:[
             
             // Show hint for specific exercise
             $scope.showHint = function(index) {
-                if ($scope.hintLevels[index] > 0) {
-                    $scope.hintLevels[index]--; // ลดลงแทนเพิ่มขึ้น เพราะเริ่มต้นจาก 5
+                if ($scope.hintLevels[index] < 5) {
+                    $scope.hintLevels[index]++; // เพิ่มขึ้นเพื่อแสดง hint มากขึ้น
                 }
             };
             
@@ -758,11 +752,11 @@ someone2:[
                 // If this exercise was previously passed, decrease progress and score
                 if ($scope.passedExercises[index]) {
                     $scope.progress--;
-                    $scope.totalScore -= $scope.hintLevels[index];
+                    $scope.totalScore -= (5 - $scope.hintLevels[index]); // หักคะแนนที่ได้ไป
                     $scope.passedExercises[index] = false;
                 }
                 
-                $scope.hintLevels[index] = 5; // รีเซ็ตไปที่ 5 แทน 0
+                $scope.hintLevels[index] = 0; // รีเซ็ตไปที่ 0 เพื่อซ่อนคำตอบทั้งหมด
                 // Generate new random sequence when resetting
                 var exercise = $scope.currentExercises[index];
                 $scope.hintSequences[index] = $scope.generateRandomSequence(exercise.words.length);
@@ -770,13 +764,13 @@ someone2:[
             
             // Pass exercise (show full answer and increment progress)
             $scope.passExercise = function(index) {
-                var currentHintLevel = $scope.hintLevels[index];
+                var scoreToAdd = 5 - $scope.hintLevels[index]; // คะแนนที่จะได้ = 5 - จำนวนครั้งที่กด hint
                 $scope.hintLevels[index] = 5;
                 
                 // Only increment progress and score if not already passed
                 if (!$scope.passedExercises[index]) {
                     $scope.progress++;
-                    $scope.totalScore += currentHintLevel;
+                    $scope.totalScore += scoreToAdd;
                     $scope.passedExercises[index] = true;
                 }
             };
