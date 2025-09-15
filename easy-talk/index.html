@@ -100,7 +100,7 @@
     }
 
     .quiz-question {
-        font-size: 36px;
+        font-size: 28px;
         font-weight: 300;
         color: #333;
         text-align: center;
@@ -326,9 +326,9 @@
             </div>
             
             <div class="progress-section">
-                <div class="progress-info">
+             <!--    <div class="progress-info">
                     <span>{{quiz.progressPercent}} %</span>
-                </div>
+                </div> -->
                 <div class="progress-bar">
                     <div class="progress-fill" ng-style="{'width': quiz.progressPercent + '%'}"></div>
                 </div>
@@ -380,262 +380,1031 @@
             .service('QuizDataService', function() {
                 this.getQuizData = function() {
                     return [
-                        {
-                            "quiz": "Hey, Sarah, how was your weekend?",
-                            "answers": [
-                                {
-                                    "thai": "สบายดี ไปเที่ยว Paris กับครอบครัวมา",
-                                    "english": "It was good, went to Paris with family."
-                                },
-                                {
-                                    "thai": "วันหยุดที่ยอดเยี่ยม ได้พักผ่อนเต็มที่",
-                                    "english": "It was amazing, got to relax completely."
-                                },
-                                {
-                                    "thai": "เหนื่อยมาก มีงานเยอะ",
-                                    "english": "Very tiring, had a lot of work."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "What did you do yesterday?",
-                            "answers": [
-                                {
-                                    "thai": "ไปดูหนังกับเพื่อน",
-                                    "english": "Went to see a movie with friends."
-                                },
-                                {
-                                    "thai": "อยู่บ้านอ่านหนังสือ",
-                                    "english": "Stayed home and read books."
-                                },
-                                {
-                                    "thai": "ไปช็อปปิ้งที่ห้างสรรพสินค้า",
-                                    "english": "Went shopping at the mall."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "How do you feel today?",
-                            "answers": [
-                                {
-                                    "thai": "รู้สึกดีมาก มีพลังงาน",
-                                    "english": "Feeling great, full of energy."
-                                },
-                                {
-                                    "thai": "เหนื่อยนิดหน่อย",
-                                    "english": "A little bit tired."
-                                },
-                                {
-                                    "thai": "ตื่นเต้นกับการทำงานใหม่",
-                                    "english": "Excited about the new job."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "Where are you from?",
-                            "answers": [
-                                {
-                                    "thai": "มาจากประเทศไทย กรุงเทพมหานคร",
-                                    "english": "I'm from Thailand, Bangkok."
-                                },
-                                {
-                                    "thai": "เกิดที่เชียงใหม่ แต่อยู่กรุงเทพ",
-                                    "english": "Born in Chiang Mai but live in Bangkok."
-                                },
-                                {
-                                    "thai": "อยู่จังหวัดภูเก็ต ใต้ของไทย",
-                                    "english": "From Phuket, southern Thailand."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "What's your favorite food?",
-                            "answers": [
-                                {
-                                    "thai": "ชอบก๋วยเตี๋ยวและส้มตำ",
-                                    "english": "I love noodles and som tam."
-                                },
-                                {
-                                    "thai": "ชอบพิซซ่าและเบอร์เกอร์",
-                                    "english": "I like pizza and burgers."
-                                },
-                                {
-                                    "thai": "ชอบอาหารญี่ปุ่น โดยเฉพาะซูชิ",
-                                    "english": "I love Japanese food, especially sushi."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "Do you have any hobbies?",
-                            "answers": [
-                                {
-                                    "thai": "ชอบอ่านหนังสือและฟังเพลง",
-                                    "english": "I like reading books and listening to music."
-                                },
-                                {
-                                    "thai": "ชอบเล่นกีฬาและออกกำลังกาย",
-                                    "english": "I enjoy playing sports and exercising."
-                                },
-                                {
-                                    "thai": "ชอบทำอาหารและเบเกอรี่",
-                                    "english": "I love cooking and baking."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "What time do you wake up?",
-                            "answers": [
-                                {
-                                    "thai": "ตื่นเวลา 6 โมงเช้าทุกวัน",
-                                    "english": "I wake up at 6 AM every day."
-                                },
-                                {
-                                    "thai": "ตื่นสาย ประมาณ 9 โมง",
-                                    "english": "I wake up late, around 9 o'clock."
-                                },
-                                {
-                                    "thai": "ขึ้นอยู่กับงาน บางทีเช้า บางทีสาย",
-                                    "english": "Depends on work, sometimes early, sometimes late."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "How do you go to work?",
-                            "answers": [
-                                {
-                                    "thai": "ขับรถไปทำงาน",
-                                    "english": "I drive to work."
-                                },
-                                {
-                                    "thai": "นั่งรถไฟฟ้า BTS",
-                                    "english": "I take the BTS train."
-                                },
-                                {
-                                    "thai": "ทำงานที่บ้าน work from home",
-                                    "english": "I work from home."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "What's the weather like today?",
-                            "answers": [
-                                {
-                                    "thai": "อากาศดี แดดไม่แรง",
-                                    "english": "Nice weather, not too sunny."
-                                },
-                                {
-                                    "thai": "ร้อนมาก อบอ้าว",
-                                    "english": "Very hot and humid."
-                                },
-                                {
-                                    "thai": "ฝนตก เปียกปอน",
-                                    "english": "It's raining, very wet."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "What are your plans for tonight?",
-                            "answers": [
-                                {
-                                    "thai": "จะไปทานข้าวเย็นกับครอบครัว",
-                                    "english": "Going to have dinner with family."
-                                },
-                                {
-                                    "thai": "อยู่บ้านดูซีรีส์ Netflix",
-                                    "english": "Staying home to watch Netflix series."
-                                },
-                                {
-                                    "thai": "ไปออกกำลังกายที่ฟิตเนส",
-                                    "english": "Going to exercise at the gym."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "Do you like your job?",
-                            "answers": [
-                                {
-                                    "thai": "ชอบมาก ได้เรียนรู้สิ่งใหม่",
-                                    "english": "Love it, get to learn new things."
-                                },
-                                {
-                                    "thai": "โอเค ได้เงินดี",
-                                    "english": "It's okay, good salary."
-                                },
-                                {
-                                    "thai": "กำลังมองหางานใหม่",
-                                    "english": "Looking for a new job."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "What did you study?",
-                            "answers": [
-                                {
-                                    "thai": "เรียนคอมพิวเตอร์และเทคโนโลยี",
-                                    "english": "Studied computer science and technology."
-                                },
-                                {
-                                    "thai": "เรียนบริหารธุรกิจ",
-                                    "english": "Studied business administration."
-                                },
-                                {
-                                    "thai": "เรียนภาษาอังกฤษและการแปล",
-                                    "english": "Studied English and translation."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "How long have you been learning English?",
-                            "answers": [
-                                {
-                                    "thai": "เรียนมา 5 ปีแล้ว",
-                                    "english": "I've been learning for 5 years."
-                                },
-                                {
-                                    "thai": "เพิ่งเริ่มเรียนปีนี้",
-                                    "english": "Just started learning this year."
-                                },
-                                {
-                                    "thai": "เรียนมาตั้งแต่เด็ก",
-                                    "english": "Been learning since I was a child."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "What's your favorite movie?",
-                            "answers": [
-                                {
-                                    "thai": "ชอบหนังแอคชั่นและผจญภัย",
-                                    "english": "I like action and adventure movies."
-                                },
-                                {
-                                    "thai": "ชอบหนังรักโรแมนติก",
-                                    "english": "I love romantic movies."
-                                },
-                                {
-                                    "thai": "ชอบหนังสยองขวัญ",
-                                    "english": "I enjoy horror movies."
-                                }
-                            ]
-                        },
-                        {
-                            "quiz": "Do you have any pets?",
-                            "answers": [
-                                {
-                                    "thai": "เลี้ยงแมว 2 ตัว น่ารักมาก",
-                                    "english": "I have 2 cats, they're very cute."
-                                },
-                                {
-                                    "thai": "เลี้ยงสุนัขชื่อ Lucky",
-                                    "english": "I have a dog named Lucky."
-                                },
-                                {
-                                    "thai": "ไม่เลี้ยง อยู่คอนโด",
-                                    "english": "No pets, I live in a condo."
-                                }
-                            ]
-                        }
-                    ];
+    {
+        "quiz": "So, what made you choose this school?",
+        "answers": [
+            {
+                "thai": "ฉันชอบหลักสูตรที่เปิดสอนที่นี่",
+                "english": "I really liked the courses they offer here."
+            },
+            {
+                "thai": "ฉันย้ายมาอยู่ใกล้ๆ กับครอบครัว",
+                "english": "My family and I moved to a nearby town."
+            },
+            {
+                "thai": "ได้ยินมาว่าที่นี่มีชื่อเสียงด้านนี้",
+                "english": "I heard it has a strong reputation for this field."
+            }
+        ]
+    },
+    {
+        "quiz": "What are you hoping to achieve this year?",
+        "answers": [
+            {
+                "thai": "ฉันหวังว่าจะได้สร้างเครือข่ายกับเพื่อนร่วมชั้นให้มากขึ้น",
+                "english": "I hope to network more with my classmates."
+            },
+            {
+                "thai": "ฉันอยากพัฒนาทักษะการเขียนของฉัน",
+                "english": "I'd like to improve my writing skills."
+            },
+            {
+                "thai": "เป้าหมายของฉันคือการรักษาระดับเกรดที่ดีไว้",
+                "english": "My goal is to maintain a good GPA."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you have any recommendations for a good cafe around here?",
+        "answers": [
+            {
+                "thai": "มีคาเฟ่ชื่อ The Daily Grind ที่ดีมากอยู่หัวมุมถนน",
+                "english": "There's a great cafe called The Daily Grind just around the corner."
+            },
+            {
+                "thai": "ฉันยังไม่เคยสำรวจพื้นที่นี้เลย",
+                "english": "I haven't had a chance to explore the area yet."
+            },
+            {
+                "thai": "ฉันแนะนำร้านที่อยู่ตรงข้ามห้องสมุด",
+                "english": "I recommend the one right across from the library."
+            }
+        ]
+    },
+    {
+        "quiz": "What kind of extracurricular activities are you interested in?",
+        "answers": [
+            {
+                "thai": "ฉันอยากจะเข้าร่วมชมรมถ่ายภาพ",
+                "english": "I'm thinking of joining the photography club."
+            },
+            {
+                "thai": "ฉันชอบกีฬาและอยากลองเล่นบาสเกตบอล",
+                "english": "I'm into sports and might try out for basketball."
+            },
+            {
+                "thai": "ฉันไม่มีเวลาสำหรับกิจกรรมพิเศษเท่าไหร่",
+                "english": "I don't really have time for extracurriculars."
+            }
+        ]
+    },
+    {
+        "quiz": "What's been the biggest challenge for you so far?",
+        "answers": [
+            {
+                "thai": "การปรับตัวเข้ากับจังหวะของบทเรียน",
+                "english": "Adjusting to the pace of the lessons has been a bit tough."
+            },
+            {
+                "thai": "การหาเพื่อนใหม่เป็นเรื่องที่ท้าทายเล็กน้อย",
+                "english": "Finding new friends has been a little challenging."
+            },
+            {
+                "thai": "ทุกอย่างราบรื่นดีจนถึงตอนนี้",
+                "english": "Everything has been going smoothly so far."
+            }
+        ]
+    },
+    {
+        "quiz": "What do you do to relax after a long day of classes?",
+        "answers": [
+            {
+                "thai": "ฉันมักจะดูซีรีส์หรือฟังพอดแคสต์",
+                "english": "I usually binge-watch a series or listen to podcasts."
+            },
+            {
+                "thai": "ฉันชอบไปเดินเล่นในสวนสาธารณะ",
+                "english": "I enjoy taking a walk in the park."
+            },
+            {
+                "thai": "ฉันจะไปเข้ายิมเพื่อออกกำลังกาย",
+                "english": "I head to the gym to work out."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a fun fact about you that not many people know?",
+        "answers": [
+            {
+                "thai": "ฉันสามารถพูดภาษาญี่ปุ่นได้นิดหน่อย",
+                "english": "I can speak a little bit of Japanese."
+            },
+            {
+                "thai": "ฉันเคยกระโดดร่มมาแล้วครั้งหนึ่ง",
+                "english": "I went skydiving once."
+            },
+            {
+                "thai": "ฉันเป็นนักสะสมเหรียญโบราณ",
+                "english": "I'm a collector of old coins."
+            }
+        ]
+    },
+    {
+        "quiz": "What inspired you to choose your major?",
+        "answers": [
+            {
+                "thai": "ฉันหลงใหลในสาขานี้มาตั้งแต่เด็ก",
+                "english": "I've been passionate about this field since I was a child."
+            },
+            {
+                "thai": "งานในสาขานี้ดูมีอนาคตที่สดใส",
+                "english": "The job prospects in this area look promising."
+            },
+            {
+                "thai": "มันเป็นวิชาที่ครอบครัวของฉันแนะนำ",
+                "english": "It's a subject my family recommended."
+            }
+        ]
+    },
+    {
+        "quiz": "What's your favorite part of campus so far?",
+        "answers": [
+            {
+                "thai": "ฉันชอบห้องสมุดมากเลย มันเงียบสงบและทันสมัย",
+                "english": "I really like the library; it's so quiet and modern."
+            },
+            {
+                "thai": "โรงอาหารมีอาหารหลากหลายให้เลือก",
+                "english": "The cafeteria has a great variety of food."
+            },
+            {
+                "thai": "ฉันยังไม่ทันได้สำรวจทั่วถึงเลย",
+                "english": "I haven't had the chance to explore it fully yet."
+            }
+        ]
+    },
+    {
+        "quiz": "Have you thought about what you want to do after graduation?",
+        "answers": [
+            {
+                "thai": "ฉันวางแผนที่จะเรียนต่อปริญญาโท",
+                "english": "I'm planning to go for my Master's degree."
+            },
+            {
+                "thai": "ฉันอยากเริ่มทำงานในอุตสาหกรรมนี้ทันที",
+                "english": "I want to start working in the industry right away."
+            },
+            {
+                "thai": "ฉันกำลังพิจารณาตัวเลือกต่างๆ อยู่",
+                "english": "I'm still weighing my options."
+            }
+        ]
+    },
+    {
+        "quiz": "Are you living on campus, or do you have to commute?",
+        "answers": [
+            {
+                "thai": "ฉันพักอยู่ในหอพักนักศึกษา",
+                "english": "I'm staying in the student dorms."
+            },
+            {
+                "thai": "ฉันเช่าอพาร์ตเมนต์ใกล้ๆ มหาวิทยาลัย",
+                "english": "I'm renting an apartment nearby."
+            },
+            {
+                "thai": "ฉันเดินทางไปกลับจากบ้านทุกวัน",
+                "english": "I commute from home every day."
+            }
+        ]
+    },
+    {
+        "quiz": "What do you think of our professor so far?",
+        "answers": [
+            {
+                "thai": "ฉันคิดว่าอาจารย์อธิบายได้เข้าใจง่ายมาก",
+                "english": "I think the professor is very clear and easy to understand."
+            },
+            {
+                "thai": "อาจารย์ดูเป็นมิตรและมีความกระตือรือร้น",
+                "english": "The professor seems friendly and enthusiastic."
+            },
+            {
+                "thai": "ยังไม่ค่อยแน่ใจเลย ต้องรอดูไปก่อน",
+                "english": "I'm not so sure yet, I'll have to wait and see."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you prefer studying alone or in a group?",
+        "answers": [
+            {
+                "thai": "ฉันชอบเรียนคนเดียวมากกว่า เพราะมีสมาธิดี",
+                "english": "I prefer studying alone because I can focus better."
+            },
+            {
+                "thai": "ฉันชอบเรียนเป็นกลุ่ม เราสามารถช่วยกันได้",
+                "english": "I like studying in a group; we can help each other."
+            },
+            {
+                "thai": "แล้วแต่ว่าวิชานั้นๆ เป็นอย่างไร",
+                "english": "It depends on the subject."
+            }
+        ]
+    },
+    {
+        "quiz": "What kind of music do you listen to when you're studying?",
+        "answers": [
+            {
+                "thai": "ฉันชอบฟังเพลงคลาสสิก มันช่วยให้ฉันผ่อนคลาย",
+                "english": "I like classical music; it helps me relax."
+            },
+            {
+                "thai": "ฉันชอบฟังเพลงที่มีจังหวะเร็วๆ",
+                "english": "I prefer listening to upbeat music."
+            },
+            {
+                "thai": "ฉันชอบความเงียบมากกว่า",
+                "english": "I actually prefer silence."
+            }
+        ]
+    },
+    {
+        "quiz": "Are you planning to get a part-time job while you're here?",
+        "answers": [
+            {
+                "thai": "ฉันคิดว่าจะลองหาดู อาจจะทำงานในห้องสมุด",
+                "english": "I'm thinking of looking for one, maybe at the library."
+            },
+            {
+                "thai": "ไม่ ฉันต้องการเน้นที่การเรียนอย่างเดียว",
+                "english": "No, I want to focus on my studies."
+            },
+            {
+                "thai": "ฉันต้องทำงานเพื่อหาเงินค่าใช้จ่าย",
+                "english": "I have to work to help with my expenses."
+            }
+        ]
+    },
+    {
+        "quiz": "What's your favorite food spot on or near campus?",
+        "answers": [
+            {
+                "thai": "ฉันชอบร้านอาหารไทยเล็กๆ ที่อยู่ตรงข้ามมหาวิทยาลัย",
+                "english": "I like the small Thai restaurant across the street."
+            },
+            {
+                "thai": "ฉันชอบโรงอาหารของมหาวิทยาลัย",
+                "english": "I'm a big fan of the university cafeteria."
+            },
+            {
+                "thai": "ยังไม่แน่ใจเลย ฉันเพิ่งมาใหม่",
+                "english": "I'm not sure yet; I'm still new here."
+            }
+        ]
+    },
+    {
+        "quiz": "What do you do for fun on a Friday night?",
+        "answers": [
+            {
+                "thai": "ฉันมักจะไปดูหนังกับเพื่อนๆ",
+                "english": "I usually go see a movie with my friends."
+            },
+            {
+                "thai": "ฉันอยู่บ้านดู Netflix",
+                "english": "I stay home and watch Netflix."
+            },
+            {
+                "thai": "ฉันชอบไปเที่ยวกลางคืนที่บาร์",
+                "english": "I enjoy going out to a bar."
+            }
+        ]
+    },
+    {
+        "quiz": "What's your preferred method of transportation?",
+        "answers": [
+            {
+                "thai": "ฉันชอบเดินหรือปั่นจักรยานไปไหนมาไหน",
+                "english": "I prefer walking or biking everywhere."
+            },
+            {
+                "thai": "ฉันมักจะนั่งรถประจำทางหรือรถไฟ",
+                "english": "I usually take the bus or train."
+            },
+            {
+                "thai": "ฉันขับรถยนต์มาเอง",
+                "english": "I drive my own car."
+            }
+        ]
+    },
+    {
+        "quiz": "Is there anything you're nervous about this semester?",
+        "answers": [
+            {
+                "thai": "ฉันกังวลเรื่องวิชาคณิตศาสตร์ มันดูยากมาก",
+                "english": "I'm worried about my math class; it seems really difficult."
+            },
+            {
+                "thai": "ฉันยังหาเพื่อนที่เข้ากันได้ไม่เจอเลย",
+                "english": "I haven't really found a good group of friends yet."
+            },
+            {
+                "thai": "ไม่เลย ฉันตื่นเต้นกับทุกอย่าง",
+                "english": "Not really, I'm excited about everything."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a fun weekend activity you've done recently?",
+        "answers": [
+            {
+                "thai": "ฉันไปเดินป่าที่อุทยานแห่งชาติกับครอบครัว",
+                "english": "I went hiking at a national park with my family."
+            },
+            {
+                "thai": "ฉันไปเที่ยวพิพิธภัณฑ์ศิลปะในตัวเมือง",
+                "english": "I visited the art museum downtown."
+            },
+            {
+                "thai": "ฉันไม่ได้ทำอะไรเลย แค่พักผ่อนอยู่บ้าน",
+                "english": "I didn't do much, just relaxed at home."
+            },
+
+        ]
+    },
+    // movie
+    {
+        "quiz": "Are you more into movies or TV series these days?",
+        "answers": [
+            {
+                "thai": "ฉันชอบดูซีรีส์มากกว่า เพราะมันให้เราติดตามเรื่องราวได้นานกว่า",
+                "english": "I'm more into TV series because they allow for a longer story."
+            },
+            {
+                "thai": "ฉันชอบดูหนังมากกว่า เพราะมันจบในตอนเดียว ไม่ต้องดูหลายตอน",
+                "english": "I prefer movies since they're a complete story in one sitting."
+            },
+            {
+                "thai": "แล้วแต่ช่วงเวลา แต่ช่วงนี้ดูซีรีส์เยอะกว่า",
+                "english": "It depends, but I've been watching more series lately."
+            }
+        ]
+    },
+    {
+        "quiz": "What's the last movie you watched that you would recommend?",
+        "answers": [
+            {
+                "thai": "ฉันเพิ่งดูเรื่อง Parasite แล้วรู้สึกประทับใจมาก",
+                "english": "I just watched 'Parasite' and was really impressed."
+            },
+            {
+                "thai": "ฉันแนะนำเรื่อง Everything Everywhere All at Once เลย สนุกมาก",
+                "english": "I'd recommend 'Everything Everywhere All at Once'; it was great."
+            },
+            {
+                "thai": "เรื่อง A Quiet Place 2 เป็นหนังที่ดีเลยนะ ถ้าชอบหนังสยองขวัญ",
+                "english": "If you like horror, 'A Quiet Place 2' was a good one."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a TV show you've been binge-watching lately?",
+        "answers": [
+            {
+                "thai": "ฉันติดเรื่อง Stranger Things มากเลย",
+                "english": "I'm completely hooked on 'Stranger Things'."
+            },
+            {
+                "thai": "ฉันเพิ่งดู The Crown จบไป แล้วรู้สึกชอบมาก",
+                "english": "I just finished 'The Crown' and really enjoyed it."
+            },
+            {
+                "thai": "ตอนนี้ฉันกำลังดู The Last of Us อยู่",
+                "english": "I'm currently watching 'The Last of Us'."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you prefer watching movies at home or at the cinema?",
+        "answers": [
+            {
+                "thai": "ฉันชอบไปดูที่โรงหนังมากกว่า มันให้ความรู้สึกที่ต่างกัน",
+                "english": "I prefer going to the cinema; it's a completely different feeling."
+            },
+            {
+                "thai": "ฉันชอบดูที่บ้าน มันสบายกว่า",
+                "english": "I like watching at home; it's much more comfortable."
+            },
+            {
+                "thai": "ฉันดูได้ทั้งสองแบบ แล้วแต่โอกาส",
+                "english": "I can do both, depending on the occasion."
+            }
+        ]
+    },
+    {
+        "quiz": "Who is your favorite director, and why do you like their work?",
+        "answers": [
+            {
+                "thai": "ฉันชอบ Christopher Nolan เพราะหนังของเขามักจะซับซ้อนและต้องคิดตาม",
+                "english": "I like Christopher Nolan because his films are always complex and thought-provoking."
+            },
+            {
+                "thai": "ฉันชอบ Quentin Tarantino เพราะสไตล์ที่เป็นเอกลักษณ์",
+                "english": "I like Quentin Tarantino for his unique style."
+            },
+            {
+                "thai": "ฉันไม่ค่อยได้ติดตามชื่อผู้กำกับเท่าไหร่",
+                "english": "I don't really follow directors' names that much."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a movie or show from your childhood that you still love?",
+        "answers": [
+            {
+                "thai": "ฉันยังคงรักเรื่อง Toy Story เสมอ",
+                "english": "I will always love 'Toy Story'."
+            },
+            {
+                "thai": "ฉันชอบเรื่อง Harry Potter มากๆ ดูได้ไม่มีเบื่อ",
+                "english": "I'm a big fan of 'Harry Potter'; I can watch it endlessly."
+            },
+            {
+                "thai": "ฉันชอบรายการการ์ตูนเก่าๆ อย่าง Tom and Jerry",
+                "english": "I love old cartoons like 'Tom and Jerry'."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you prefer watching a TV show weekly or binge-watching a whole season?",
+        "answers": [
+            {
+                "thai": "ฉันชอบดูรวดเดียวจบในครั้งเดียวเลย",
+                "english": "I like to binge-watch a whole season at once."
+            },
+            {
+                "thai": "ฉันชอบดูสัปดาห์ละตอนมากกว่า มันทำให้ได้ลุ้น",
+                "english": "I prefer watching weekly episodes; it keeps the excitement going."
+            },
+            {
+                "thai": "แล้วแต่ว่าเรื่องนั้นน่าสนใจแค่ไหน",
+                "english": "It depends on how interesting the show is."
+            }
+        ]
+    },
+    {
+        "quiz": "Have you seen any good documentaries recently?",
+        "answers": [
+            {
+                "thai": "ฉันเพิ่งดู My Octopus Teacher จบไป และมันดีมากเลย",
+                "english": "I just watched 'My Octopus Teacher' and it was fantastic."
+            },
+            {
+                "thai": "ฉันชอบดูสารคดีสัตว์ป่าบน Netflix",
+                "english": "I enjoy watching nature documentaries on Netflix."
+            },
+            {
+                "thai": "ไม่เลย ฉันไม่ค่อยได้ดูสารคดีเท่าไหร่",
+                "english": "Not really, I don't watch many documentaries."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a popular show that you just couldn't get into?",
+        "answers": [
+            {
+                "thai": "ฉันพยายามดู Game of Thrones แต่ก็ไม่เข้าใจเนื้อเรื่อง",
+                "english": "I tried to watch 'Game of Thrones,' but I couldn't get into the story."
+            },
+            {
+                "thai": "ฉันไม่เข้าใจว่าทำไมคนถึงชอบ Friends กันนัก",
+                "english": "I don't understand why people love 'Friends' so much."
+            },
+            {
+                "thai": "ฉันชอบหนังและซีรีส์เกือบทุกเรื่อง",
+                "english": "I enjoy almost every movie and series I watch."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a classic movie that you think everyone should see?",
+        "answers": [
+            {
+                "thai": "ฉันคิดว่า 12 Angry Men เป็นหนังที่ยอดเยี่ยมมาก",
+                "english": "I think '12 Angry Men' is an excellent movie."
+            },
+            {
+                "thai": "ต้องเป็น The Godfather เลย",
+                "english": "It has to be 'The Godfather'."
+            },
+            {
+                "thai": "ฉันไม่ค่อยได้ดูหนังเก่าๆ เท่าไหร่",
+                "english": "I don't really watch many older movies."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you like watching foreign films with subtitles?",
+        "answers": [
+            {
+                "thai": "ใช่ ฉันชอบดูหนังจากหลายๆ ประเทศ",
+                "english": "Yes, I enjoy watching films from different countries."
+            },
+            {
+                "thai": "ไม่ค่อยชอบเท่าไหร่ เพราะต้องคอยอ่านซับ",
+                "english": "Not really, because I have to keep reading the subtitles."
+            },
+            {
+                "thai": "ฉันชอบดูหนังที่มีซับไตเติลภาษาอังกฤษมากกว่า",
+                "english": "I prefer watching with English subtitles."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a movie or show that has had a big impact on you?",
+        "answers": [
+            {
+                "thai": "หนังเรื่อง Forrest Gump มีอิทธิพลต่อฉันมาก",
+                "english": "'Forrest Gump' had a big impact on me."
+            },
+            {
+                "thai": "ซีรีส์เรื่อง The Office สอนให้ฉันมองโลกในแง่บวกมากขึ้น",
+                "english": "The show 'The Office' taught me to be more positive."
+            },
+            {
+                "thai": "ยังไม่มีเรื่องไหนที่กระทบฉันมากขนาดนั้น",
+                "english": "There isn't any movie that has impacted me that much yet."
+            }
+        ]
+    },
+    {
+        "quiz": "What's your favorite streaming service and why?",
+        "answers": [
+            {
+                "thai": "ฉันชอบ Netflix เพราะมีหนังและซีรีส์ให้เลือกเยอะมาก",
+                "english": "I like Netflix because it has a huge selection of movies and series."
+            },
+            {
+                "thai": "ฉันชอบ Disney+ Hotstar เพราะมีหนัง Marvel ที่ฉันชอบ",
+                "english": "I like Disney+ Hotstar because it has all the Marvel movies I love."
+            },
+            {
+                "thai": "ฉันใช้บริการหลายแพลตฟอร์ม",
+                "english": "I use several different platforms."
+            }
+        ]
+    },
+    {
+        "quiz": "Have you ever re-watched a movie or a series multiple times?",
+        "answers": [
+            {
+                "thai": "ใช่ ฉันดู Lord of the Rings ซ้ำหลายครั้งเลย",
+                "english": "Yes, I've re-watched 'Lord of the Rings' many times."
+            },
+            {
+                "thai": "ฉันไม่ค่อยดูหนังซ้ำเท่าไหร่",
+                "english": "I don't really re-watch movies."
+            },
+            {
+                "thai": "ฉันดูซ้ำเฉพาะตอนที่ชอบเท่านั้น",
+                "english": "I only re-watch my favorite parts."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a movie genre you don't usually watch but would like to explore?",
+        "answers": [
+            {
+                "thai": "ฉันไม่ค่อยดูหนังสยองขวัญ แต่ก็อยากลองดู",
+                "english": "I don't usually watch horror, but I'd like to try."
+            },
+            {
+                "thai": "ฉันไม่ค่อยดูหนังวิทยาศาสตร์เท่าไหร่",
+                "english": "I don't watch a lot of science fiction."
+            },
+            {
+                "thai": "ฉันดูหนังทุกประเภทเลย",
+                "english": "I watch pretty much every genre."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you ever pay attention to movie soundtracks?",
+        "answers": [
+            {
+                "thai": "ใช่ ฉันชอบดนตรีประกอบของหนังเรื่อง Interstellar",
+                "english": "Yes, I love the soundtrack from 'Interstellar'."
+            },
+            {
+                "thai": "ไม่ค่อยเลย ฉันสนใจเนื้อเรื่องมากกว่า",
+                "english": "Not really, I'm more focused on the story."
+            },
+            {
+                "thai": "บางครั้งฉันก็ฟังเพลงประกอบหนังที่ชอบ",
+                "english": "Sometimes I listen to soundtracks from movies I like."
+            }
+        ]
+    },
+    {
+        "quiz": "What's an underrated movie or show that you think more people should watch?",
+        "answers": [
+            {
+                "thai": "ฉันว่า The Secret Life of Walter Mitty เป็นหนังที่ดีมาก",
+                "english": "I think 'The Secret Life of Walter Mitty' is a great movie."
+            },
+            {
+                "thai": "ฉันแนะนำซีรีส์เรื่อง Fleabag เลย",
+                "english": "I'd recommend the series 'Fleabag'."
+            },
+            {
+                "thai": "ยังคิดไม่ออกเลยว่ามีเรื่องไหนที่ underrated",
+                "english": "I can't think of any underrated ones right now."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a movie or show you're really looking forward to seeing?",
+        "answers": [
+            {
+                "thai": "ฉันตื่นเต้นกับ Dune: Part Two มาก",
+                "english": "I'm really excited for 'Dune: Part Two'."
+            },
+            {
+                "thai": "ฉันรอซีซันใหม่ของ The Mandalorian อยู่",
+                "english": "I'm waiting for the new season of 'The Mandalorian'."
+            },
+            {
+                "thai": "ฉันไม่ได้ติดตามข่าวหนังหรือซีรีส์เท่าไหร่",
+                "english": "I don't really follow news about movies or series."
+            }
+        ]
+    },
+    {
+        "quiz": "What's the best animated movie you've ever seen?",
+        "answers": [
+            {
+                "thai": "ฉันคิดว่า Spirited Away เป็นหนังแอนิเมชันที่ดีที่สุด",
+                "english": "I think 'Spirited Away' is the best animated movie."
+            },
+            {
+                "thai": "ฉันชอบ Spider-Man: Into the Spider-Verse",
+                "english": "I really love 'Spider-Man: Into the Spider-Verse'."
+            },
+            {
+                "thai": "ฉันชอบหนังแอนิเมชันของ Disney ทุกเรื่องเลย",
+                "english": "I love all of Disney's animated movies."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a TV show that everyone talks about, but you haven't seen yet?",
+        "answers": [
+            {
+                "thai": "ฉันยังไม่เคยดู Game of Thrones เลย",
+                "english": "I still haven't watched 'Game of Thrones'."
+            },
+            {
+                "thai": "ฉันได้ยินว่า Breaking Bad ดีมาก แต่ยังไม่มีเวลาดูเลย",
+                "english": "I've heard 'Breaking Bad' is great, but I haven't had time to watch it."
+            },
+            {
+                "thai": "ฉันพยายามดูทุกเรื่องที่คนพูดถึง",
+                "english": "I try to watch all the shows people talk about."
+            }
+        ]
+    },
+    // Food and cooking
+    {
+        "quiz": "What’s your favorite dish to cook for yourself?",
+        "answers": [
+            {
+                "thai": "ฉันชอบทำข้าวผัดง่ายๆ",
+                "english": "I enjoy making a simple fried rice."
+            },
+            {
+                "thai": "ฉันไม่ค่อยทำอาหารเท่าไหร่",
+                "english": "I don't really cook much."
+            },
+            {
+                "thai": "ฉันชอบทำพาสต้าคาโบนาร่า",
+                "english": "I like to make pasta carbonara."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you prefer eating out at a restaurant or cooking at home?",
+        "answers": [
+            {
+                "thai": "ฉันชอบกินข้าวนอกบ้านเพื่อลองอาหารใหม่ๆ",
+                "english": "I prefer eating out to try new food."
+            },
+            {
+                "thai": "ฉันชอบทำอาหารที่บ้านมากกว่า มันประหยัดกว่า",
+                "english": "I like cooking at home more; it's cheaper."
+            },
+            {
+                "thai": "แล้วแต่วันนะ บางวันก็อยากออกไปข้างนอก",
+                "english": "It depends on the day, sometimes I want to go out."
+            }
+        ]
+    },
+    {
+        "quiz": "What’s a food you've always wanted to try?",
+        "answers": [
+            {
+                "thai": "ฉันอยากลองอาหารโมเลกุลที่ร้านอาหารหรูๆ",
+                "english": "I'd love to try molecular gastronomy at a fancy restaurant."
+            },
+            {
+                "thai": "ฉันไม่ค่อยกล้าลองอาหารแปลกๆ",
+                "english": "I'm not very adventurous with food."
+            },
+            {
+                "thai": "ฉันอยากลองกินทุเรียน",
+                "english": "I want to try durian."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you have a favorite restaurant you like to go to?",
+        "answers": [
+            {
+                "thai": "ฉันชอบร้านอาหารญี่ปุ่นเล็กๆ แถวบ้าน",
+                "english": "I like a small Japanese restaurant near my place."
+            },
+            {
+                "thai": "ฉันยังไม่มีร้านโปรดเลย",
+                "english": "I don't have a favorite restaurant yet."
+            },
+            {
+                "thai": "ฉันไปที่ร้านพิซซ่าเดิมๆ เสมอ",
+                "english": "I always go to the same pizza place."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a common dish from your country that you think everyone should try?",
+        "answers": [
+            {
+                "thai": "ทุกคนควรลองกินต้มยำกุ้ง",
+                "english": "Everyone should try Tom Yum Goong."
+            },
+            {
+                "thai": "ฉันแนะนำผัดไทย",
+                "english": "I recommend Pad Thai."
+            },
+            {
+                "thai": "ข้าวเหนียวมะม่วงเป็นขนมหวานที่อร่อยมาก",
+                "english": "Mango sticky rice is a great dessert."
+            }
+        ]
+    },
+    {
+        "quiz": "Are you a fan of spicy food?",
+        "answers": [
+            {
+                "thai": "ใช่ ฉันชอบอาหารรสจัดมาก",
+                "english": "Yes, I'm a big fan of spicy food."
+            },
+            {
+                "thai": "ไม่ค่อยชอบเท่าไหร่ ฉันกินเผ็ดได้นิดหน่อย",
+                "english": "Not really; I can only handle a little bit of spice."
+            },
+            {
+                "thai": "ฉันกินเผ็ดไม่ได้เลย",
+                "english": "I can't eat spicy food at all."
+            }
+        ]
+    },
+    {
+        "quiz": "What's the best meal you've ever had?",
+        "answers": [
+            {
+                "thai": "เป็นสเต็กเนื้อที่ฉันกินตอนไปเที่ยวอาร์เจนตินา",
+                "english": "It was a beef steak I had on my trip to Argentina."
+            },
+            {
+                "thai": "เป็นอาหารที่แม่ของฉันทำ มันอร่อยที่สุดเสมอ",
+                "english": "It was a meal my mom cooked; it's always the best."
+            },
+            {
+                "thai": "ฉันไม่แน่ใจ แต่เป็นอาหารจากร้านอาหารอิตาเลียน",
+                "english": "I'm not sure, but it was at an Italian restaurant."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you have a secret family recipe?",
+        "answers": [
+            {
+                "thai": "ใช่ มีสูตรพริกแกงที่สืบทอดกันมา",
+                "english": "Yes, we have a secret family curry paste recipe."
+            },
+            {
+                "thai": "ไม่ ฉันคิดว่าทุกคนทำอาหารเหมือนกันหมด",
+                "english": "No, I think everyone cooks the same way."
+            },
+            {
+                "thai": "มีสูตรคุกกี้ช็อกโกแลตชิพที่พิเศษมาก",
+                "english": "There's a special chocolate chip cookie recipe."
+            }
+        ]
+    },
+    {
+        "quiz": "What’s your go-to comfort food?",
+        "answers": [
+            {
+                "thai": "เป็นซุปไก่กับผักร้อนๆ",
+                "english": "It's a bowl of hot chicken soup with vegetables."
+            },
+            {
+                "thai": "ฉันชอบกินไอศกรีมวานิลลา",
+                "english": "I like to eat vanilla ice cream."
+            },
+            {
+                "thai": "ข้าวเหนียวมะม่วง",
+                "english": "Mango sticky rice."
+            }
+        ]
+    },
+    {
+        "quiz": "Have you ever tried to cook something new that didn't go well?",
+        "answers": [
+            {
+                "thai": "ใช่ ฉันพยายามทำพิซซ่าโฮมเมดแต่แป้งออกมาแข็งมาก",
+                "english": "Yes, I tried to make homemade pizza but the dough turned out very hard."
+            },
+            {
+                "thai": "ไม่เลย ทุกอย่างที่ฉันทำออกมาดีเสมอ",
+                "english": "No, everything I've cooked has always turned out well."
+            },
+            {
+                "thai": "ฉันทำเค้กช็อกโกแลต แต่รสชาติไม่ค่อยอร่อย",
+                "english": "I made a chocolate cake, but it didn't taste very good."
+            }
+        ]
+    },
+    {
+        "quiz": "What kitchen gadget can you not live without?",
+        "answers": [
+            {
+                "thai": "เครื่องปั่นผลไม้ มันเป็นสิ่งที่จำเป็นมาก",
+                "english": "A blender. It's an absolute essential."
+            },
+            {
+                "thai": "หม้อหุงข้าว มันทำให้ชีวิตง่ายขึ้นมาก",
+                "english": "A rice cooker. It makes life so much easier."
+            },
+            {
+                "thai": "ฉันใช้แค่มีดกับเขียงก็พอแล้ว",
+                "english": "I just need a knife and a cutting board."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you follow any food bloggers or chefs online?",
+        "answers": [
+            {
+                "thai": "ใช่ ฉันติดตาม Gordon Ramsay",
+                "english": "Yes, I follow Gordon Ramsay."
+            },
+            {
+                "thai": "ฉันติดตามบล็อกเกอร์อาหารที่เน้นอาหารเพื่อสุขภาพ",
+                "english": "I follow a food blogger who focuses on healthy eating."
+            },
+            {
+                "thai": "ไม่ ฉันไม่ค่อยติดตามใครเป็นพิเศษ",
+                "english": "No, I don't really follow anyone in particular."
+            }
+        ]
+    },
+    {
+        "quiz": "What’s a food trend you don’t understand?",
+        "answers": [
+            {
+                "thai": "อาหารที่หน้าตาแปลกๆ อย่างอาหารผสมสี",
+                "english": "Foods that look weird, like rainbow-colored food."
+            },
+            {
+                "thai": "ฉันไม่เข้าใจทำไมคนถึงชอบกินอาหารวีแกน",
+                "english": "I don't understand why people like to eat vegan food."
+            },
+            {
+                "thai": "อาหารที่ใส่ทองคำเปลว",
+                "english": "Food with gold flakes."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you have any dietary restrictions?",
+        "answers": [
+            {
+                "thai": "ฉันเป็นมังสวิรัติ",
+                "english": "I'm a vegetarian."
+            },
+            {
+                "thai": "ฉันแพ้ถั่วลิสง",
+                "english": "I'm allergic to peanuts."
+            },
+            {
+                "thai": "ไม่เลย ฉันกินได้ทุกอย่าง",
+                "english": "No, I can eat anything."
+            }
+        ]
+    },
+    {
+        "quiz": "What’s your favorite type of cuisine?",
+        "answers": [
+            {
+                "thai": "ฉันชอบอาหารอิตาเลียนมากที่สุด",
+                "english": "I like Italian cuisine the most."
+            },
+            {
+                "thai": "ฉันชอบอาหารเกาหลี",
+                "english": "I enjoy Korean food."
+            },
+            {
+                "thai": "ฉันชอบอาหารจีน",
+                "english": "I prefer Chinese food."
+            }
+        ]
+    },
+    {
+        "quiz": "What food do you always have in your fridge?",
+        "answers": [
+            {
+                "thai": "ไข่และนม",
+                "english": "Eggs and milk."
+            },
+            {
+                "thai": "โยเกิร์ตและผัก",
+                "english": "Yogurt and vegetables."
+            },
+            {
+                "thai": "ชีสและไวน์",
+                "english": "Cheese and wine."
+            }
+        ]
+    },
+    {
+        "quiz": "Who taught you how to cook?",
+        "answers": [
+            {
+                "thai": "แม่ของฉัน",
+                "english": "My mom."
+            },
+            {
+                "thai": "ฉันเรียนรู้ด้วยตัวเองจากวิดีโอ YouTube",
+                "english": "I taught myself from YouTube videos."
+            },
+            {
+                "thai": "ฉันเรียนจากคุณย่าของฉัน",
+                "english": "My grandmother taught me."
+            }
+        ]
+    },
+    {
+        "quiz": "What’s your favorite dessert?",
+        "answers": [
+            {
+                "thai": "ฉันชอบเค้กช็อกโกแลต",
+                "english": "I love chocolate cake."
+            },
+            {
+                "thai": "ไอศกรีม",
+                "english": "Ice cream."
+            },
+            {
+                "thai": "บราวนี่",
+                "english": "Brownies."
+            }
+        ]
+    },
+    {
+        "quiz": "Do you like to bake?",
+        "answers": [
+            {
+                "thai": "ใช่ ฉันชอบทำขนมปังและเค้ก",
+                "english": "Yes, I enjoy baking bread and cakes."
+            },
+            {
+                "thai": "ไม่ค่อยชอบเท่าไหร่ มันยุ่งยากเกินไป",
+                "english": "Not really; it's too much work."
+            },
+            {
+                "thai": "ฉันอยากลองทำนะ แต่ไม่รู้จะเริ่มจากตรงไหน",
+                "english": "I want to try, but I don't know where to start."
+            }
+        ]
+    },
+    {
+        "quiz": "What's a cooking skill you'd like to learn?",
+        "answers": [
+            {
+                "thai": "ฉันอยากเรียนรู้วิธีการทำอาหารไทยแบบต้นตำรับ",
+                "english": "I'd like to learn how to make authentic Thai food."
+            },
+            {
+                "thai": "ฉันอยากเรียนทำอาหารฝรั่งเศส",
+                "english": "I want to learn French cooking."
+            },
+            {
+                "thai": "ฉันอยากเรียนรู้วิธีการทำอาหารญี่ปุ่น",
+                "english": "I want to learn Japanese cooking."
+            }
+        ]
+    }
+
+];
                 };
                 
                 this.shuffleArray = function(array) {
@@ -680,9 +1449,16 @@
                 
                 // Initialize the app
                 vm.init = function() {
-                    vm.shuffleQuizzes();
+                    // vm.shuffleQuizzes();
                     vm.updatePageDropdown();
                     vm.loadCurrentPage();
+                    console.log({
+                            currentQuizzes: vm.currentQuizzes,
+                            availableQuizzes: vm.availableQuizzes,
+                            currentQuiz: vm.currentQuiz,
+                            currentAnswer: vm.currentAnswer,
+                            hintWords:vm.hintWords,
+                    });
                 };
                 
                 vm.shuffleQuizzes = function() {
@@ -704,7 +1480,7 @@
                     vm.totalScore = 0;
                     vm.completedQuestions = 0;
                     vm.showCompletion = false;
-                    vm.shuffleQuizzes();
+                    // vm.shuffleQuizzes();
                 };
                 
                 vm.updatePageDropdown = function() {
@@ -725,19 +1501,41 @@
                     var startIndex = vm.currentPage * vm.itemsPerPage;
                     var endIndex = Math.min(startIndex + vm.itemsPerPage, vm.shuffledQuizData.length);
                     
+                    console.log({startIndex, endIndex});
+                    var existItem = [];
+
                     // สร้าง currentQuizzes จากการสุ่มเลือกโจทย์และคำตอบ
                     vm.currentQuizzes = Array.from({length: vm.itemsPerPage}).map(function() {
+
+                        var numberItem = "";
+                        var randomQuizIndex = 0;
+                        var selectedQuiz = {}
+                        var randomAnswer = 0;
+
                         // สุ่ม index ในขอบเขตของ page (0-4 สำหรับ page 1, 5-9 สำหรับ page 2, etc.)
-                        var randomQuizIndex = startIndex + Math.floor(Math.random() * (endIndex - startIndex));
-                        var selectedQuiz = vm.shuffledQuizData[randomQuizIndex];
-                        var randomAnswer = Math.floor(Math.random() * selectedQuiz.answers.length);
-                        
-                        return {
-                            quiz: selectedQuiz.quiz,
-                            thai: selectedQuiz.answers[randomAnswer].thai,
-                            english: selectedQuiz.answers[randomAnswer].english
-                        };
+
+                        do {
+                       
+                            randomQuizIndex = startIndex + Math.floor(Math.random() * (endIndex - startIndex));
+                            selectedQuiz = vm.shuffledQuizData[randomQuizIndex];
+                            randomAnswer = Math.floor(Math.random() * selectedQuiz.answers.length);
+                            
+                            numberItem = `${randomQuizIndex}${randomAnswer}`
+
+                            console.log({numberItem})
+                            
+                        } while(existItem.includes(numberItem))
+
+                            existItem = [...existItem, numberItem];
+                            return {
+                                quiz: selectedQuiz.quiz,
+                                thai: selectedQuiz.answers[randomAnswer].thai,
+                                english: selectedQuiz.answers[randomAnswer].english
+                            };
+                       
                     });
+
+                    console.log({existItem})
                     
                     vm.availableQuizzes = angular.copy(vm.currentQuizzes);
                     vm.completedQuestions = 0;
@@ -764,7 +1562,7 @@
                     vm.currentScore = 5;
                     
                     vm.setupHints();
-                    vm.updateProgress();
+                    
                     
                     // อ่านโจทย์ออกเสียงเมื่อเริ่มข้อใหม่ (เฉพาะเมื่อเปิดเสียง)
                     if (vm.soundEnabled) {
@@ -810,33 +1608,52 @@
                 };
                 
                 vm.keepQuestion = function() {
+
+                    console.log({
+                            currentQuizzes: vm.currentQuizzes,
+                            availableQuizzes: vm.availableQuizzes,
+                            currentQuiz: vm.currentQuiz,
+                            currentAnswer: vm.currentAnswer,
+                            hintWords:vm.hintWords,
+                    });
+
                     // หยุดการอ่านออกเสียงที่อาจกำลังทำงานอยู่
                     TextToSpeechService.stop();
+                    TextToSpeechService.speak(vm.currentAnswer.english, 'en-US');
+
+
                     
                     // Reset hints but don't remove the question from available pool
                     vm.currentHintLevel = 0;
                     vm.currentScore = 5;
                     vm.setupHints();
-                    
+
+                    $timeout(function() {
+                        vm.loadCurrentQuestion();
+                    }, 4000);
+
                     // Load next random question (keep current question in pool)
-                    vm.loadCurrentQuestion();
+                    // vm.loadCurrentQuestion();
                 };
                 
                 vm.showAnswer = function() {
+
                     vm.currentHintLevel = 5;
                     vm.currentScore = 0;
                     for (var i = 0; i < vm.hintWords.length; i++) {
                         vm.hintWords[i].visible = true;
                     }
+                    TextToSpeechService.speak(vm.currentAnswer.english, 'en-US');
                 };
                 
                 vm.passQuestion = function() {
                     // หยุดการอ่านออกเสียงที่อาจกำลังทำงานอยู่
                     TextToSpeechService.stop();
-                    
+                    TextToSpeechService.speak(vm.currentAnswer.english, 'en-US');
+                    vm.completedQuestions++;
                     var score = Math.max(0, 5 - vm.currentHintLevel);
                     vm.totalScore += score;
-                    vm.completedQuestions++;
+                    vm.updateProgress();
                     
                     // Remove current question from available pool
                     var index = vm.availableQuizzes.findIndex(function(q) {
@@ -845,12 +1662,20 @@
                     if (index !== -1) {
                         vm.availableQuizzes.splice(index, 1);
                     }
+
+                    console.log({
+                            currentQuizzes: vm.currentQuizzes,
+                            availableQuizzes: vm.availableQuizzes,
+                            currentQuiz: vm.currentQuiz,
+                            currentAnswer: vm.currentAnswer,
+                            hintWords:vm.hintWords,
+                    });
                     
                     vm.showAnswer();
                     
                     $timeout(function() {
                         vm.loadCurrentQuestion();
-                    }, 1000);
+                    }, 4000);
                 };
                 
                 vm.updateProgress = function() {
