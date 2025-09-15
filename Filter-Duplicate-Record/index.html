@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Record Deletion</title>
+</head>
+<body>
+
+    <h1>จัดการข้อมูลในไฟล์ Excel</h1>
+
+    <div>
+        <label for="excelFile">เลือกไฟล์ Excel (.xlsx):</label>
+        <input type="file" id="excelFile" accept=".xlsx">
+    </div>
+
+    <br>
+
+    <div>
+        <button id="processBtn" disabled>ประมวลผลและลบข้อมูล</button>
+    </div>
+
+    <br>
+
+    <div id="status"></div>
+    <a id="downloadLink" style="display:none;">ดาวน์โหลดไฟล์ที่แก้ไขแล้ว</a>
+
+    <script src="xlsx.full.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
