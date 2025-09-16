@@ -56,8 +56,8 @@ function processAndRemoveRecords() {
     // ข้อมูลจริง (ไม่รวม header)
     let records = jsonData.slice(1);
     // หา index ของคอลัมน์ ID (B) และ Date time (K)
-    const idColIndex = 1; // Column B
-    const dateColIndex = 10; // Column K
+    const idColIndex = 2; // Column B
+    const dateColIndex = 12; // Column K
     if (records.length === 0) {
         statusDiv.textContent = 'ไม่พบข้อมูลในไฟล์';
         return;
