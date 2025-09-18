@@ -1650,7 +1650,7 @@
                 vm.passQuestion = function() {
                     // หยุดการอ่านออกเสียงที่อาจกำลังทำงานอยู่
                     TextToSpeechService.stop();
-                    TextToSpeechService.speak(vm.currentAnswer.english, 'en-US');
+                    // TextToSpeechService.speak(vm.currentAnswer.english, 'en-US');
                     vm.completedQuestions++;
                     var score = Math.max(0, 5 - vm.currentHintLevel);
                     vm.totalScore += score;
