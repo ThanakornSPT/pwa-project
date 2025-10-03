@@ -285,10 +285,10 @@
             </select>
             
             <div class="control-buttons">
-                <button class="control-btn btn-m" ng-click="quiz.shuffleQuizzes()">M</button>
+                <!-- <button class="control-btn btn-m" ng-click="quiz.shuffleQuizzes()">M</button> -->
                 <button class="control-btn btn-5" ng-click="quiz.changeItemsPerPage()">{{quiz.itemsPerPage}}</button>
                 <button class="control-btn btn-r" ng-click="quiz.resetQuiz()">R</button>
-                <button class="control-btn btn-sound" ng-click="quiz.toggleSound()" title="Toggle Sound">S</button>
+                <!-- <button class="control-btn btn-sound" ng-click="quiz.toggleSound()" title="Toggle Sound">S</button> -->
             </div>
         </div>
         
@@ -378,6 +378,7 @@
                     }
                 };
             })
+
             .service('QuizDataService', function() {
                 this.getQuizData = function() {
                     return [
@@ -1046,6 +1047,7 @@
                     return shuffled;
                 };
             })
+
             .controller('QuizController', ['QuizDataService', 'TextToSpeechService', '$timeout', function(QuizDataService, TextToSpeechService, $timeout) {
                 var vm = this;
                 
@@ -1108,6 +1110,7 @@
                     vm.totalScore = 0;
                     vm.completedQuestions = 0;
                     vm.showCompletion = false;
+                    vm.init();
                     // vm.shuffleQuizzes();
                 };
                 
@@ -1246,8 +1249,8 @@
                     });
 
                     // หยุดการอ่านออกเสียงที่อาจกำลังทำงานอยู่
-                    TextToSpeechService.stop();
-                    TextToSpeechService.speak(vm.currentAnswer.english, 'en-US');
+                    // TextToSpeechService.stop();
+                    // TextToSpeechService.speak(vm.currentAnswer.english, 'en-US');
 
 
                     
@@ -1276,7 +1279,7 @@
                 
                 vm.passQuestion = function() {
                     // หยุดการอ่านออกเสียงที่อาจกำลังทำงานอยู่
-                    TextToSpeechService.stop();
+                    // TextToSpeechService.stop();
                     // TextToSpeechService.speak(vm.currentAnswer.english, 'en-US');
                     vm.completedQuestions++;
                     var score = Math.max(0, 5 - vm.currentHintLevel);
@@ -1326,12 +1329,12 @@
                     }
                 };
                 
-                vm.toggleSound = function() {
-                    vm.soundEnabled = !vm.soundEnabled;
-                    if (!vm.soundEnabled) {
-                        TextToSpeechService.stop();
-                    }
-                };
+                // vm.toggleSound = function() {
+                //     vm.soundEnabled = !vm.soundEnabled;
+                //     if (!vm.soundEnabled) {
+                //         TextToSpeechService.stop();
+                //     }
+                // };
                 
                 vm.repeatQuestion = function() {
                     if (vm.soundEnabled && vm.currentQuiz && vm.currentQuiz.quiz) {
