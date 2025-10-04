@@ -47,6 +47,12 @@
             border-radius: 0.5rem;
             transition: background-color 0.2s;
         }
+
+        .flex.btn-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body class="p-4 sm:p-8" ng-app="PosGamesApp" ng-controller="GamesController">
@@ -189,7 +195,7 @@
                     <span ng-bind-html="renderSentence(q)"></span>
                 </p>
                 
-                <div class="flex space-x-3">
+                <div class="flex space-x-3 btn-container">
                     <button 
                         ng-repeat="role in ['Noun', 'Adjective', 'Verb', 'Adverb']"
                         ng-click="checkRole(q, role)"
