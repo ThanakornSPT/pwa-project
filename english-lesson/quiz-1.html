@@ -239,6 +239,17 @@
                     return array;
                 }
 
+                $scope.shuffleArray = function(array) {
+                  for (let i = array.length - 1; i > 0; i--) {
+                    // Generate a random index j from 0 to i (inclusive)
+                    const j = Math.floor(Math.random() * (i + 1));
+
+                    // Swap element array[i] with element array[j]
+                    [array[i], array[j]] = [array[j], array[i]];
+                  }
+                  return array;
+                }
+
                 // --- GAME 1: Suffix Sorter Data (เพิ่มจาก 10 เป็น 20 ข้อ) ---
                 $scope.originalSortWords = [
                     { text: "Efficiency", type: "N" },
@@ -1169,12 +1180,12 @@
                 ];
 
                 $scope.initPositionGame = function() {
-                    $scope.positionQuestions = angular.copy($scope.originalPositionQuestions).map(q => ({
+                    $scope.positionQuestions = $scope.shuffleArray(angular.copy($scope.originalPositionQuestions).map(q => ({
                         ...q,
                         answered: false,
                         isCorrect: false,
                         userSelected: ''
-                    }));
+                    })));
                 };
 
                 $scope.checkPosition = function(q, option) {
@@ -1512,12 +1523,12 @@
                 ];
 
                 $scope.initRoleGame = function() {
-                    $scope.roleQuestions = angular.copy($scope.originalRoleQuestions).map(q => ({
+                    $scope.roleQuestions = $scope.shuffleArray(angular.copy($scope.originalRoleQuestions).map(q => ({
                         ...q,
                         answered: false,
                         isCorrect: false,
                         userSelected: ''
-                    }));
+                    })));
                 };
                 
                 $scope.checkRole = function(q, guessRole) {
