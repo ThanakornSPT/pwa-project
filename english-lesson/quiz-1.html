@@ -197,7 +197,7 @@
                 
                 <div class="flex space-x-3 btn-container">
                     <button 
-                        ng-repeat="role in ['Noun', 'Adjective', 'Verb', 'Adverb']"
+                        ng-repeat="role in ['Noun', 'Adjective', 'Verb', 'Adverb', 'Preposition']"
                         ng-click="checkRole(q, role)"
                         ng-disabled="q.answered"
                         ng-class="getRoleButtonClass(q, role)"
@@ -372,811 +372,1292 @@
 
                 // --- GAME 2: Position Picker Data (เพิ่มจาก 5 เป็น 10 ข้อ) ---
                 $scope.originalPositionQuestions = [
-                    {
-                        sentence: "The project must be completed -------- by the deadline.",
-                        correctAnswer: "successfully",
-                        options: shuffle([{ text: "success" }, { text: "successful" }, { text: "successfully" }, { text: "succeed" }]),
-                        explanation: "ต้องเติม Adverb ('successfully') เพื่อขยาย Verb ('completed') บอกว่า 'เสร็จสมบูรณ์อย่างประสบความสำเร็จ' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "Ms. Oh is looking for a -------- to the problem.",
-                        correctAnswer: "solution",
-                        options: shuffle([{ text: "solve" }, { text: "solvable" }, { text: "solution" }, { text: "solving" }]),
-                        explanation: "ต้องเติม Noun ('solution') เพราะอยู่หลัง A/An (Determiner) (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "The manager was -------- by the sudden resignation.",
-                        correctAnswer: "surprised",
-                        options: shuffle([{ text: "surprise" }, { text: "surprising" }, { text: "surprised" }, { text: "surprisingly" }]),
-                        explanation: "ต้องการ Adjective (-ed) เพื่อบอกว่า Manager 'รู้สึกประหลาดใจ' (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "We need a -------- response from the client right away.",
-                        correctAnswer: "quick",
-                        options: shuffle([{ text: "quickness" }, { text: "quickly" }, { text: "quick" }, { text: "quicker" }]),
-                        explanation: "ต้องเติม Adjective ('quick') เพื่อขยาย Noun ('response') (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "The new -------- policy will be effective next month.",
-                        correctAnswer: "security",
-                        options: shuffle([{ text: "secure" }, { text: "securely" }, { text: "security" }, { text: "securing" }]),
-                        explanation: "ต้องการ Noun Compound ('security policy') คำนามตัวแรกทำหน้าที่ขยายนามตัวหลัง (ส่วนที่ 1.3)"
-                    },
-                    // คำถามที่เพิ่มเข้ามาใหม่
-                    {
-                        sentence: "Mr. Kim is known for his -------- at the office.",
-                        correctAnswer: "punctuality",
-                        options: shuffle([{ text: "punctual" }, { text: "punctually" }, { text: "punctuality" }, { text: "punctuate" }]),
-                        explanation: "ต้องเติม Noun ('punctuality') เพราะอยู่หลังคำแสดงความเป็นเจ้าของ 'his' (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "The presentation was -------- interesting.",
-                        correctAnswer: "incredibly",
-                        options: shuffle([{ text: "incredible" }, { text: "incredibly" }, { text: "incredibility" }, { text: "incredulous" }]),
-                        explanation: "ต้องเติม Adverb ('incredibly') เพื่อขยาย Adjective ('interesting') บอกว่า 'น่าสนใจอย่างเหลือเชื่อ' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "The flight was delayed, which was very --------.",
-                        correctAnswer: "frustrating",
-                        options: shuffle([{ text: "frustrate" }, { text: "frustrating" }, { text: "frustrated" }, { text: "frustration" }]),
-                        explanation: "ต้องการ Adjective (-ing) เพื่อบอกว่า 'เที่ยวบินนั้นน่าหงุดหงิด' (ลักษณะของสิ่งของ) (ส่วนที่ 2.2)"
-                    },
-                    {
-                        sentence: "The team achieved their sales -------- last quarter.",
-                        correctAnswer: "goals",
-                        options: shuffle([{ text: "goal" }, { text: "goal-oriented" }, { text: "goal-setting" }, { text: "goals" }]),
-                        explanation: "ต้องการ Noun ('goals') เพื่อให้สมบูรณ์เป็น Noun Compound ('sales goals') (ส่วนที่ 1.3)"
-                    },
-                    {
-                        sentence: "Please submit the form -------- by email.",
-                        correctAnswer: "electronically",
-                        options: shuffle([{ text: "electronic" }, { text: "electronics" }, { text: "electronically" }, { text: "electrum" }]),
-                        explanation: "ต้องเติม Adverb ('electronically') เพื่อขยายกริยา 'submit' บอกว่า 'ส่งแบบฟอร์มทางอิเล็กทรอนิกส์' (ส่วนที่ 4)"
-                    },
-                    // ข้อที่ 11-40 (ใหม่)
-                    {
-                        sentence: "The company needs to make -------- decisions about spending.",
-                        correctAnswer: "economical",
-                        options: shuffle([{ text: "economy" }, { text: "economically" }, { text: "economize" }, { text: "economical" }]),
-                        explanation: "ต้องเติม Adjective ('economical') เพื่อขยายคำนาม 'decisions' (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "The technician checked the machine -------- for any faults.",
-                        correctAnswer: "carefully",
-                        options: shuffle([{ text: "careful" }, { text: "carefulness" }, { text: "carefully" }, { text: "caring" }]),
-                        explanation: "ต้องเติม Adverb ('carefully') เพื่อขยายกริยา 'checked' (ตรวจเช็คอย่างระมัดระวัง) (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "We are currently reviewing the new business --------.",
-                        correctAnswer: "proposal",
-                        options: shuffle([{ text: "propose" }, { text: "proposing" }, { text: "proposal" }, { text: "proposer" }]),
-                        explanation: "ต้องเติม Noun ('proposal') เพราะตามหลัง Determiner 'the' และทำหน้าที่เป็น Object (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "The result was -------- encouraging for the entire department.",
-                        correctAnswer: "extremely",
-                        options: shuffle([{ text: "extreme" }, { text: "extremity" }, { text: "extremely" }, { text: "extremist" }]),
-                        explanation: "ต้องเติม Adverb ('extremely') เพื่อขยาย Adjective ('encouraging') บอกว่า 'ให้กำลังใจอย่างมาก' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "Everyone was -------- by the sudden change in policy.",
-                        correctAnswer: "surprised",
-                        options: shuffle([{ text: "surprise" }, { text: "surprising" }, { text: "surprised" }, { text: "surprisingly" }]),
-                        explanation: "ต้องการ Adjective (-ed) เพราะอยู่หลัง Verb to be ('was') และแสดงความรู้สึก (ส่วนที่ 2.2)"
-                    },
-                    {
-                        sentence: "The recent financial report highlights intense market --------.",
-                        correctAnswer: "competition",
-                        options: shuffle([{ text: "compete" }, { text: "competitive" }, { text: "competitively" }, { text: "competition" }]),
-                        explanation: "ต้องเติม Noun ('competition') เพราะอยู่หลัง Adjective ('intense') (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "The multinational corporation operates --------.",
-                        correctAnswer: "globally",
-                        options: shuffle([{ text: "globe" }, { text: "global" }, { text: "globally" }, { text: "globalize" }]),
-                        explanation: "ต้องเติม Adverb ('globally') เพื่อขยายกริยา 'operates' บอกว่า 'ดำเนินงานทั่วโลก' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "The board requested a thorough -------- of the risks involved.",
-                        correctAnswer: "analysis",
-                        options: shuffle([{ text: "analyze" }, { text: "analytical" }, { text: "analytically" }, { text: "analysis" }]),
-                        explanation: "ต้องเติม Noun ('analysis') เพราะอยู่หลัง Determiner 'a' และ Adjective 'thorough' (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "Despite the challenges, the CEO remained highly --------.",
-                        correctAnswer: "optimistic",
-                        options: shuffle([{ text: "optimism" }, { text: "optimistically" }, { text: "optimize" }, { text: "optimistic" }]),
-                        explanation: "ต้องการ Adjective ('optimistic') เพราะอยู่หลัง Linking Verb 'remained' (ยังคง) เพื่อขยายประธาน (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "Their main goal is to achieve financial -------- within five years.",
-                        correctAnswer: "success",
-                        options: shuffle([{ text: "succeed" }, { text: "successful" }, { text: "successfully" }, { text: "success" }]),
-                        explanation: "ต้องเติม Noun ('success') เพราะอยู่หลัง Adjective ('financial') (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "He travels to various countries very -------- for work.",
-                        correctAnswer: "frequently",
-                        options: shuffle([{ text: "frequent" }, { text: "frequency" }, { text: "frequently" }, { text: "freq" }]),
-                        explanation: "ต้องเติม Adverb ('frequently') เพื่อขยายกริยา 'travels' บอกว่า 'เดินทางบ่อย ๆ' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "Good time management is an -------- skill for every employee.",
-                        correctAnswer: "essential",
-                        options: shuffle([{ text: "essence" }, { text: "essentially" }, { text: "essential" }, { text: "essence" }]),
-                        explanation: "ต้องเติม Adjective ('essential') เพื่อขยายคำนาม 'skill' (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "There is a severe labor -------- in the construction industry.",
-                        correctAnswer: "shortage",
-                        options: shuffle([{ text: "short" }, { text: "shorten" }, { text: "shortly" }, { text: "shortage" }]),
-                        explanation: "ต้องเติม Noun ('shortage') เพื่อให้เกิด Noun Compound ('labor shortage') (ส่วนที่ 1.3)"
-                    },
-                    {
-                        sentence: "The team was truly -------- about the product launch.",
-                        correctAnswer: "excited",
-                        options: shuffle([{ text: "excitement" }, { text: "exciting" }, { text: "excited" }, { text: "excitably" }]),
-                        explanation: "ต้องการ Adjective (-ed) เพื่อแสดงความรู้สึกว่าทีม 'รู้สึกตื่นเต้น' (ส่วนที่ 2.2)"
-                    },
-                    {
-                        sentence: "The contract was handled very -------- by the legal team.",
-                        correctAnswer: "professionally",
-                        options: shuffle([{ text: "professional" }, { text: "profession" }, { text: "professionally" }, { text: "profess" }]),
-                        explanation: "ต้องเติม Adverb ('professionally') เพื่อขยายกริยา 'handled' (จัดการอย่างมืออาชีพ) (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "The campaign aims to raise public -------- of climate change.",
-                        correctAnswer: "awareness",
-                        options: shuffle([{ text: "aware" }, { text: "awareness" }, { text: "awarely" }, { text: "awareable" }]),
-                        explanation: "ต้องเติม Noun ('awareness') เพราะอยู่หลัง Adjective 'public' และทำหน้าที่เป็น Object (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "The software performs -------- well under high stress.",
-                        correctAnswer: "consistently",
-                        options: shuffle([{ text: "consistent" }, { text: "consistency" }, { text: "consistently" }, { text: "consist" }]),
-                        explanation: "ต้องเติม Adverb ('consistently') เพื่อขยาย Adverb 'well' ซึ่งไปขยายกริยา 'performs' (ทำงานอย่างสม่ำเสมอ) (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "The client looked highly -------- with the results.",
-                        correctAnswer: "satisfied",
-                        options: shuffle([{ text: "satisfy" }, { text: "satisfying" }, { text: "satisfied" }, { text: "satisfaction" }]),
-                        explanation: "ต้องการ Adjective (-ed) เพราะอยู่หลัง Linking Verb 'looked' เพื่อบอกความรู้สึกว่าลูกค้า 'รู้สึกพึงพอใจ' (ส่วนที่ 2.2)"
-                    },
-                    {
-                        sentence: "Effective -------- is key to successful project management.",
-                        correctAnswer: "communication",
-                        options: shuffle([{ text: "communicate" }, { text: "communicative" }, { text: "communicatively" }, { text: "communication" }]),
-                        explanation: "ต้องเติม Noun ('communication') เพราะอยู่หลัง Adjective 'Effective' และทำหน้าที่เป็น Subject (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "Attendance at the training session is -------- for all new hires.",
-                        correctAnswer: "mandatory",
-                        options: shuffle([{ text: "mandate" }, { text: "mandatorily" }, { text: "mandatory" }, { text: "mandating" }]),
-                        explanation: "ต้องการ Adjective ('mandatory') เพราะอยู่หลัง Verb to be ('is') เพื่อบอกลักษณะของประธาน ('Attendance') (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "She can speak three languages quite --------.",
-                        correctAnswer: "fluently",
-                        options: shuffle([{ text: "fluent" }, { text: "fluence" }, { text: "fluently" }, { text: "flowing" }]),
-                        explanation: "ต้องเติม Adverb ('fluently') เพื่อขยายกริยา 'speak' บอกว่า 'พูดได้อย่างคล่องแคล่ว' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "Showing genuine -------- is important when dealing with customers.",
-                        correctAnswer: "commitment",
-                        options: shuffle([{ text: "commit" }, { text: "committed" }, { text: "committing" }, { text: "commitment" }]),
-                        explanation: "ต้องเติม Noun ('commitment') เพราะอยู่หลัง Adjective 'genuine' และทำหน้าที่เป็น Subject (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "The resources needed for the experiment are now --------.",
-                        correctAnswer: "available",
-                        options: shuffle([{ text: "avail" }, { text: "availability" }, { text: "available" }, { text: "availingly" }]),
-                        explanation: "ต้องการ Adjective ('available') เพราะอยู่หลัง Verb to be ('are') เพื่อขยายประธาน ('The resources') (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "The manager explained the new procedure very --------.",
-                        correctAnswer: "clearly",
-                        options: shuffle([{ text: "clear" }, { text: "clearness" }, { text: "clearly" }, { text: "cleared" }]),
-                        explanation: "ต้องเติม Adverb ('clearly') เพื่อขยายกริยา 'explained' บอกว่า 'อธิบายอย่างชัดเจน' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "The central bank prioritizes financial market --------.",
-                        correctAnswer: "stability",
-                        options: shuffle([{ text: "stable" }, { text: "stably" }, { text: "stability" }, { text: "stabilize" }]),
-                        explanation: "ต้องเติม Noun ('stability') เพราะอยู่หลัง Adjective 'financial market' (ซึ่งทำหน้าที่คล้าย Adjective) (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "It is -------- to follow the safety regulations at all times.",
-                        correctAnswer: "crucial",
-                        options: shuffle([{ text: "crux" }, { text: "crucial" }, { text: "crucially" }, { text: "cruelty" }]),
-                        explanation: "ต้องการ Adjective ('crucial') เพราะเป็นคำที่ใช้ขยาย 'It' ซึ่งแทนประโยคหลัง (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "The power went out -------- during the meeting.",
-                        correctAnswer: "suddenly",
-                        options: shuffle([{ text: "sudden" }, { text: "suddenness" }, { text: "suddenly" }, { text: "sud" }]),
-                        explanation: "ต้องเติม Adverb ('suddenly') เพื่อขยายกริยา 'went out' บอกว่า 'ไฟดับลงอย่างทันทีทันใด' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "A good business must protect its hard-earned --------.",
-                        correctAnswer: "reputation",
-                        options: shuffle([{ text: "repute" }, { text: "reputable" }, { text: "reputation" }, { text: "reputably" }]),
-                        explanation: "ต้องเติม Noun ('reputation') เพราะอยู่หลัง Adjective 'hard-earned' (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "Finding qualified staff proved extremely --------.",
-                        correctAnswer: "difficult",
-                        options: shuffle([{ text: "difficulty" }, { text: "difficult" }, { text: "difficultly" }, { text: "difficulty" }]),
-                        explanation: "ต้องการ Adjective ('difficult') เพราะอยู่หลัง Linking Verb 'proved' เพื่อบอกลักษณะของประธาน (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "The witness described the event rather --------.",
-                        correctAnswer: "vividly",
-                        options: shuffle([{ text: "vivid" }, { text: "vividness" }, { text: "vividly" }, { text: "vivify" }]),
-                        explanation: "ต้องเติม Adverb ('vividly') เพื่อขยายกริยา 'described' บอกว่า 'บรรยายอย่างมีชีวิตชีวา' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "The main -------- of the meeting was the new budget.",
-                        correctAnswer: "topic",
-                        options: shuffle([{ text: "topical" }, { text: "topically" }, { text: "topicality" }, { text: "topic" }]),
-                        explanation: "ต้องการ Noun ('topic') เพราะทำหน้าที่เป็นส่วนเติมเต็มของประธาน (Subject Complement) (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "The supervisor is very -------- of his team's efforts.",
-                        correctAnswer: "supportive",
-                        options: shuffle([{ text: "support" }, { text: "supportively" }, { text: "supportive" }, { text: "supporting" }]),
-                        explanation: "ต้องการ Adjective ('supportive') เพื่อขยายประธาน 'supervisor' (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "We should handle sensitive data with utmost --------.",
-                        correctAnswer: "discretion",
-                        options: shuffle([{ text: "discreet" }, { text: "discreetly" }, { text: "discretion" }, { text: "discretely" }]),
-                        explanation: "ต้องเติม Noun ('discretion') เพราะอยู่หลัง Determiner 'utmost' (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "She finished the race even though she was running --------.",
-                        correctAnswer: "slowly",
-                        options: shuffle([{ text: "slow" }, { text: "slowness" }, { text: "slowly" }, { text: "slowable" }]),
-                        explanation: "ต้องเติม Adverb ('slowly') เพื่อขยายกริยา 'running' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "The team demonstrated remarkable -------- in completing the task.",
-                        correctAnswer: "dedication",
-                        options: shuffle([{ text: "dedicate" }, { text: "dedicated" }, { text: "dedication" }, { text: "dedicatively" }]),
-                        explanation: "ต้องเติม Noun ('dedication') เพราะอยู่หลัง Adjective 'remarkable' (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "Our new product offers a -------- advantage over competitors.",
-                        correctAnswer: "significant",
-                        options: shuffle([{ text: "significance" }, { text: "significantly" }, { text: "signify" }, { text: "significant" }]),
-                        explanation: "ต้องการ Adjective ('significant') เพื่อขยายคำนาม 'advantage' (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "The instructions were provided -------- on the website.",
-                        correctAnswer: "digitally",
-                        options: shuffle([{ text: "digital" }, { text: "digit" }, { text: "digitally" }, { text: "digitality" }]),
-                        explanation: "ต้องเติม Adverb ('digitally') เพื่อขยายกริยา 'provided' บอกว่า 'ให้ข้อมูลในรูปแบบดิจิทัล' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "The entire town was completely -------- after the storm.",
-                        correctAnswer: "powerless",
-                        options: shuffle([{ text: "power" }, { text: "powerful" }, { text: "powerfully" }, { text: "powerless" }]),
-                        explanation: "ต้องการ Adjective ('powerless') เพราะอยู่หลัง Verb to be ('was') เพื่อบอกสภาพ (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "He expressed his opinion on the matter quite --------.",
-                        correctAnswer: "strongly",
-                        options: shuffle([{ text: "strong" }, { text: "strength" }, { text: "strongly" }, { text: "stronger" }]),
-                        explanation: "ต้องเติม Adverb ('strongly') เพื่อขยายกริยา 'expressed' บอกว่า 'แสดงความคิดเห็นอย่างหนักแน่น' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "Please review the attached -------- for details.",
-                        correctAnswer: "document",
-                        options: shuffle([{ text: "documentary" }, { text: "documenting" }, { text: "document" }, { text: "documentation" }]),
-                        explanation: "ต้องเติม Noun ('document') เพราะอยู่หลัง Adjective (-ed) 'attached' (ส่วนที่ 1)"
-                    },
-                     // 1. คำนาม (Nouns): Suffixes (-tion, -ment, -ness, etc.)
-                      {
-                        sentence: "The new marketing strategy requires careful market --------.",
-                        correctAnswer: "analysis",
-                        options: [
-                          { text: "analyze" },
-                          { text: "analytical" },
-                          { text: "analyst" },
-                          { text: "analysis" }
-                        ],
-                        explanation: "ต้องเติม **คำนาม** ('analysis') เพื่อให้ความหมายสมบูรณ์หลัง Adj. 'careful' และทำหน้าที่เป็นกรรมของประโยค (ส่วนที่ 1.1, รหัส -sis/y)"
-                      },
-                      {
-                        sentence: "We are committed to the highest standards of customer --------.",
-                        correctAnswer: "service",
-                        options: [
-                          { text: "serve" },
-                          { text: "service" },
-                          { text: "serving" },
-                          { text: "servant" }
-                        ],
-                        explanation: "เติม **คำนาม** ('service') หลังคำนาม 'customer' เพื่อสร้าง **Noun Compound** ('customer service') (ส่วนที่ 1.3)"
-                      },
-                      {
-                        sentence: "The recent -------- in staff morale is noticeable.",
-                        correctAnswer: "improvement",
-                        options: [
-                          { text: "improve" },
-                          { text: "improved" },
-                          { text: "improvement" },
-                          { text: "improving" }
-                        ],
-                        explanation: "ต้องเติม **คำนาม** ('improvement') หลัง 'The recent' เพื่อทำหน้าที่เป็นประธานของประโยค (ส่วนที่ 1.1, รหัส -ment)"
-                      },
-                      {
-                        sentence: "For your own --------, please read the manual before use.",
-                        correctAnswer: "safety",
-                        options: [
-                          { text: "safe" },
-                          { text: "safely" },
-                          { text: "safety" },
-                          { text: "safer" }
-                        ],
-                        explanation: "ต้องเติม **คำนาม** ('safety') หลังคำแสดงความเป็นเจ้าของ 'your own' (ส่วนที่ 1.1, รหัส -ty)"
-                      },
-                      {
-                        sentence: "Mr. Park has worked as a quality -------- for many years.",
-                        correctAnswer: "inspector",
-                        options: [
-                          { text: "inspect" },
-                          { text: "inspection" },
-                          { text: "inspected" },
-                          { text: "inspector" }
-                        ],
-                        explanation: "ต้องเติม **คำนาม** ที่หมายถึงบุคคล ('inspector') หลังคำนำหน้า 'a' และ Adj. 'quality' เพื่อบอกอาชีพ (ส่วนที่ 1.1, รหัส -or)"
-                      },
-                      // 2. คำคุณศัพท์ (Adjectives): Position & -ing vs. -ed
-                      {
-                        sentence: "The project team is highly -------- with the outcome.",
-                        correctAnswer: "satisfied",
-                        options: [
-                          { text: "satisfy" },
-                          { text: "satisfying" },
-                          { text: "satisfaction" },
-                          { text: "satisfied" }
-                        ],
-                        explanation: "เติม **Adj. -ed** ('satisfied') หลัง Verb to be ('is') เพื่อบอกว่าทีม **รู้สึก** พอใจ (ส่วนที่ 2.2)"
-                      },
-                      {
-                        sentence: "The seminar provided some very -------- insights.",
-                        correctAnswer: "interesting",
-                        options: [
-                          { text: "interest" },
-                          { text: "interested" },
-                          { text: "interestingly" },
-                          { text: "interesting" }
-                        ],
-                        explanation: "เติม **Adj. -ing** ('interesting') หน้าคำนาม ('insights') เพื่อบอกว่าข้อมูลนั้น **น่า** สนใจ (ส่วนที่ 2.2)"
-                      },
-                      {
-                        sentence: "We need a more -------- approach to solving this problem.",
-                        correctAnswer: "creative",
-                        options: [
-                          { text: "create" },
-                          { text: "creativity" },
-                          { text: "creatively" },
-                          { text: "creative" }
-                        ],
-                        explanation: "เติม **คำคุณศัพท์** ('creative') หน้าคำนาม ('approach') เพื่อขยายคำนาม (ส่วนที่ 2.1)"
-                      },
-                      {
-                        sentence: "The lecture was quite -------- due to the complex topic.",
-                        correctAnswer: "confusing",
-                        options: [
-                          { text: "confuse" },
-                          { text: "confused" },
-                          { text: "confusing" },
-                          { text: "confusion" }
-                        ],
-                        explanation: "เติม **Adj. -ing** ('confusing') หลัง Verb to be ('was') เพื่อบอกว่าการบรรยายน่าสับสน (ส่วนที่ 2.2)"
-                      },
-                      {
-                        sentence: "The staff should remain -------- and professional when dealing with complaints.",
-                        correctAnswer: "calm",
-                        options: [
-                          { text: "calmly" },
-                          { text: "calm" },
-                          { text: "calmness" },
-                          { text: "calms" }
-                        ],
-                        explanation: "เติม **คำคุณศัพท์** ('calm') หลัง Linking Verb ('remain') เพื่อบอกลักษณะของประธาน (ส่วนที่ 2.1)"
-                      },
-                      // 3. คำกริยา (Verbs): Subject-Verb Agreement & Tense
-                      {
-                        sentence: "The main office -------- in the downtown area.",
-                        correctAnswer: "is located",
-                        options: [
-                          { text: "locate" },
-                          { text: "locates" },
-                          { text: "is located" },
-                          { text: "locating" }
-                        ],
-                        explanation: "ประธาน 'office' เป็นเอกพจน์ และต้องการกริยาที่แสดงการถูกกระทำ (Passive Voice) (ส่วนที่ 3.1)"
-                      },
-                      {
-                        sentence: "The CEO usually -------- all new contracts before signing.",
-                        correctAnswer: "reviews",
-                        options: [
-                          { text: "review" },
-                          { text: "reviews" },
-                          { text: "reviewed" },
-                          { text: "reviewing" }
-                        ],
-                        explanation: "ประธาน 'CEO' เป็นเอกพจน์ (1 คน) ในปัจจุบัน กริยาต้องเติม **-s** ('reviews') (ส่วนที่ 3.1)"
-                      },
-                      {
-                        sentence: "All employees -------- the new company policy by next week.",
-                        correctAnswer: "must read",
-                        options: [
-                          { text: "reads" },
-                          { text: "must read" },
-                          { text: "reading" },
-                          { text: "is reading" }
-                        ],
-                        explanation: "เติมกริยาแท้หลัง Modal Verb 'must' และ 'employees' เป็นพหูพจน์จึงใช้ 'read' (ส่วนที่ 3.1)"
-                      },
-                      {
-                        sentence: "The latest findings -------- that the market is recovering quickly.",
-                        correctAnswer: "indicate",
-                        options: [
-                          { text: "indicates" },
-                          { text: "indicate" },
-                          { text: "indication" },
-                          { text: "indicative" }
-                        ],
-                        explanation: "ประธาน 'findings' เป็นพหูพจน์ (หลายอย่าง) ในปัจจุบัน กริยาจึง **ไม่เติม -s** ('indicate') (ส่วนที่ 3.1)"
-                      },
-                      {
-                        sentence: "Since 2018, the company -------- its sales by 20%.",
-                        correctAnswer: "has increased",
-                        options: [
-                          { text: "increase" },
-                          { text: "increased" },
-                          { text: "increases" },
-                          { text: "has increased" }
-                        ],
-                        explanation: "ใช้ Present Perfect Tense ('has increased') เพื่อพูดถึงการกระทำที่เริ่มในอดีตและมีผลต่อเนื่องถึงปัจจุบัน (Since 2018) (ส่วนที่ 3)"
-                      },
-                      // 4. คำกริยาวิเศษณ์ (Adverbs): Suffix -ly & Special Forms
-                      {
-                        sentence: "The presentation was prepared -------- to ensure accuracy.",
-                        correctAnswer: "carefully",
-                        options: [
-                          { text: "careful" },
-                          { text: "carefulness" },
-                          { text: "carefully" },
-                          { text: "caring" }
-                        ],
-                        explanation: "เติม **Adverb** ('carefully') เพื่อขยาย Verb ('was prepared') บอกว่า 'เตรียมอย่างระมัดระวัง' (ส่วนที่ 4.1)"
-                      },
-                      {
-                        sentence: "The team responded -------- to the emergency situation.",
-                        correctAnswer: "quickly",
-                        options: [
-                          { text: "quick" },
-                          { text: "quicken" },
-                          { text: "quickness" },
-                          { text: "quickly" }
-                        ],
-                        explanation: "เติม **Adverb -ly** ('quickly') เพื่อขยาย Verb ('responded') บอกว่า 'ตอบสนองอย่างรวดเร็ว' (ส่วนที่ 4.1)"
-                      },
-                      {
-                        sentence: "This new software operates much more -------- than the old version.",
-                        correctAnswer: "efficiently",
-                        options: [
-                          { text: "efficient" },
-                          { text: "efficiency" },
-                          { text: "efficiently" },
-                          { text: "efficients" }
-                        ],
-                        explanation: "เติม **Adverb -ly** ('efficiently') เพื่อขยาย Verb ('operates') (ส่วนที่ 4.1)"
-                      },
-                      {
-                        sentence: "The boss made it clear that the staff must work --------.",
-                        correctAnswer: "hard",
-                        options: [
-                          { text: "hardly" },
-                          { text: "harder" },
-                          { text: "hard" },
-                          { text: "hardened" }
-                        ],
-                        explanation: "เติม **Adverb รูปแบบพิเศษ** ('hard') เพื่อขยาย Verb ('work') แปลว่า 'ทำงานหนัก' (ส่วนที่ 4.2)"
-                      },
-                      {
-                        sentence: "The event was -------- successful, exceeding all expectations.",
-                        correctAnswer: "extremely",
-                        options: [
-                          { text: "extreme" },
-                          { text: "extremity" },
-                          { text: "extremely" },
-                          { text: "extremer" }
-                        ],
-                        explanation: "เติม **Adverb -ly** ('extremely') เพื่อขยาย Adjective ('successful') บอกว่า 'สำเร็จอย่างมาก' (ส่วนที่ 4.1)"
-                      },
-                      // 5. คำสรรพนาม (Pronouns): Subject/Object/Possessive & Relative Pronoun
-                      {
-                        sentence: "The manager introduced -------- to the new team members.",
-                        correctAnswer: "himself",
-                        options: [
-                          { text: "he" },
-                          { text: "him" },
-                          { text: "his" },
-                          { text: "himself" }
-                        ],
-                        explanation: "เติม **สรรพนามสะท้อน** ('himself') เพราะประธานและกรรมเป็นคนเดียวกัน (The manager = himself) (ส่วนที่ 5.1)"
-                      },
-                      {
-                        sentence: "This laptop is much older than --------.",
-                        correctAnswer: "mine",
-                        options: [
-                          { text: "I" },
-                          { text: "my" },
-                          { text: "mine" },
-                          { text: "me" }
-                        ],
-                        explanation: "เติม **สรรพนามแสดงความเป็นเจ้าของ** ('mine') ที่ไม่ต้องมีคำนามตามหลัง (ส่วนที่ 5.1)"
-                      },
-                      {
-                        sentence: "The candidate -------- passed the final interview will be offered the job.",
-                        correctAnswer: "who",
-                        options: [
-                          { text: "which" },
-                          { text: "who" },
-                          { text: "whose" },
-                          { text: "whom" }
-                        ],
-                        explanation: "เติม **Relative Pronoun** ('who') เพื่อแทน 'candidate' ซึ่งเป็นคนและทำหน้าที่เป็นประธานในอนุประโยคย่อย (ส่วนที่ 5.1)"
-                      },
-                      {
-                        sentence: "The document -------- you requested is attached to the email.",
-                        correctAnswer: "which",
-                        options: [
-                          { text: "who" },
-                          { text: "which" },
-                          { text: "whose" },
-                          { text: "whoever" }
-                        ],
-                        explanation: "เติม **Relative Pronoun** ('which') เพื่อแทน 'document' ซึ่งเป็นสิ่งของ (ส่วนที่ 5.1)"
-                      },
-                      {
-                        sentence: "We need to talk to the person -------- idea was accepted.",
-                        correctAnswer: "whose",
-                        options: [
-                          { text: "who" },
-                          { text: "whom" },
-                          { text: "whose" },
-                          { text: "which" }
-                        ],
-                        explanation: "เติม **Relative Pronoun แสดงความเป็นเจ้าของ** ('whose') เพื่อแสดงว่า 'idea' เป็นของ 'person' (ส่วนที่ 5.1)"
-                      },
-                      // 6. คำบุพบท (Prepositions): Phrasal Verbs & Fixed Phrases
-                      {
-                        sentence: "The new policy is applicable -------- all branch offices.",
-                        correctAnswer: "to",
-                        options: [
-                          { text: "in" },
-                          { text: "for" },
-                          { text: "with" },
-                          { text: "to" }
-                        ],
-                        explanation: "ใช้ **Preposition** 'to' ตามหลัง Adj. 'applicable' เพื่อสร้างสำนวน 'applicable to' (ส่วนที่ 5.2)"
-                      },
-                      {
-                        sentence: "The deadline for the report is -------- the end of the month.",
-                        correctAnswer: "at",
-                        options: [
-                          { text: "in" },
-                          { text: "on" },
-                          { text: "at" },
-                          { text: "over" }
-                        ],
-                        explanation: "ใช้ **Preposition** 'at' เพื่อบอกจุดของเวลา ('at the end of the month') (ส่วนที่ 5.2)"
-                      },
-                      {
-                        sentence: "The team agreed -------- the manager's proposal.",
-                        correctAnswer: "with",
-                        options: [
-                          { text: "to" },
-                          { text: "on" },
-                          { text: "with" },
-                          { text: "for" }
-                        ],
-                        explanation: "ใช้ **Preposition** 'with' ตามหลัง Verb 'agreed' เพื่อสร้างสำนวน 'agree with' (ส่วนที่ 5.2)"
-                      },
-                      {
-                        sentence: "You can rely -------- his expertise in this field.",
-                        correctAnswer: "on",
-                        options: [
-                          { text: "in" },
-                          { text: "at" },
-                          { text: "on" },
-                          { text: "by" }
-                        ],
-                        explanation: "ใช้ **Preposition** 'on' ตามหลัง Verb 'rely' เพื่อสร้างสำนวน 'rely on' (ส่วนที่ 5.2)"
-                      },
-                      {
-                        sentence: "She is fully responsible -------- the budget planning.",
-                        correctAnswer: "for",
-                        options: [
-                          { text: "with" },
-                          { text: "to" },
-                          { text: "for" },
-                          { text: "of" }
-                        ],
-                        explanation: "ใช้ **Preposition** 'for' ตามหลัง Adj. 'responsible' เพื่อสร้างสำนวน 'responsible for' (ส่วนที่ 5.2)"
-                      },
-                      // 7. คำเปลี่ยนร่าง (Tricky Parts): Noun as Adj & Adv without -ly
-                      {
-                        sentence: "The company announced a significant -------- cut.",
-                        correctAnswer: "budget",
-                        options: [
-                          { text: "budgetary" },
-                          { text: "budget" },
-                          { text: "budgets" },
-                          { text: "budgeting" }
-                        ],
-                        explanation: "เติม **คำนาม** ('budget') ทำหน้าที่ขยายคำนาม 'cut' เป็น **Noun as Adj** ใน Noun Compound (ส่วนที่ 6.1)"
-                      },
-                      {
-                        sentence: "We need to analyze the most recent sales --------.",
-                        correctAnswer: "figures",
-                        options: [
-                          { text: "figure" },
-                          { text: "figured" },
-                          { text: "figuratively" },
-                          { text: "figures" }
-                        ],
-                        explanation: "เติม **คำนามพหูพจน์** ('figures') เพื่อให้ Noun Compound 'sales figures' สมบูรณ์ (ส่วนที่ 1.3)"
-                      },
-                      {
-                        sentence: "We were pleased with the -------- of the training program.",
-                        correctAnswer: "effectiveness",
-                        options: [
-                          { text: "effective" },
-                          { text: "effectively" },
-                          { text: "effectiveness" },
-                          { text: "effect" }
-                        ],
-                        explanation: "เติม **คำนาม** ('effectiveness') หลังคำนำหน้า 'the' และบุพบท 'with' (ส่วนที่ 1.1, รหัส -ness)"
-                      },
-                      {
-                        sentence: "He hit the ball too -------- and missed the target.",
-                        correctAnswer: "high",
-                        options: [
-                          { text: "highly" },
-                          { text: "high" },
-                          { text: "height" },
-                          { text: "higher" }
-                        ],
-                        explanation: "เติม **Adverb รูปแบบพิเศษ** ('high') เพื่อขยาย Verb ('hit') หมายถึง 'ตีสูงเกินไป' (ส่วนที่ 4.2)"
-                      },
-                      {
-                        sentence: "She is looking for an apartment with a better -------- view.",
-                        correctAnswer: "ocean",
-                        options: [
-                          { text: "oceanic" },
-                          { text: "ocean" },
-                          { text: "oceans" },
-                          { text: "oceanically" }
-                        ],
-                        explanation: "เติม **คำนาม** ('ocean') ทำหน้าที่ขยายคำนาม 'view' เป็น **Noun as Adj** (ส่วนที่ 6.1)"
-                      },
-                      // 8. Random Mix & Review
-                      {
-                        sentence: "The supervisor requested more -------- on the budget proposal.",
-                        correctAnswer: "information",
-                        options: [
-                          { text: "inform" },
-                          { text: "informational" },
-                          { text: "information" },
-                          { text: "informed" }
-                        ],
-                        explanation: "เติม **คำนาม** ('information') หลัง 'more' เพื่อทำหน้าที่เป็นกรรม (ส่วนที่ 1.1, รหัส -tion)"
-                      },
-                      {
-                        sentence: "The board's final -------- will be announced next week.",
-                        correctAnswer: "decision",
-                        options: [
-                          { text: "decide" },
-                          { text: "decisive" },
-                          { text: "decided" },
-                          { text: "decision" }
-                        ],
-                        explanation: "เติม **คำนาม** ('decision') หลังคำแสดงความเป็นเจ้าของ 'board's' (ส่วนที่ 1.1, รหัส -tion)"
-                      },
-                      {
-                        sentence: "The machine will be ready to operate --------.",
-                        correctAnswer: "soon",
-                        options: [
-                          { text: "soon" },
-                          { text: "sooner" },
-                          { text: "soonly" },
-                          { text: "soonest" }
-                        ],
-                        explanation: "เติม **Adverb** ('soon') เพื่อขยาย Verb ('operate') บอกเวลา (ส่วนที่ 4)"
-                      },
-                      {
-                        sentence: "We need a person with strong -------- skills for this role.",
-                        correctAnswer: "leadership",
-                        options: [
-                          { text: "leader" },
-                          { text: "leading" },
-                          { text: "leadership" },
-                          { text: "lead" }
-                        ],
-                        explanation: "เติม **คำนาม** ('leadership') ทำหน้าที่ขยายคำนาม 'skills' (ส่วนที่ 1.1, รหัส -ship)"
-                      },
-                      {
-                        sentence: "The results of the analysis were entirely --------.",
-                        correctAnswer: "surprising",
-                        options: [
-                          { text: "surprise" },
-                          { text: "surprised" },
-                          { text: "surprising" },
-                          { text: "surprisingly" }
-                        ],
-                        explanation: "เติม **Adj. -ing** ('surprising') หลัง Verb to be ('were') เพื่อบอกว่าผลลัพธ์ **น่า** ประหลาดใจ (ส่วนที่ 2.2)"
-                      },
-                      {
-                        sentence: "She is an extremely -------- worker.",
-                        correctAnswer: "dedicated",
-                        options: [
-                          { text: "dedicate" },
-                          { text: "dedication" },
-                          { text: "dedicated" },
-                          { text: "dedicating" }
-                        ],
-                        explanation: "เติม **Adj. -ed** ('dedicated') หน้าคำนาม ('worker') เพื่อขยายบอกว่า **รู้สึก** ทุ่มเท (ส่วนที่ 2.2)"
-                      },
-                      {
-                        sentence: "The project team -------- the report to the board this morning.",
-                        correctAnswer: "submitted",
-                        options: [
-                          { text: "submits" },
-                          { text: "submit" },
-                          { text: "submitted" },
-                          { text: "submitting" }
-                        ],
-                        explanation: "ใช้กริยาช่อง 2 ('submitted') เนื่องจากมีคำบอกเวลาในอดีต ('this morning') (ส่วนที่ 3)"
-                      },
-                      {
-                        sentence: "The final proposal must be submitted -------- the deadline.",
-                        correctAnswer: "before",
-                        options: [
-                          { text: "in" },
-                          { text: "of" },
-                          { text: "before" },
-                          { text: "with" }
-                        ],
-                        explanation: "ใช้ **Preposition** ('before') เพื่อบอกความสัมพันธ์ด้านเวลา (ส่วนที่ 5.2)"
-                      },
-                      {
-                        sentence: "We must proceed with caution to ensure --------.",
-                        correctAnswer: "safety",
-                        options: [
-                          { text: "safe" },
-                          { text: "safely" },
-                          { text: "safety" },
-                          { text: "safer" }
-                        ],
-                        explanation: "เติม **คำนาม** ('safety') หลัง Verb 'ensure' ทำหน้าที่เป็นกรรม (ส่วนที่ 1.1, รหัส -ty)"
-                      },
-                      {
-                        sentence: "The manager will -------- meet with the client.",
-                        correctAnswer: "personally",
-                        options: [
-                          { text: "personal" },
-                          { text: "person" },
-                          { text: "personally" },
-                          { text: "personnel" }
-                        ],
-                        explanation: "เติม **Adverb -ly** ('personally') เพื่อขยาย Verb ('meet') บอกว่า 'พบด้วยตัวเอง' (ส่วนที่ 4.1)"
-                      }
+                    // {
+                    //     sentence: "The project must be completed -------- by the deadline.",
+                    //     correctAnswer: "successfully",
+                    //     options: shuffle([{ text: "success" }, { text: "successful" }, { text: "successfully" }, { text: "succeed" }]),
+                    //     explanation: "ต้องเติม Adverb ('successfully') เพื่อขยาย Verb ('completed') บอกว่า 'เสร็จสมบูรณ์อย่างประสบความสำเร็จ' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "Ms. Oh is looking for a -------- to the problem.",
+                    //     correctAnswer: "solution",
+                    //     options: shuffle([{ text: "solve" }, { text: "solvable" }, { text: "solution" }, { text: "solving" }]),
+                    //     explanation: "ต้องเติม Noun ('solution') เพราะอยู่หลัง A/An (Determiner) (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "The manager was -------- by the sudden resignation.",
+                    //     correctAnswer: "surprised",
+                    //     options: shuffle([{ text: "surprise" }, { text: "surprising" }, { text: "surprised" }, { text: "surprisingly" }]),
+                    //     explanation: "ต้องการ Adjective (-ed) เพื่อบอกว่า Manager 'รู้สึกประหลาดใจ' (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "We need a -------- response from the client right away.",
+                    //     correctAnswer: "quick",
+                    //     options: shuffle([{ text: "quickness" }, { text: "quickly" }, { text: "quick" }, { text: "quicker" }]),
+                    //     explanation: "ต้องเติม Adjective ('quick') เพื่อขยาย Noun ('response') (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "The new -------- policy will be effective next month.",
+                    //     correctAnswer: "security",
+                    //     options: shuffle([{ text: "secure" }, { text: "securely" }, { text: "security" }, { text: "securing" }]),
+                    //     explanation: "ต้องการ Noun Compound ('security policy') คำนามตัวแรกทำหน้าที่ขยายนามตัวหลัง (ส่วนที่ 1.3)"
+                    // },
+                    // // คำถามที่เพิ่มเข้ามาใหม่
+                    // {
+                    //     sentence: "Mr. Kim is known for his -------- at the office.",
+                    //     correctAnswer: "punctuality",
+                    //     options: shuffle([{ text: "punctual" }, { text: "punctually" }, { text: "punctuality" }, { text: "punctuate" }]),
+                    //     explanation: "ต้องเติม Noun ('punctuality') เพราะอยู่หลังคำแสดงความเป็นเจ้าของ 'his' (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "The presentation was -------- interesting.",
+                    //     correctAnswer: "incredibly",
+                    //     options: shuffle([{ text: "incredible" }, { text: "incredibly" }, { text: "incredibility" }, { text: "incredulous" }]),
+                    //     explanation: "ต้องเติม Adverb ('incredibly') เพื่อขยาย Adjective ('interesting') บอกว่า 'น่าสนใจอย่างเหลือเชื่อ' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "The flight was delayed, which was very --------.",
+                    //     correctAnswer: "frustrating",
+                    //     options: shuffle([{ text: "frustrate" }, { text: "frustrating" }, { text: "frustrated" }, { text: "frustration" }]),
+                    //     explanation: "ต้องการ Adjective (-ing) เพื่อบอกว่า 'เที่ยวบินนั้นน่าหงุดหงิด' (ลักษณะของสิ่งของ) (ส่วนที่ 2.2)"
+                    // },
+                    // {
+                    //     sentence: "The team achieved their sales -------- last quarter.",
+                    //     correctAnswer: "goals",
+                    //     options: shuffle([{ text: "goal" }, { text: "goal-oriented" }, { text: "goal-setting" }, { text: "goals" }]),
+                    //     explanation: "ต้องการ Noun ('goals') เพื่อให้สมบูรณ์เป็น Noun Compound ('sales goals') (ส่วนที่ 1.3)"
+                    // },
+                    // {
+                    //     sentence: "Please submit the form -------- by email.",
+                    //     correctAnswer: "electronically",
+                    //     options: shuffle([{ text: "electronic" }, { text: "electronics" }, { text: "electronically" }, { text: "electrum" }]),
+                    //     explanation: "ต้องเติม Adverb ('electronically') เพื่อขยายกริยา 'submit' บอกว่า 'ส่งแบบฟอร์มทางอิเล็กทรอนิกส์' (ส่วนที่ 4)"
+                    // },
+                    // // ข้อที่ 11-40 (ใหม่)
+                    // {
+                    //     sentence: "The company needs to make -------- decisions about spending.",
+                    //     correctAnswer: "economical",
+                    //     options: shuffle([{ text: "economy" }, { text: "economically" }, { text: "economize" }, { text: "economical" }]),
+                    //     explanation: "ต้องเติม Adjective ('economical') เพื่อขยายคำนาม 'decisions' (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "The technician checked the machine -------- for any faults.",
+                    //     correctAnswer: "carefully",
+                    //     options: shuffle([{ text: "careful" }, { text: "carefulness" }, { text: "carefully" }, { text: "caring" }]),
+                    //     explanation: "ต้องเติม Adverb ('carefully') เพื่อขยายกริยา 'checked' (ตรวจเช็คอย่างระมัดระวัง) (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "We are currently reviewing the new business --------.",
+                    //     correctAnswer: "proposal",
+                    //     options: shuffle([{ text: "propose" }, { text: "proposing" }, { text: "proposal" }, { text: "proposer" }]),
+                    //     explanation: "ต้องเติม Noun ('proposal') เพราะตามหลัง Determiner 'the' และทำหน้าที่เป็น Object (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "The result was -------- encouraging for the entire department.",
+                    //     correctAnswer: "extremely",
+                    //     options: shuffle([{ text: "extreme" }, { text: "extremity" }, { text: "extremely" }, { text: "extremist" }]),
+                    //     explanation: "ต้องเติม Adverb ('extremely') เพื่อขยาย Adjective ('encouraging') บอกว่า 'ให้กำลังใจอย่างมาก' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "Everyone was -------- by the sudden change in policy.",
+                    //     correctAnswer: "surprised",
+                    //     options: shuffle([{ text: "surprise" }, { text: "surprising" }, { text: "surprised" }, { text: "surprisingly" }]),
+                    //     explanation: "ต้องการ Adjective (-ed) เพราะอยู่หลัง Verb to be ('was') และแสดงความรู้สึก (ส่วนที่ 2.2)"
+                    // },
+                    // {
+                    //     sentence: "The recent financial report highlights intense market --------.",
+                    //     correctAnswer: "competition",
+                    //     options: shuffle([{ text: "compete" }, { text: "competitive" }, { text: "competitively" }, { text: "competition" }]),
+                    //     explanation: "ต้องเติม Noun ('competition') เพราะอยู่หลัง Adjective ('intense') (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "The multinational corporation operates --------.",
+                    //     correctAnswer: "globally",
+                    //     options: shuffle([{ text: "globe" }, { text: "global" }, { text: "globally" }, { text: "globalize" }]),
+                    //     explanation: "ต้องเติม Adverb ('globally') เพื่อขยายกริยา 'operates' บอกว่า 'ดำเนินงานทั่วโลก' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "The board requested a thorough -------- of the risks involved.",
+                    //     correctAnswer: "analysis",
+                    //     options: shuffle([{ text: "analyze" }, { text: "analytical" }, { text: "analytically" }, { text: "analysis" }]),
+                    //     explanation: "ต้องเติม Noun ('analysis') เพราะอยู่หลัง Determiner 'a' และ Adjective 'thorough' (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "Despite the challenges, the CEO remained highly --------.",
+                    //     correctAnswer: "optimistic",
+                    //     options: shuffle([{ text: "optimism" }, { text: "optimistically" }, { text: "optimize" }, { text: "optimistic" }]),
+                    //     explanation: "ต้องการ Adjective ('optimistic') เพราะอยู่หลัง Linking Verb 'remained' (ยังคง) เพื่อขยายประธาน (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "Their main goal is to achieve financial -------- within five years.",
+                    //     correctAnswer: "success",
+                    //     options: shuffle([{ text: "succeed" }, { text: "successful" }, { text: "successfully" }, { text: "success" }]),
+                    //     explanation: "ต้องเติม Noun ('success') เพราะอยู่หลัง Adjective ('financial') (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "He travels to various countries very -------- for work.",
+                    //     correctAnswer: "frequently",
+                    //     options: shuffle([{ text: "frequent" }, { text: "frequency" }, { text: "frequently" }, { text: "freq" }]),
+                    //     explanation: "ต้องเติม Adverb ('frequently') เพื่อขยายกริยา 'travels' บอกว่า 'เดินทางบ่อย ๆ' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "Good time management is an -------- skill for every employee.",
+                    //     correctAnswer: "essential",
+                    //     options: shuffle([{ text: "essence" }, { text: "essentially" }, { text: "essential" }, { text: "essence" }]),
+                    //     explanation: "ต้องเติม Adjective ('essential') เพื่อขยายคำนาม 'skill' (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "There is a severe labor -------- in the construction industry.",
+                    //     correctAnswer: "shortage",
+                    //     options: shuffle([{ text: "short" }, { text: "shorten" }, { text: "shortly" }, { text: "shortage" }]),
+                    //     explanation: "ต้องเติม Noun ('shortage') เพื่อให้เกิด Noun Compound ('labor shortage') (ส่วนที่ 1.3)"
+                    // },
+                    // {
+                    //     sentence: "The team was truly -------- about the product launch.",
+                    //     correctAnswer: "excited",
+                    //     options: shuffle([{ text: "excitement" }, { text: "exciting" }, { text: "excited" }, { text: "excitably" }]),
+                    //     explanation: "ต้องการ Adjective (-ed) เพื่อแสดงความรู้สึกว่าทีม 'รู้สึกตื่นเต้น' (ส่วนที่ 2.2)"
+                    // },
+                    // {
+                    //     sentence: "The contract was handled very -------- by the legal team.",
+                    //     correctAnswer: "professionally",
+                    //     options: shuffle([{ text: "professional" }, { text: "profession" }, { text: "professionally" }, { text: "profess" }]),
+                    //     explanation: "ต้องเติม Adverb ('professionally') เพื่อขยายกริยา 'handled' (จัดการอย่างมืออาชีพ) (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "The campaign aims to raise public -------- of climate change.",
+                    //     correctAnswer: "awareness",
+                    //     options: shuffle([{ text: "aware" }, { text: "awareness" }, { text: "awarely" }, { text: "awareable" }]),
+                    //     explanation: "ต้องเติม Noun ('awareness') เพราะอยู่หลัง Adjective 'public' และทำหน้าที่เป็น Object (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "The software performs -------- well under high stress.",
+                    //     correctAnswer: "consistently",
+                    //     options: shuffle([{ text: "consistent" }, { text: "consistency" }, { text: "consistently" }, { text: "consist" }]),
+                    //     explanation: "ต้องเติม Adverb ('consistently') เพื่อขยาย Adverb 'well' ซึ่งไปขยายกริยา 'performs' (ทำงานอย่างสม่ำเสมอ) (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "The client looked highly -------- with the results.",
+                    //     correctAnswer: "satisfied",
+                    //     options: shuffle([{ text: "satisfy" }, { text: "satisfying" }, { text: "satisfied" }, { text: "satisfaction" }]),
+                    //     explanation: "ต้องการ Adjective (-ed) เพราะอยู่หลัง Linking Verb 'looked' เพื่อบอกความรู้สึกว่าลูกค้า 'รู้สึกพึงพอใจ' (ส่วนที่ 2.2)"
+                    // },
+                    // {
+                    //     sentence: "Effective -------- is key to successful project management.",
+                    //     correctAnswer: "communication",
+                    //     options: shuffle([{ text: "communicate" }, { text: "communicative" }, { text: "communicatively" }, { text: "communication" }]),
+                    //     explanation: "ต้องเติม Noun ('communication') เพราะอยู่หลัง Adjective 'Effective' และทำหน้าที่เป็น Subject (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "Attendance at the training session is -------- for all new hires.",
+                    //     correctAnswer: "mandatory",
+                    //     options: shuffle([{ text: "mandate" }, { text: "mandatorily" }, { text: "mandatory" }, { text: "mandating" }]),
+                    //     explanation: "ต้องการ Adjective ('mandatory') เพราะอยู่หลัง Verb to be ('is') เพื่อบอกลักษณะของประธาน ('Attendance') (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "She can speak three languages quite --------.",
+                    //     correctAnswer: "fluently",
+                    //     options: shuffle([{ text: "fluent" }, { text: "fluence" }, { text: "fluently" }, { text: "flowing" }]),
+                    //     explanation: "ต้องเติม Adverb ('fluently') เพื่อขยายกริยา 'speak' บอกว่า 'พูดได้อย่างคล่องแคล่ว' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "Showing genuine -------- is important when dealing with customers.",
+                    //     correctAnswer: "commitment",
+                    //     options: shuffle([{ text: "commit" }, { text: "committed" }, { text: "committing" }, { text: "commitment" }]),
+                    //     explanation: "ต้องเติม Noun ('commitment') เพราะอยู่หลัง Adjective 'genuine' และทำหน้าที่เป็น Subject (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "The resources needed for the experiment are now --------.",
+                    //     correctAnswer: "available",
+                    //     options: shuffle([{ text: "avail" }, { text: "availability" }, { text: "available" }, { text: "availingly" }]),
+                    //     explanation: "ต้องการ Adjective ('available') เพราะอยู่หลัง Verb to be ('are') เพื่อขยายประธาน ('The resources') (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "The manager explained the new procedure very --------.",
+                    //     correctAnswer: "clearly",
+                    //     options: shuffle([{ text: "clear" }, { text: "clearness" }, { text: "clearly" }, { text: "cleared" }]),
+                    //     explanation: "ต้องเติม Adverb ('clearly') เพื่อขยายกริยา 'explained' บอกว่า 'อธิบายอย่างชัดเจน' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "The central bank prioritizes financial market --------.",
+                    //     correctAnswer: "stability",
+                    //     options: shuffle([{ text: "stable" }, { text: "stably" }, { text: "stability" }, { text: "stabilize" }]),
+                    //     explanation: "ต้องเติม Noun ('stability') เพราะอยู่หลัง Adjective 'financial market' (ซึ่งทำหน้าที่คล้าย Adjective) (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "It is -------- to follow the safety regulations at all times.",
+                    //     correctAnswer: "crucial",
+                    //     options: shuffle([{ text: "crux" }, { text: "crucial" }, { text: "crucially" }, { text: "cruelty" }]),
+                    //     explanation: "ต้องการ Adjective ('crucial') เพราะเป็นคำที่ใช้ขยาย 'It' ซึ่งแทนประโยคหลัง (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "The power went out -------- during the meeting.",
+                    //     correctAnswer: "suddenly",
+                    //     options: shuffle([{ text: "sudden" }, { text: "suddenness" }, { text: "suddenly" }, { text: "sud" }]),
+                    //     explanation: "ต้องเติม Adverb ('suddenly') เพื่อขยายกริยา 'went out' บอกว่า 'ไฟดับลงอย่างทันทีทันใด' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "A good business must protect its hard-earned --------.",
+                    //     correctAnswer: "reputation",
+                    //     options: shuffle([{ text: "repute" }, { text: "reputable" }, { text: "reputation" }, { text: "reputably" }]),
+                    //     explanation: "ต้องเติม Noun ('reputation') เพราะอยู่หลัง Adjective 'hard-earned' (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "Finding qualified staff proved extremely --------.",
+                    //     correctAnswer: "difficult",
+                    //     options: shuffle([{ text: "difficulty" }, { text: "difficult" }, { text: "difficultly" }, { text: "difficulty" }]),
+                    //     explanation: "ต้องการ Adjective ('difficult') เพราะอยู่หลัง Linking Verb 'proved' เพื่อบอกลักษณะของประธาน (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "The witness described the event rather --------.",
+                    //     correctAnswer: "vividly",
+                    //     options: shuffle([{ text: "vivid" }, { text: "vividness" }, { text: "vividly" }, { text: "vivify" }]),
+                    //     explanation: "ต้องเติม Adverb ('vividly') เพื่อขยายกริยา 'described' บอกว่า 'บรรยายอย่างมีชีวิตชีวา' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "The main -------- of the meeting was the new budget.",
+                    //     correctAnswer: "topic",
+                    //     options: shuffle([{ text: "topical" }, { text: "topically" }, { text: "topicality" }, { text: "topic" }]),
+                    //     explanation: "ต้องการ Noun ('topic') เพราะทำหน้าที่เป็นส่วนเติมเต็มของประธาน (Subject Complement) (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "The supervisor is very -------- of his team's efforts.",
+                    //     correctAnswer: "supportive",
+                    //     options: shuffle([{ text: "support" }, { text: "supportively" }, { text: "supportive" }, { text: "supporting" }]),
+                    //     explanation: "ต้องการ Adjective ('supportive') เพื่อขยายประธาน 'supervisor' (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "We should handle sensitive data with utmost --------.",
+                    //     correctAnswer: "discretion",
+                    //     options: shuffle([{ text: "discreet" }, { text: "discreetly" }, { text: "discretion" }, { text: "discretely" }]),
+                    //     explanation: "ต้องเติม Noun ('discretion') เพราะอยู่หลัง Determiner 'utmost' (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "She finished the race even though she was running --------.",
+                    //     correctAnswer: "slowly",
+                    //     options: shuffle([{ text: "slow" }, { text: "slowness" }, { text: "slowly" }, { text: "slowable" }]),
+                    //     explanation: "ต้องเติม Adverb ('slowly') เพื่อขยายกริยา 'running' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "The team demonstrated remarkable -------- in completing the task.",
+                    //     correctAnswer: "dedication",
+                    //     options: shuffle([{ text: "dedicate" }, { text: "dedicated" }, { text: "dedication" }, { text: "dedicatively" }]),
+                    //     explanation: "ต้องเติม Noun ('dedication') เพราะอยู่หลัง Adjective 'remarkable' (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "Our new product offers a -------- advantage over competitors.",
+                    //     correctAnswer: "significant",
+                    //     options: shuffle([{ text: "significance" }, { text: "significantly" }, { text: "signify" }, { text: "significant" }]),
+                    //     explanation: "ต้องการ Adjective ('significant') เพื่อขยายคำนาม 'advantage' (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "The instructions were provided -------- on the website.",
+                    //     correctAnswer: "digitally",
+                    //     options: shuffle([{ text: "digital" }, { text: "digit" }, { text: "digitally" }, { text: "digitality" }]),
+                    //     explanation: "ต้องเติม Adverb ('digitally') เพื่อขยายกริยา 'provided' บอกว่า 'ให้ข้อมูลในรูปแบบดิจิทัล' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "The entire town was completely -------- after the storm.",
+                    //     correctAnswer: "powerless",
+                    //     options: shuffle([{ text: "power" }, { text: "powerful" }, { text: "powerfully" }, { text: "powerless" }]),
+                    //     explanation: "ต้องการ Adjective ('powerless') เพราะอยู่หลัง Verb to be ('was') เพื่อบอกสภาพ (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "He expressed his opinion on the matter quite --------.",
+                    //     correctAnswer: "strongly",
+                    //     options: shuffle([{ text: "strong" }, { text: "strength" }, { text: "strongly" }, { text: "stronger" }]),
+                    //     explanation: "ต้องเติม Adverb ('strongly') เพื่อขยายกริยา 'expressed' บอกว่า 'แสดงความคิดเห็นอย่างหนักแน่น' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "Please review the attached -------- for details.",
+                    //     correctAnswer: "document",
+                    //     options: shuffle([{ text: "documentary" }, { text: "documenting" }, { text: "document" }, { text: "documentation" }]),
+                    //     explanation: "ต้องเติม Noun ('document') เพราะอยู่หลัง Adjective (-ed) 'attached' (ส่วนที่ 1)"
+                    // },
+                    //  // 1. คำนาม (Nouns): Suffixes (-tion, -ment, -ness, etc.)
+                    //   {
+                    //     sentence: "The new marketing strategy requires careful market --------.",
+                    //     correctAnswer: "analysis",
+                    //     options: [
+                    //       { text: "analyze" },
+                    //       { text: "analytical" },
+                    //       { text: "analyst" },
+                    //       { text: "analysis" }
+                    //     ],
+                    //     explanation: "ต้องเติม **คำนาม** ('analysis') เพื่อให้ความหมายสมบูรณ์หลัง Adj. 'careful' และทำหน้าที่เป็นกรรมของประโยค (ส่วนที่ 1.1, รหัส -sis/y)"
+                    //   },
+                    //   {
+                    //     sentence: "We are committed to the highest standards of customer --------.",
+                    //     correctAnswer: "service",
+                    //     options: [
+                    //       { text: "serve" },
+                    //       { text: "service" },
+                    //       { text: "serving" },
+                    //       { text: "servant" }
+                    //     ],
+                    //     explanation: "เติม **คำนาม** ('service') หลังคำนาม 'customer' เพื่อสร้าง **Noun Compound** ('customer service') (ส่วนที่ 1.3)"
+                    //   },
+                    //   {
+                    //     sentence: "The recent -------- in staff morale is noticeable.",
+                    //     correctAnswer: "improvement",
+                    //     options: [
+                    //       { text: "improve" },
+                    //       { text: "improved" },
+                    //       { text: "improvement" },
+                    //       { text: "improving" }
+                    //     ],
+                    //     explanation: "ต้องเติม **คำนาม** ('improvement') หลัง 'The recent' เพื่อทำหน้าที่เป็นประธานของประโยค (ส่วนที่ 1.1, รหัส -ment)"
+                    //   },
+                    //   {
+                    //     sentence: "For your own --------, please read the manual before use.",
+                    //     correctAnswer: "safety",
+                    //     options: [
+                    //       { text: "safe" },
+                    //       { text: "safely" },
+                    //       { text: "safety" },
+                    //       { text: "safer" }
+                    //     ],
+                    //     explanation: "ต้องเติม **คำนาม** ('safety') หลังคำแสดงความเป็นเจ้าของ 'your own' (ส่วนที่ 1.1, รหัส -ty)"
+                    //   },
+                    //   {
+                    //     sentence: "Mr. Park has worked as a quality -------- for many years.",
+                    //     correctAnswer: "inspector",
+                    //     options: [
+                    //       { text: "inspect" },
+                    //       { text: "inspection" },
+                    //       { text: "inspected" },
+                    //       { text: "inspector" }
+                    //     ],
+                    //     explanation: "ต้องเติม **คำนาม** ที่หมายถึงบุคคล ('inspector') หลังคำนำหน้า 'a' และ Adj. 'quality' เพื่อบอกอาชีพ (ส่วนที่ 1.1, รหัส -or)"
+                    //   },
+                    //   // 2. คำคุณศัพท์ (Adjectives): Position & -ing vs. -ed
+                    //   {
+                    //     sentence: "The project team is highly -------- with the outcome.",
+                    //     correctAnswer: "satisfied",
+                    //     options: [
+                    //       { text: "satisfy" },
+                    //       { text: "satisfying" },
+                    //       { text: "satisfaction" },
+                    //       { text: "satisfied" }
+                    //     ],
+                    //     explanation: "เติม **Adj. -ed** ('satisfied') หลัง Verb to be ('is') เพื่อบอกว่าทีม **รู้สึก** พอใจ (ส่วนที่ 2.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The seminar provided some very -------- insights.",
+                    //     correctAnswer: "interesting",
+                    //     options: [
+                    //       { text: "interest" },
+                    //       { text: "interested" },
+                    //       { text: "interestingly" },
+                    //       { text: "interesting" }
+                    //     ],
+                    //     explanation: "เติม **Adj. -ing** ('interesting') หน้าคำนาม ('insights') เพื่อบอกว่าข้อมูลนั้น **น่า** สนใจ (ส่วนที่ 2.2)"
+                    //   },
+                    //   {
+                    //     sentence: "We need a more -------- approach to solving this problem.",
+                    //     correctAnswer: "creative",
+                    //     options: [
+                    //       { text: "create" },
+                    //       { text: "creativity" },
+                    //       { text: "creatively" },
+                    //       { text: "creative" }
+                    //     ],
+                    //     explanation: "เติม **คำคุณศัพท์** ('creative') หน้าคำนาม ('approach') เพื่อขยายคำนาม (ส่วนที่ 2.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The lecture was quite -------- due to the complex topic.",
+                    //     correctAnswer: "confusing",
+                    //     options: [
+                    //       { text: "confuse" },
+                    //       { text: "confused" },
+                    //       { text: "confusing" },
+                    //       { text: "confusion" }
+                    //     ],
+                    //     explanation: "เติม **Adj. -ing** ('confusing') หลัง Verb to be ('was') เพื่อบอกว่าการบรรยายน่าสับสน (ส่วนที่ 2.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The staff should remain -------- and professional when dealing with complaints.",
+                    //     correctAnswer: "calm",
+                    //     options: [
+                    //       { text: "calmly" },
+                    //       { text: "calm" },
+                    //       { text: "calmness" },
+                    //       { text: "calms" }
+                    //     ],
+                    //     explanation: "เติม **คำคุณศัพท์** ('calm') หลัง Linking Verb ('remain') เพื่อบอกลักษณะของประธาน (ส่วนที่ 2.1)"
+                    //   },
+                    //   // 3. คำกริยา (Verbs): Subject-Verb Agreement & Tense
+                    //   {
+                    //     sentence: "The main office -------- in the downtown area.",
+                    //     correctAnswer: "is located",
+                    //     options: [
+                    //       { text: "locate" },
+                    //       { text: "locates" },
+                    //       { text: "is located" },
+                    //       { text: "locating" }
+                    //     ],
+                    //     explanation: "ประธาน 'office' เป็นเอกพจน์ และต้องการกริยาที่แสดงการถูกกระทำ (Passive Voice) (ส่วนที่ 3.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The CEO usually -------- all new contracts before signing.",
+                    //     correctAnswer: "reviews",
+                    //     options: [
+                    //       { text: "review" },
+                    //       { text: "reviews" },
+                    //       { text: "reviewed" },
+                    //       { text: "reviewing" }
+                    //     ],
+                    //     explanation: "ประธาน 'CEO' เป็นเอกพจน์ (1 คน) ในปัจจุบัน กริยาต้องเติม **-s** ('reviews') (ส่วนที่ 3.1)"
+                    //   },
+                    //   {
+                    //     sentence: "All employees -------- the new company policy by next week.",
+                    //     correctAnswer: "must read",
+                    //     options: [
+                    //       { text: "reads" },
+                    //       { text: "must read" },
+                    //       { text: "reading" },
+                    //       { text: "is reading" }
+                    //     ],
+                    //     explanation: "เติมกริยาแท้หลัง Modal Verb 'must' และ 'employees' เป็นพหูพจน์จึงใช้ 'read' (ส่วนที่ 3.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The latest findings -------- that the market is recovering quickly.",
+                    //     correctAnswer: "indicate",
+                    //     options: [
+                    //       { text: "indicates" },
+                    //       { text: "indicate" },
+                    //       { text: "indication" },
+                    //       { text: "indicative" }
+                    //     ],
+                    //     explanation: "ประธาน 'findings' เป็นพหูพจน์ (หลายอย่าง) ในปัจจุบัน กริยาจึง **ไม่เติม -s** ('indicate') (ส่วนที่ 3.1)"
+                    //   },
+                    //   {
+                    //     sentence: "Since 2018, the company -------- its sales by 20%.",
+                    //     correctAnswer: "has increased",
+                    //     options: [
+                    //       { text: "increase" },
+                    //       { text: "increased" },
+                    //       { text: "increases" },
+                    //       { text: "has increased" }
+                    //     ],
+                    //     explanation: "ใช้ Present Perfect Tense ('has increased') เพื่อพูดถึงการกระทำที่เริ่มในอดีตและมีผลต่อเนื่องถึงปัจจุบัน (Since 2018) (ส่วนที่ 3)"
+                    //   },
+                    //   // 4. คำกริยาวิเศษณ์ (Adverbs): Suffix -ly & Special Forms
+                    //   {
+                    //     sentence: "The presentation was prepared -------- to ensure accuracy.",
+                    //     correctAnswer: "carefully",
+                    //     options: [
+                    //       { text: "careful" },
+                    //       { text: "carefulness" },
+                    //       { text: "carefully" },
+                    //       { text: "caring" }
+                    //     ],
+                    //     explanation: "เติม **Adverb** ('carefully') เพื่อขยาย Verb ('was prepared') บอกว่า 'เตรียมอย่างระมัดระวัง' (ส่วนที่ 4.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The team responded -------- to the emergency situation.",
+                    //     correctAnswer: "quickly",
+                    //     options: [
+                    //       { text: "quick" },
+                    //       { text: "quicken" },
+                    //       { text: "quickness" },
+                    //       { text: "quickly" }
+                    //     ],
+                    //     explanation: "เติม **Adverb -ly** ('quickly') เพื่อขยาย Verb ('responded') บอกว่า 'ตอบสนองอย่างรวดเร็ว' (ส่วนที่ 4.1)"
+                    //   },
+                    //   {
+                    //     sentence: "This new software operates much more -------- than the old version.",
+                    //     correctAnswer: "efficiently",
+                    //     options: [
+                    //       { text: "efficient" },
+                    //       { text: "efficiency" },
+                    //       { text: "efficiently" },
+                    //       { text: "efficients" }
+                    //     ],
+                    //     explanation: "เติม **Adverb -ly** ('efficiently') เพื่อขยาย Verb ('operates') (ส่วนที่ 4.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The boss made it clear that the staff must work --------.",
+                    //     correctAnswer: "hard",
+                    //     options: [
+                    //       { text: "hardly" },
+                    //       { text: "harder" },
+                    //       { text: "hard" },
+                    //       { text: "hardened" }
+                    //     ],
+                    //     explanation: "เติม **Adverb รูปแบบพิเศษ** ('hard') เพื่อขยาย Verb ('work') แปลว่า 'ทำงานหนัก' (ส่วนที่ 4.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The event was -------- successful, exceeding all expectations.",
+                    //     correctAnswer: "extremely",
+                    //     options: [
+                    //       { text: "extreme" },
+                    //       { text: "extremity" },
+                    //       { text: "extremely" },
+                    //       { text: "extremer" }
+                    //     ],
+                    //     explanation: "เติม **Adverb -ly** ('extremely') เพื่อขยาย Adjective ('successful') บอกว่า 'สำเร็จอย่างมาก' (ส่วนที่ 4.1)"
+                    //   },
+                    //   // 5. คำสรรพนาม (Pronouns): Subject/Object/Possessive & Relative Pronoun
+                    //   {
+                    //     sentence: "The manager introduced -------- to the new team members.",
+                    //     correctAnswer: "himself",
+                    //     options: [
+                    //       { text: "he" },
+                    //       { text: "him" },
+                    //       { text: "his" },
+                    //       { text: "himself" }
+                    //     ],
+                    //     explanation: "เติม **สรรพนามสะท้อน** ('himself') เพราะประธานและกรรมเป็นคนเดียวกัน (The manager = himself) (ส่วนที่ 5.1)"
+                    //   },
+                    //   {
+                    //     sentence: "This laptop is much older than --------.",
+                    //     correctAnswer: "mine",
+                    //     options: [
+                    //       { text: "I" },
+                    //       { text: "my" },
+                    //       { text: "mine" },
+                    //       { text: "me" }
+                    //     ],
+                    //     explanation: "เติม **สรรพนามแสดงความเป็นเจ้าของ** ('mine') ที่ไม่ต้องมีคำนามตามหลัง (ส่วนที่ 5.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The candidate -------- passed the final interview will be offered the job.",
+                    //     correctAnswer: "who",
+                    //     options: [
+                    //       { text: "which" },
+                    //       { text: "who" },
+                    //       { text: "whose" },
+                    //       { text: "whom" }
+                    //     ],
+                    //     explanation: "เติม **Relative Pronoun** ('who') เพื่อแทน 'candidate' ซึ่งเป็นคนและทำหน้าที่เป็นประธานในอนุประโยคย่อย (ส่วนที่ 5.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The document -------- you requested is attached to the email.",
+                    //     correctAnswer: "which",
+                    //     options: [
+                    //       { text: "who" },
+                    //       { text: "which" },
+                    //       { text: "whose" },
+                    //       { text: "whoever" }
+                    //     ],
+                    //     explanation: "เติม **Relative Pronoun** ('which') เพื่อแทน 'document' ซึ่งเป็นสิ่งของ (ส่วนที่ 5.1)"
+                    //   },
+                    //   {
+                    //     sentence: "We need to talk to the person -------- idea was accepted.",
+                    //     correctAnswer: "whose",
+                    //     options: [
+                    //       { text: "who" },
+                    //       { text: "whom" },
+                    //       { text: "whose" },
+                    //       { text: "which" }
+                    //     ],
+                    //     explanation: "เติม **Relative Pronoun แสดงความเป็นเจ้าของ** ('whose') เพื่อแสดงว่า 'idea' เป็นของ 'person' (ส่วนที่ 5.1)"
+                    //   },
+                    //   // 6. คำบุพบท (Prepositions): Phrasal Verbs & Fixed Phrases
+                    //   {
+                    //     sentence: "The new policy is applicable -------- all branch offices.",
+                    //     correctAnswer: "to",
+                    //     options: [
+                    //       { text: "in" },
+                    //       { text: "for" },
+                    //       { text: "with" },
+                    //       { text: "to" }
+                    //     ],
+                    //     explanation: "ใช้ **Preposition** 'to' ตามหลัง Adj. 'applicable' เพื่อสร้างสำนวน 'applicable to' (ส่วนที่ 5.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The deadline for the report is -------- the end of the month.",
+                    //     correctAnswer: "at",
+                    //     options: [
+                    //       { text: "in" },
+                    //       { text: "on" },
+                    //       { text: "at" },
+                    //       { text: "over" }
+                    //     ],
+                    //     explanation: "ใช้ **Preposition** 'at' เพื่อบอกจุดของเวลา ('at the end of the month') (ส่วนที่ 5.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The team agreed -------- the manager's proposal.",
+                    //     correctAnswer: "with",
+                    //     options: [
+                    //       { text: "to" },
+                    //       { text: "on" },
+                    //       { text: "with" },
+                    //       { text: "for" }
+                    //     ],
+                    //     explanation: "ใช้ **Preposition** 'with' ตามหลัง Verb 'agreed' เพื่อสร้างสำนวน 'agree with' (ส่วนที่ 5.2)"
+                    //   },
+                    //   {
+                    //     sentence: "You can rely -------- his expertise in this field.",
+                    //     correctAnswer: "on",
+                    //     options: [
+                    //       { text: "in" },
+                    //       { text: "at" },
+                    //       { text: "on" },
+                    //       { text: "by" }
+                    //     ],
+                    //     explanation: "ใช้ **Preposition** 'on' ตามหลัง Verb 'rely' เพื่อสร้างสำนวน 'rely on' (ส่วนที่ 5.2)"
+                    //   },
+                    //   {
+                    //     sentence: "She is fully responsible -------- the budget planning.",
+                    //     correctAnswer: "for",
+                    //     options: [
+                    //       { text: "with" },
+                    //       { text: "to" },
+                    //       { text: "for" },
+                    //       { text: "of" }
+                    //     ],
+                    //     explanation: "ใช้ **Preposition** 'for' ตามหลัง Adj. 'responsible' เพื่อสร้างสำนวน 'responsible for' (ส่วนที่ 5.2)"
+                    //   },
+                    //   // 7. คำเปลี่ยนร่าง (Tricky Parts): Noun as Adj & Adv without -ly
+                    //   {
+                    //     sentence: "The company announced a significant -------- cut.",
+                    //     correctAnswer: "budget",
+                    //     options: [
+                    //       { text: "budgetary" },
+                    //       { text: "budget" },
+                    //       { text: "budgets" },
+                    //       { text: "budgeting" }
+                    //     ],
+                    //     explanation: "เติม **คำนาม** ('budget') ทำหน้าที่ขยายคำนาม 'cut' เป็น **Noun as Adj** ใน Noun Compound (ส่วนที่ 6.1)"
+                    //   },
+                    //   {
+                    //     sentence: "We need to analyze the most recent sales --------.",
+                    //     correctAnswer: "figures",
+                    //     options: [
+                    //       { text: "figure" },
+                    //       { text: "figured" },
+                    //       { text: "figuratively" },
+                    //       { text: "figures" }
+                    //     ],
+                    //     explanation: "เติม **คำนามพหูพจน์** ('figures') เพื่อให้ Noun Compound 'sales figures' สมบูรณ์ (ส่วนที่ 1.3)"
+                    //   },
+                    //   {
+                    //     sentence: "We were pleased with the -------- of the training program.",
+                    //     correctAnswer: "effectiveness",
+                    //     options: [
+                    //       { text: "effective" },
+                    //       { text: "effectively" },
+                    //       { text: "effectiveness" },
+                    //       { text: "effect" }
+                    //     ],
+                    //     explanation: "เติม **คำนาม** ('effectiveness') หลังคำนำหน้า 'the' และบุพบท 'with' (ส่วนที่ 1.1, รหัส -ness)"
+                    //   },
+                    //   {
+                    //     sentence: "He hit the ball too -------- and missed the target.",
+                    //     correctAnswer: "high",
+                    //     options: [
+                    //       { text: "highly" },
+                    //       { text: "high" },
+                    //       { text: "height" },
+                    //       { text: "higher" }
+                    //     ],
+                    //     explanation: "เติม **Adverb รูปแบบพิเศษ** ('high') เพื่อขยาย Verb ('hit') หมายถึง 'ตีสูงเกินไป' (ส่วนที่ 4.2)"
+                    //   },
+                    //   {
+                    //     sentence: "She is looking for an apartment with a better -------- view.",
+                    //     correctAnswer: "ocean",
+                    //     options: [
+                    //       { text: "oceanic" },
+                    //       { text: "ocean" },
+                    //       { text: "oceans" },
+                    //       { text: "oceanically" }
+                    //     ],
+                    //     explanation: "เติม **คำนาม** ('ocean') ทำหน้าที่ขยายคำนาม 'view' เป็น **Noun as Adj** (ส่วนที่ 6.1)"
+                    //   },
+                    //   // 8. Random Mix & Review
+                    //   {
+                    //     sentence: "The supervisor requested more -------- on the budget proposal.",
+                    //     correctAnswer: "information",
+                    //     options: [
+                    //       { text: "inform" },
+                    //       { text: "informational" },
+                    //       { text: "information" },
+                    //       { text: "informed" }
+                    //     ],
+                    //     explanation: "เติม **คำนาม** ('information') หลัง 'more' เพื่อทำหน้าที่เป็นกรรม (ส่วนที่ 1.1, รหัส -tion)"
+                    //   },
+                    //   {
+                    //     sentence: "The board's final -------- will be announced next week.",
+                    //     correctAnswer: "decision",
+                    //     options: [
+                    //       { text: "decide" },
+                    //       { text: "decisive" },
+                    //       { text: "decided" },
+                    //       { text: "decision" }
+                    //     ],
+                    //     explanation: "เติม **คำนาม** ('decision') หลังคำแสดงความเป็นเจ้าของ 'board's' (ส่วนที่ 1.1, รหัส -tion)"
+                    //   },
+                    //   {
+                    //     sentence: "The machine will be ready to operate --------.",
+                    //     correctAnswer: "soon",
+                    //     options: [
+                    //       { text: "soon" },
+                    //       { text: "sooner" },
+                    //       { text: "soonly" },
+                    //       { text: "soonest" }
+                    //     ],
+                    //     explanation: "เติม **Adverb** ('soon') เพื่อขยาย Verb ('operate') บอกเวลา (ส่วนที่ 4)"
+                    //   },
+                    //   {
+                    //     sentence: "We need a person with strong -------- skills for this role.",
+                    //     correctAnswer: "leadership",
+                    //     options: [
+                    //       { text: "leader" },
+                    //       { text: "leading" },
+                    //       { text: "leadership" },
+                    //       { text: "lead" }
+                    //     ],
+                    //     explanation: "เติม **คำนาม** ('leadership') ทำหน้าที่ขยายคำนาม 'skills' (ส่วนที่ 1.1, รหัส -ship)"
+                    //   },
+                    //   {
+                    //     sentence: "The results of the analysis were entirely --------.",
+                    //     correctAnswer: "surprising",
+                    //     options: [
+                    //       { text: "surprise" },
+                    //       { text: "surprised" },
+                    //       { text: "surprising" },
+                    //       { text: "surprisingly" }
+                    //     ],
+                    //     explanation: "เติม **Adj. -ing** ('surprising') หลัง Verb to be ('were') เพื่อบอกว่าผลลัพธ์ **น่า** ประหลาดใจ (ส่วนที่ 2.2)"
+                    //   },
+                    //   {
+                    //     sentence: "She is an extremely -------- worker.",
+                    //     correctAnswer: "dedicated",
+                    //     options: [
+                    //       { text: "dedicate" },
+                    //       { text: "dedication" },
+                    //       { text: "dedicated" },
+                    //       { text: "dedicating" }
+                    //     ],
+                    //     explanation: "เติม **Adj. -ed** ('dedicated') หน้าคำนาม ('worker') เพื่อขยายบอกว่า **รู้สึก** ทุ่มเท (ส่วนที่ 2.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The project team -------- the report to the board this morning.",
+                    //     correctAnswer: "submitted",
+                    //     options: [
+                    //       { text: "submits" },
+                    //       { text: "submit" },
+                    //       { text: "submitted" },
+                    //       { text: "submitting" }
+                    //     ],
+                    //     explanation: "ใช้กริยาช่อง 2 ('submitted') เนื่องจากมีคำบอกเวลาในอดีต ('this morning') (ส่วนที่ 3)"
+                    //   },
+                    //   {
+                    //     sentence: "The final proposal must be submitted -------- the deadline.",
+                    //     correctAnswer: "before",
+                    //     options: [
+                    //       { text: "in" },
+                    //       { text: "of" },
+                    //       { text: "before" },
+                    //       { text: "with" }
+                    //     ],
+                    //     explanation: "ใช้ **Preposition** ('before') เพื่อบอกความสัมพันธ์ด้านเวลา (ส่วนที่ 5.2)"
+                    //   },
+                    //   {
+                    //     sentence: "We must proceed with caution to ensure --------.",
+                    //     correctAnswer: "safety",
+                    //     options: [
+                    //       { text: "safe" },
+                    //       { text: "safely" },
+                    //       { text: "safety" },
+                    //       { text: "safer" }
+                    //     ],
+                    //     explanation: "เติม **คำนาม** ('safety') หลัง Verb 'ensure' ทำหน้าที่เป็นกรรม (ส่วนที่ 1.1, รหัส -ty)"
+                    //   },
+                    //   {
+                    //     sentence: "The manager will -------- meet with the client.",
+                    //     correctAnswer: "personally",
+                    //     options: [
+                    //       { text: "personal" },
+                    //       { text: "person" },
+                    //       { text: "personally" },
+                    //       { text: "personnel" }
+                    //     ],
+                    //     explanation: "เติม **Adverb -ly** ('personally') เพื่อขยาย Verb ('meet') บอกว่า 'พบด้วยตัวเอง' (ส่วนที่ 4.1)"
+                    //   }
+                    // 1. Nouns: Position & Suffixes (-tion, -ment, -ness)
+  {
+    sentence: "Cady's lack of social ......... was clearly a problem at North Shore High.",
+    correctAnswer: "awareness",
+    options: [
+      { text: "aware" },
+      { text: "awareness" },
+      { text: "awarely" },
+      { text: "beware" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('awareness') หลัง Adj. 'social' และคำนำหน้า 'of' (ส่วนที่ 1.1, รหัส -ness)"
+  },
+  {
+    sentence: "The Plastics' Burn Book was filled with horrible ......... about everyone.",
+    correctAnswer: "information",
+    options: [
+      { text: "inform" },
+      { text: "informed" },
+      { text: "information" },
+      { text: "informer" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('information') หลัง Adj. 'horrible' (ส่วนที่ 1.1, รหัส -tion)"
+  },
+  {
+    sentence: "Regina George's sudden ......... was the result of the Kälteen Bars.",
+    correctAnswer: "fatness",
+    options: [
+      { text: "fat" },
+      { text: "fatten" },
+      { text: "fatness" },
+      { text: "fatty" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('fatness') หลัง Adj. 'sudden' (ส่วนที่ 1.1, รหัส -ness)"
+  },
+  {
+    sentence: "Gretchen Wieners struggled with the ......... of her position in the group.",
+    correctAnswer: "uncertainty",
+    options: [
+      { text: "uncertain" },
+      { text: "uncertainly" },
+      { text: "uncertainty" },
+      { text: "uncertainties" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('uncertainty') หลังคำนำหน้า 'the' (ส่วนที่ 1.1, รหัส -ty)"
+  },
+  {
+    sentence: "The mathletes achieved great ......... at the State Championship.",
+    correctAnswer: "success",
+    options: [
+      { text: "succeed" },
+      { text: "successful" },
+      { text: "successfully" },
+      { text: "success" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('success') หลัง Adj. 'great' (ส่วนที่ 1.2)"
+  },
+  // 2. Adjectives: Position & -ing vs. -ed (ส่วนที่ 2)
+  {
+    sentence: "Being hit by a bus was a truly ......... turn of events for Regina.",
+    correctAnswer: "surprising",
+    options: [
+      { text: "surprise" },
+      { text: "surprised" },
+      { text: "surprisingly" },
+      { text: "surprising" }
+    ],
+    explanation: "ต้องเติม **Adj. -ing** ('surprising') หน้าคำนาม 'turn' เพื่อบอกว่าเหตุการณ์นั้น **น่า** ประหลาดใจ (ส่วนที่ 2.2)"
+  },
+  {
+    sentence: "The principal's speech about respecting peers was ......... for the whole school.",
+    correctAnswer: "important",
+    options: [
+      { text: "importance" },
+      { text: "importantly" },
+      { text: "important" },
+      { text: "import" }
+    ],
+    explanation: "ต้องเติม **คำคุณศัพท์** ('important') หลัง Verb to be ('was') เพื่อบอกลักษณะของประธาน (ส่วนที่ 2.1)"
+  },
+  {
+    sentence: "Janis Ian felt ......... by the shallow drama of the Plastics.",
+    correctAnswer: "bored",
+    options: [
+      { text: "bore" },
+      { text: "boring" },
+      { text: "bored" },
+      { text: "boredom" }
+    ],
+    explanation: "ต้องเติม **Adj. -ed** ('bored') หลัง Verb ('felt') เพื่อบอกว่า Janis **รู้สึก** เบื่อ (ส่วนที่ 2.2)"
+  },
+  {
+    sentence: "The atmosphere after the Burn Book was released was extremely ..........",
+    correctAnswer: "tense",
+    options: [
+      { text: "tension" },
+      { text: "tensely" },
+      { text: "tense" },
+      { text: "tenses" }
+    ],
+    explanation: "ต้องเติม **คำคุณศัพท์** ('tense') หลัง Verb to be ('was') เพื่อบอกลักษณะของบรรยากาศ (ส่วนที่ 2.1)"
+  },
+  {
+    sentence: "Cady was initially ......... by the strict rules of the cafeteria.",
+    correctAnswer: "confused",
+    options: [
+      { text: "confusing" },
+      { text: "confuse" },
+      { text: "confused" },
+      { text: "confusion" }
+    ],
+    explanation: "ต้องเติม **Adj. -ed** ('confused') หลัง Verb to be ('was') เพื่อบอกว่า Cady **รู้สึก** สับสน (ส่วนที่ 2.2)"
+  },
+  // 3. Verbs: Subject-Verb Agreement (ส่วนที่ 3)
+  {
+    sentence: "Every member of the Plastics ......... a strict dress code.",
+    correctAnswer: "follows",
+    options: [
+      { text: "follow" },
+      { text: "follows" },
+      { text: "following" },
+      { text: "followed" }
+    ],
+    explanation: "ประธาน 'Every member' เป็นเอกพจน์ กริยาในปัจจุบันจึงต้องเติม **-s** ('follows') (ส่วนที่ 3.1)"
+  },
+  {
+    sentence: "Karen ......... the weather with her chest, sometimes.",
+    correctAnswer: "predicts",
+    options: [
+      { text: "predict" },
+      { text: "predicts" },
+      { text: "predicting" },
+      { text: "prediction" }
+    ],
+    explanation: "ประธาน 'Karen' เป็นเอกพจน์ (1 คน) กริยาในปัจจุบันจึงต้องเติม **-s** ('predicts') (ส่วนที่ 3.1)"
+  },
+  {
+    sentence: "Cady, Janis, and Damian ......... to take down Regina George.",
+    correctAnswer: "plan",
+    options: [
+      { text: "plans" },
+      { text: "plan" },
+      { text: "planning" },
+      { text: "is planning" }
+    ],
+    explanation: "ประธานรวม ('Cady, Janis, and Damian') เป็นพหูพจน์ กริยาในปัจจุบันจึง **ไม่เติม -s** ('plan') (ส่วนที่ 3.1)"
+  },
+  {
+    sentence: "The rumors ......... quickly throughout the high school.",
+    correctAnswer: "spread",
+    options: [
+      { text: "spreads" },
+      { text: "spread" },
+      { text: "spreading" },
+      { text: "has spread" }
+    ],
+    explanation: "ประธาน 'rumors' เป็นพหูพจน์ (หลายอย่าง) กริยาในปัจจุบันจึง **ไม่เติม -s** ('spread') (ส่วนที่ 3.1)"
+  },
+  {
+    sentence: "Mr. Duvall ......... with the students to discuss the matter.",
+    correctAnswer: "meets",
+    options: [
+      { text: "meet" },
+      { text: "meets" },
+      { text: "meeting" },
+      { text: "met" }
+    ],
+    explanation: "ประธาน 'Mr. Duvall' เป็นเอกพจน์ (1 คน) กริยาในปัจจุบันจึงต้องเติม **-s** ('meets') (ส่วนที่ 3.1)"
+  },
+  // 4. Adverbs: Suffix -ly & Special Forms (ส่วนที่ 4)
+  {
+    sentence: "The Burn Book was handled ......... by the conspirators.",
+    correctAnswer: "secretly",
+    options: [
+      { text: "secret" },
+      { text: "secrecy" },
+      { text: "secretly" },
+      { text: "secreter" }
+    ],
+    explanation: "ต้องเติม **Adverb -ly** ('secretly') เพื่อขยาย Verb ('was handled') บอกว่า 'จัดการอย่างลับๆ' (ส่วนที่ 4.1)"
+  },
+  {
+    sentence: "After becoming popular, Cady started to act very ..........",
+    correctAnswer: "differently",
+    options: [
+      { text: "different" },
+      { text: "difference" },
+      { text: "differently" },
+      { text: "differential" }
+    ],
+    explanation: "ต้องเติม **Adverb -ly** ('differently') เพื่อขยาย Verb ('act') บอกว่า 'แสดงออกอย่างแตกต่าง' (ส่วนที่ 4.1)"
+  },
+  {
+    sentence: "Damian often speaks ......... when he's excited or annoyed.",
+    correctAnswer: "loudly",
+    options: [
+      { text: "loud" },
+      { text: "louder" },
+      { text: "loudly" },
+      { text: "loudness" }
+    ],
+    explanation: "ต้องเติม **Adverb -ly** ('loudly') เพื่อขยาย Verb ('speaks') (ส่วนที่ 4.1)"
+  },
+  {
+    sentence: "The girls had to study ......... for the calculus competition.",
+    correctAnswer: "hard",
+    options: [
+      { text: "hardly" },
+      { text: "hardness" },
+      { text: "hard" },
+      { text: "harder" }
+    ],
+    explanation: "ต้องเติม **Adverb รูปแบบพิเศษ** ('hard') เพื่อขยาย Verb ('study') แปลว่า 'เรียนหนัก' (ส่วนที่ 4.2)"
+  },
+  {
+    sentence: "The new plan was ......... effective in bringing the group together.",
+    correctAnswer: "surprisingly",
+    options: [
+      { text: "surprise" },
+      { text: "surprising" },
+      { text: "surprisingly" },
+      { text: "surprised" }
+    ],
+    explanation: "ต้องเติม **Adverb -ly** ('surprisingly') เพื่อขยาย Adjective ('effective') บอกว่า 'มีประสิทธิภาพอย่างน่าประหลาดใจ' (ส่วนที่ 4.1)"
+  },
+  // 5. Noun Compounds & Noun Suffixes (ส่วนที่ 1.3 & 1.1)
+  {
+    sentence: "The school organized a ......... show to promote peace.",
+    correctAnswer: "talent",
+    options: [
+      { text: "talented" },
+      { text: "talent" },
+      { text: "talents" },
+      { text: "talenting" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('talent') ทำหน้าที่ขยายคำนาม 'show' ใน Noun Compound ('talent show') (ส่วนที่ 1.3)"
+  },
+  {
+    sentence: "The ......... figures from the school bake sale were impressive.",
+    correctAnswer: "sales",
+    options: [
+      { text: "sell" },
+      { text: "sold" },
+      { text: "sales" },
+      { text: "selling" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('sales') ทำหน้าที่ขยายคำนาม 'figures' ใน Noun Compound ('sales figures') (ส่วนที่ 1.3)"
+  },
+  {
+    sentence: "Gretchen's family runs the ......... Strudel business.",
+    correctAnswer: "Toaster",
+    options: [
+      { text: "Toasting" },
+      { text: "Toast" },
+      { text: "Toaster" },
+      { text: "Toasty" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('Toaster') ทำหน้าที่ขยายคำนาม 'Strudel' ใน Noun Compound (ส่วนที่ 1.3)"
+  },
+  {
+    sentence: "The ......... of the Burn Book brought the school chaos.",
+    correctAnswer: "recovery",
+    options: [
+      { text: "recover" },
+      { text: "recovered" },
+      { text: "recovery" },
+      { text: "recovering" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('recovery') หลังคำนำหน้า 'The' (ส่วนที่ 1.1, รหัส -y)"
+  },
+  {
+    sentence: "Mr. Duvall needed a lot of ......... to control the unruly students.",
+    correctAnswer: "confidence",
+    options: [
+      { text: "confide" },
+      { text: "confident" },
+      { text: "confidently" },
+      { text: "confidence" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('confidence') หลังคำนำหน้า 'of' (ส่วนที่ 1.1, รหัส -ence)"
+  },
+  // 6. Pronouns: Subject, Object, Possessive (ส่วนที่ 5.1)
+  {
+    sentence: "The prize will go to ......... wins the math competition.",
+    correctAnswer: "whoever",
+    options: [
+      { text: "whom" },
+      { text: "who" },
+      { text: "whoever" },
+      { text: "whomever" }
+    ],
+    explanation: "ต้องเติม **Pronoun** ('whoever') เพื่อทำหน้าที่เป็นประธานของอนุประโยคย่อย ('whoever wins') (ส่วนที่ 5.1)"
+  },
+  {
+    sentence: "That pink top is ........., not Karen's.",
+    correctAnswer: "mine",
+    options: [
+      { text: "I" },
+      { text: "my" },
+      { text: "mine" },
+      { text: "me" }
+    ],
+    explanation: "ต้องเติม **สรรพนามแสดงความเป็นเจ้าของ** ('mine') ที่ไม่ต้องมีคำนามตามหลัง (ส่วนที่ 5.1)"
+  },
+  {
+    sentence: "She looked at ......... in the mirror before applying the lip gloss.",
+    correctAnswer: "herself",
+    options: [
+      { text: "her" },
+      { text: "she" },
+      { text: "hers" },
+      { text: "herself" }
+    ],
+    explanation: "ต้องเติม **สรรพนามสะท้อน** ('herself') เพราะประธาน ('She') และกรรมเป็นคนเดียวกัน (ส่วนที่ 5.1)"
+  },
+  {
+    sentence: "Regina George, ......... mother is 'cool', loves to shop.",
+    correctAnswer: "whose",
+    options: [
+      { text: "who" },
+      { text: "which" },
+      { text: "whose" },
+      { text: "whom" }
+    ],
+    explanation: "ต้องเติม **Relative Pronoun แสดงความเป็นเจ้าของ** ('whose') เพื่อแสดงว่า 'mother' เป็นของ Regina (ส่วนที่ 5.1)"
+  },
+  {
+    sentence: "The jacket ......... Cady borrowed was too pink.",
+    correctAnswer: "which",
+    options: [
+      { text: "who" },
+      { text: "which" },
+      { text: "whose" },
+      { text: "whomever" }
+    ],
+    explanation: "ต้องเติม **Relative Pronoun** ('which') เพื่อแทน 'jacket' ซึ่งเป็นสิ่งของ (ส่วนที่ 5.1)"
+  },
+  // 7. Prepositions & Fixed Phrases (ส่วนที่ 5.2)
+  {
+    sentence: "The meeting is ......... the library, not the gym.",
+    correctAnswer: "in",
+    options: [
+      { text: "at" },
+      { text: "on" },
+      { text: "in" },
+      { text: "with" }
+    ],
+    explanation: "ต้องเติม **Preposition** ('in') เพื่อบอกตำแหน่ง (ภายใน) (ส่วนที่ 5.2)"
+  },
+  {
+    sentence: "The Plastics only wear pink ......... Wednesdays.",
+    correctAnswer: "on",
+    options: [
+      { text: "at" },
+      { text: "in" },
+      { text: "on" },
+      { text: "to" }
+    ],
+    explanation: "ต้องเติม **Preposition** ('on') เพื่อบอกวันในสัปดาห์ (ส่วนที่ 5.2)"
+  },
+  {
+    sentence: "Cady had to apologize ......... the entire student body.",
+    correctAnswer: "to",
+    options: [
+      { text: "with" },
+      { text: "for" },
+      { text: "to" },
+      { text: "on" }
+    ],
+    explanation: "ต้องเติม **Preposition** ('to') เพื่อสร้างสำนวน 'apologize to' (ขอโทษใคร) (ส่วนที่ 5.2)"
+  },
+  {
+    sentence: "She had to refer ......... her notes during the final exam.",
+    correctAnswer: "to",
+    options: [
+      { text: "at" },
+      { text: "in" },
+      { text: "to" },
+      { text: "with" }
+    ],
+    explanation: "ต้องเติม **Preposition** ('to') เพื่อสร้างสำนวน 'refer to' (อ้างอิงถึง) (ส่วนที่ 5.2)"
+  },
+  {
+    sentence: "The staff were ......... of the escalating drama.",
+    correctAnswer: "aware",
+    options: [
+      { text: "awareness" },
+      { text: "awarely" },
+      { text: "aware" },
+      { text: "awares" }
+    ],
+    explanation: "ต้องเติม **คำคุณศัพท์** ('aware') หลัง Verb to be ('were') เพื่อบอกลักษณะ (ส่วนที่ 2.1)"
+  },
+  // 8. Tricky Mix & Review
+  {
+    sentence: "The group needs a decisive ......... to guide them.",
+    correctAnswer: "leader",
+    options: [
+      { text: "lead" },
+      { text: "leading" },
+      { text: "leader" },
+      { text: "leadership" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ที่หมายถึงบุคคล ('leader') หลัง Adj. 'decisive' (ส่วนที่ 1.1, รหัส -er)"
+  },
+  {
+    sentence: "Cady tried to act ......... after moving from Africa.",
+    correctAnswer: "straight",
+    options: [
+      { text: "straightly" },
+      { text: "straightness" },
+      { text: "straight" },
+      { text: "straighter" }
+    ],
+    explanation: "ต้องเติม **Adverb รูปแบบพิเศษ** ('straight') เพื่อขยาย Verb ('act') แปลว่า 'ทำตัวซื่อๆ' (ส่วนที่ 4.2)"
+  },
+  {
+    sentence: "Regina became ......... unpopular after the party.",
+    correctAnswer: "increasingly",
+    options: [
+      { text: "increase" },
+      { text: "increasing" },
+      { text: "increasingly" },
+      { text: "increased" }
+    ],
+    explanation: "ต้องเติม **Adverb -ly** ('increasingly') เพื่อขยาย Adj. ('unpopular') (ส่วนที่ 4.1)"
+  },
+  {
+    sentence: "The principal's ......... was to break up the cliques.",
+    correctAnswer: "decision",
+    options: [
+      { text: "decide" },
+      { text: "decisive" },
+      { text: "decided" },
+      { text: "decision" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('decision') หลังคำแสดงความเป็นเจ้าของ 'principal’s' (ส่วนที่ 1.1, รหัส -tion)"
+  },
+  {
+    sentence: "The ......... policy dictates what color shirt is allowed.",
+    correctAnswer: "company",
+    options: [
+      { text: "company" },
+      { text: "companies" },
+      { text: "compane" },
+      { text: "companied" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('company') ทำหน้าที่ขยายคำนาม 'policy' ใน Noun Compound (ส่วนที่ 6.1)"
+  },
+  {
+    sentence: "She needs to demonstrate strong ......... in her math skills.",
+    correctAnswer: "confidence",
+    options: [
+      { text: "confident" },
+      { text: "confide" },
+      { text: "confidently" },
+      { text: "confidence" }
+    ],
+    explanation: "ต้องเติม **คำนาม** ('confidence') หลัง Adj. 'strong' (ส่วนที่ 1.1, รหัส -ence)"
+  },
+  {
+    sentence: "The students were ......... encouraged to use their words.",
+    correctAnswer: "strongly",
+    options: [
+      { text: "strong" },
+      { text: "strength" },
+      { text: "strongly" },
+      { text: "stronger" }
+    ],
+    explanation: "ต้องเติม **Adverb -ly** ('strongly') เพื่อขยายกริยาที่ถูกกระทำ ('encouraged') (ส่วนที่ 4.1)"
+  },
+  {
+    sentence: "Karen's ability to drive ......... was surprising.",
+    correctAnswer: "fast",
+    options: [
+      { text: "fastly" },
+      { text: "faster" },
+      { text: "fastest" },
+      { text: "fast" }
+    ],
+    explanation: "ต้องเติม **Adverb รูปแบบพิเศษ** ('fast') เพื่อขยาย Verb ('drive') (ส่วนที่ 4.2)"
+  }
                 ];
 
                 $scope.initPositionGame = function() {
@@ -1212,314 +1693,553 @@
 
                 // --- GAME 3: Role Identifier Data (เพิ่มจาก 4 เป็น 8 ข้อ) ---
                 $scope.originalRoleQuestions = [
-                    {
-                        sentence: "The chief executive thanked the team for their <highlight>dedication</highlight>.",
-                        highlightedWord: "dedication",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'dedication' (ความทุ่มเท) ลงท้ายด้วย -tion (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'their' (ส่วนที่ 1)"
-                    },
-                    {
-                        sentence: "The staff remain <highlight>attentive</highlight> during the long seminar.",
-                        highlightedWord: "attentive",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'attentive' (เอาใจใส่) อยู่หลัง Linking Verb 'remain' (ยังคง) ทำหน้าที่บอกลักษณะของประธาน (ส่วนที่ 2)"
-                    },
-                    {
-                        sentence: "Please read the manual <highlight>carefully</highlight> before starting.",
-                        highlightedWord: "carefully",
-                        correctAnswer: "Adverb",
-                        explanation: "คำว่า 'carefully' ลงท้ายด้วย -ly (รหัสลับ Adverb) ทำหน้าที่ขยายกริยา 'read' บอกว่า 'อ่านอย่างระมัดระวัง' (ส่วนที่ 4)"
-                    },
-                    {
-                        sentence: "She <highlight>attends</highlight> the weekly meeting without fail.",
-                        highlightedWord: "attends",
-                        correctAnswer: "Verb",
-                        explanation: "คำว่า 'attends' (เข้าร่วม) คือกริยาหลักของประโยค ที่ผันตามประธาน 'She' (ส่วนที่ 3)"
-                    },
-                    // คำถามที่เพิ่มเข้ามาใหม่
-                    {
-                        sentence: "The <highlight>travel</highlight> budget was approved yesterday.",
-                        highlightedWord: "travel",
-                        correctAnswer: "Adjective", // Functioning as Adjective in Noun Compound
-                        explanation: "คำว่า 'travel' (การเดินทาง) เป็นคำนามที่ทำหน้าที่เป็น Adjective เพื่อขยายคำนามหลักคือ 'budget' (งบประมาณ) (ส่วนที่ 6.1)"
-                    },
-                    {
-                        sentence: "He drives very <highlight>fast</highlight> on the highway.",
-                        highlightedWord: "fast",
-                        correctAnswer: "Adverb",
-                        explanation: "คำว่า 'fast' (เร็ว) เป็น Adverb รูปแบบพิเศษที่ไม่มี -ly ทำหน้าที่ขยายกริยา 'drives' (ขับ) (ส่วนที่ 4.2)"
-                    },
-                    {
-                        sentence: "We felt very <highlight>tired</highlight> after the long journey.",
-                        highlightedWord: "tired",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'tired' (เหนื่อย) เป็น Adjective ที่ลงท้ายด้วย -ed บอกว่าประธาน 'เรารู้สึก' (Section 2.2)"
-                    },
-                    {
-                        sentence: "The company provides its employees with <highlight>new</highlight> technology.",
-                        highlightedWord: "new",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'new' (ใหม่) ทำหน้าที่เป็น Adjective เพื่อขยายคำนาม 'technology' (ส่วนที่ 2)"
-                    },
-                    // 1. คำนาม (Nouns) - (ส่วนที่ 1)
-                      {
-                        sentence: "The new system provides accurate <highlight>information</highlight> for all departments.",
-                        highlightedWord: "information",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'information' (ข้อมูล) ลงท้ายด้วย -tion (รหัสลับคำนาม) และอยู่หลัง Adj. 'accurate' (ส่วนที่ 1.1)"
-                      },
-                      {
-                        sentence: "We need time to finish the <highlight>project</highlight> before the deadline.",
-                        highlightedWord: "project",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'project' (โครงการ) ทำหน้าที่เป็นกรรมของประโยค และอยู่หลังคำนำหน้า 'the' (ส่วนที่ 1.2)"
-                      },
-                      {
-                        sentence: "The committee is focusing on improving <highlight>safety</highlight> measures.",
-                        highlightedWord: "safety",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'safety' (ความปลอดภัย) ลงท้ายด้วย -ty (รหัสลับคำนาม) และทำหน้าที่เป็นตัวขยายคำนาม 'measures' (Noun Compound) (ส่วนที่ 1.1, 1.3)"
-                      },
-                      {
-                        sentence: "The manager showed great <highlight>leadership</highlight> during the crisis.",
-                        highlightedWord: "leadership",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'leadership' (ความเป็นผู้นำ) ลงท้ายด้วย -ship (รหัสลับคำนาม) และอยู่หลัง Adj. 'great' (ส่วนที่ 1.1)"
-                      },
-                      {
-                        sentence: "His <highlight>investment</highlight> in the company was very profitable.",
-                        highlightedWord: "investment",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'investment' (การลงทุน) ลงท้ายด้วย -ment (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'His' (ส่วนที่ 1.1)"
-                      },
-                      {
-                        sentence: "The staff expressed their <highlight>kindness</highlight> by helping the new colleague.",
-                        highlightedWord: "kindness",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'kindness' (ความใจดี) ลงท้ายด้วย -ness (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'their' (ส่วนที่ 1.1)"
-                      },
-                      {
-                        sentence: "The <highlight>teacher</highlight> always grades homework fairly.",
-                        highlightedWord: "teacher",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'teacher' (คุณครู) ลงท้ายด้วย -er (รหัสลับคำนามสำหรับบุคคล) และทำหน้าที่เป็นประธานของประโยค (ส่วนที่ 1.1, 1.2)"
-                      },
-                      {
-                        sentence: "We discussed the final <highlight>proposal</highlight> yesterday.",
-                        highlightedWord: "proposal",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'proposal' (ข้อเสนอ) ทำหน้าที่เป็นกรรม และอยู่หลัง Adj. 'final' (ส่วนที่ 1.2)"
-                      },
-                      {
-                        sentence: "The board gave its <highlight>approval</highlight> for the new marketing plan.",
-                        highlightedWord: "approval",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'approval' (การอนุมัติ) ลงท้ายด้วย -al (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'its' (ส่วนที่ 1.1)"
-                      },
-                      {
-                        sentence: "The team’s <highlight>performance</highlight> in the last quarter was excellent.",
-                        highlightedWord: "performance",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'performance' (การแสดง) ลงท้ายด้วย -ance (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'team’s' (ส่วนที่ 1.1)"
-                      },
-                      // ---
-                      // 2. คำคุณศัพท์ (Adjectives) - (ส่วนที่ 2)
-                      {
-                        sentence: "The manager provided a <highlight>quick</highlight> response to the email.",
-                        highlightedWord: "quick",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'quick' (รวดเร็ว) ทำหน้าที่ขยายคำนาม 'response' และอยู่หน้าคำนามนั้น (ส่วนที่ 2.1)"
-                      },
-                      {
-                        sentence: "She is very <highlight>happy</highlight> about the promotion.",
-                        highlightedWord: "happy",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'happy' (มีความสุข) ทำหน้าที่บอกลักษณะของประธาน และอยู่หลัง Verb to be ('is') (ส่วนที่ 2.1)"
-                      },
-                      {
-                        sentence: "This is an <highlight>exciting</highlight> opportunity for the whole team.",
-                        highlightedWord: "exciting",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'exciting' (น่าตื่นเต้น) ลงท้ายด้วย -ing ขยายคำนาม 'opportunity' บอกว่า 'น่า' ตื่นเต้น (ส่วนที่ 2.2)"
-                      },
-                      {
-                        sentence: "The employees are <highlight>satisfied</highlight> with the new pay structure.",
-                        highlightedWord: "satisfied",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'satisfied' (รู้สึกพอใจ) ลงท้ายด้วย -ed อยู่หลัง Verb to be บอกว่าประธาน 'รู้สึก' พอใจ (ส่วนที่ 2.2)"
-                      },
-                      {
-                        sentence: "The policy looks <highlight>complicated</highlight> but is easy to follow.",
-                        highlightedWord: "complicated",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'complicated' (ซับซ้อน) อยู่หลัง Linking Verb ('looks') ทำหน้าที่บอกลักษณะของประธาน (ส่วนที่ 2.1)"
-                      },
-                      {
-                        sentence: "The task was <highlight>challenging</highlight>, but we finished on time.",
-                        highlightedWord: "challenging",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'challenging' (ท้าทาย) ลงท้ายด้วย -ing ทำหน้าที่บอกว่างานนั้น 'น่า' ท้าทาย (ส่วนที่ 2.2)"
-                      },
-                      {
-                        sentence: "It was a very <highlight>productive</highlight> meeting.",
-                        highlightedWord: "productive",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'productive' (มีประสิทธิผล) ทำหน้าที่ขยายคำนาม 'meeting' (ส่วนที่ 2.1)"
-                      },
-                      {
-                        sentence: "The children felt <highlight>confused</highlight> by the long instructions.",
-                        highlightedWord: "confused",
-                        correctAnswer: "Adjective",
-                        explanation: "คำว่า 'confused' (รู้สึกสับสน) ลงท้ายด้วย -ed อยู่หลัง Verb ('felt') บอกว่าเด็ก ๆ 'รู้สึก' สับสน (ส่วนที่ 2.2)"
-                      },
-                      // ---
-                      // 3. คำกริยา (Verbs) - (ส่วนที่ 3)
-                      {
-                        sentence: "The manager <highlight>knows</highlight> the answer to the complex question.",
-                        highlightedWord: "knows",
-                        correctAnswer: "Verb",
-                        explanation: "คำว่า 'knows' (รู้) เป็นคำกริยา ทำหน้าที่บอกการกระทำและผันตามประธานเอกพจน์ ('manager') โดยการเติม -s (ส่วนที่ 3.1)"
-                      },
-                      {
-                        sentence: "They <highlight>work</highlight> very hard to meet the quarterly goal.",
-                        highlightedWord: "work",
-                        correctAnswer: "Verb",
-                        explanation: "คำว่า 'work' (ทำงาน) เป็นคำกริยา ทำหน้าที่บอกการกระทำและไม่เติม -s เพราะประธาน ('They') เป็นพหูพจน์ (ส่วนที่ 3.1)"
-                      },
-                      {
-                        sentence: "The new printer <highlight>uses</highlight> less ink than the previous model.",
-                        highlightedWord: "uses",
-                        correctAnswer: "Verb",
-                        explanation: "คำว่า 'uses' (ใช้) เป็นคำกริยา ผันตามประธานเอกพจน์ ('printer') โดยการเติม -s (ส่วนที่ 3.1)"
-                      },
-                      {
-                        sentence: "The results <highlight>indicate</highlight> strong growth in sales.",
-                        highlightedWord: "indicate",
-                        correctAnswer: "Verb",
-                        explanation: "คำว่า 'indicate' (ชี้ให้เห็น) เป็นคำกริยา และไม่เติม -s เพราะประธาน ('results') เป็นพหูพจน์ (ส่วนที่ 3.1)"
-                      },
-                      {
-                        sentence: "I <highlight>attend</highlight> the meeting every Monday morning.",
-                        highlightedWord: "attend",
-                        correctAnswer: "Verb",
-                        explanation: "คำว่า 'attend' (เข้าร่วม) เป็นคำกริยา และไม่เติม -s เพราะประธานคือ 'I' (ข้อยกเว้น) (ส่วนที่ 3.1)"
-                      },
-                      // ---
-                      // 4. คำกริยาวิเศษณ์ (Adverbs) - (ส่วนที่ 4)
-                      {
-                        sentence: "He walks <highlight>slowly</highlight> to observe all the details.",
-                        highlightedWord: "slowly",
-                        correctAnswer: "Adverb",
-                        explanation: "คำว่า 'slowly' (อย่างช้าๆ) ลงท้ายด้วย -ly ทำหน้าที่ขยายคำกริยา 'walks' บอกว่า 'เดินอย่างไร' (ส่วนที่ 4.1)"
-                      },
-                      {
-                        sentence: "The staff are <highlight>clearly</highlight> aware of the policy changes.",
-                        highlightedWord: "clearly",
-                        correctAnswer: "Adverb",
-                        explanation: "คำว่า 'clearly' (อย่างชัดเจน) ลงท้ายด้วย -ly ทำหน้าที่ขยาย Adjective 'aware' (ส่วนที่ 4.1)"
-                      },
-                      {
-                        sentence: "We have <highlight>recently</highlight> updated the security system.",
-                        highlightedWord: "recently",
-                        correctAnswer: "Adverb",
-                        explanation: "คำว่า 'recently' (เมื่อไม่นานมานี้) ลงท้ายด้วย -ly ทำหน้าที่ขยายคำกริยา 'updated' บอกเวลา (ส่วนที่ 4.1)"
-                      },
-                      {
-                        sentence: "She wrote the report <highlight>carefully</highlight> to avoid errors.",
-                        highlightedWord: "carefully",
-                        correctAnswer: "Adverb",
-                        explanation: "คำว่า 'carefully' (อย่างรอบคอบ) ลงท้ายด้วย -ly ทำหน้าที่ขยายคำกริยา 'wrote' (ส่วนที่ 4.1)"
-                      },
-                      {
-                        sentence: "The plane flew <highlight>low</highlight> over the restricted area.",
-                        highlightedWord: "low",
-                        correctAnswer: "Adverb",
-                        explanation: "คำว่า 'low' (ต่ำ) เป็น Adverb รูปแบบพิเศษ (ไม่เติม -ly) ทำหน้าที่ขยายคำกริยา 'flew' (ส่วนที่ 4.2)"
-                      },
-                      {
-                        sentence: "You must study <highlight>hard</highlight> to pass the certification test.",
-                        highlightedWord: "hard",
-                        correctAnswer: "Adverb",
-                        explanation: "คำว่า 'hard' (หนัก) เป็น Adverb รูปแบบพิเศษ (ไม่เติม -ly) ทำหน้าที่ขยายคำกริยา 'study' (ส่วนที่ 4.2)"
-                      },
-                      // ---
-                      // 5. คำสรรพนาม (Pronouns) - (ส่วนที่ 5.1)
-                      {
-                        sentence: "<highlight>She</highlight> bought a new house near the office.",
-                        highlightedWord: "She",
-                        correctAnswer: "Pronoun",
-                        explanation: "คำว่า 'She' (เธอ) เป็นสรรพนามบุรุษที่ 3 ทำหน้าที่เป็นประธานของประโยค (ส่วนที่ 5.1)"
-                      },
-                      {
-                        sentence: "The cat loves <highlight>her</highlight> very much.",
-                        highlightedWord: "her",
-                        correctAnswer: "Pronoun",
-                        explanation: "คำว่า 'her' (เธอ) เป็นสรรพนามบุรุษที่ 3 ทำหน้าที่เป็นกรรมของประโยค (ส่วนที่ 5.1)"
-                      },
-                      {
-                        sentence: "That book is <highlight>mine</highlight>, not yours.",
-                        highlightedWord: "mine",
-                        correctAnswer: "Pronoun",
-                        explanation: "คำว่า 'mine' (ของฉัน) เป็นสรรพนามแสดงความเป็นเจ้าของที่ไม่ต้องมีคำนามตามหลัง (ส่วนที่ 5.1)"
-                      },
-                      {
-                        sentence: "The report <highlight>which</highlight> is complete is ready for submission.",
-                        highlightedWord: "which",
-                        correctAnswer: "Pronoun",
-                        explanation: "คำว่า 'which' เป็น Relative Pronoun ทำหน้าที่แทนคำนาม 'report' ซึ่งเป็นสิ่งของ (ส่วนที่ 5.1)"
-                      },
-                      // ---
-                      // 6. คำบุพบท (Prepositions) - (ส่วนที่ 5.2)
-                      {
-                        sentence: "The box is <highlight>on</highlight> the table, next to the lamp.",
-                        highlightedWord: "on",
-                        correctAnswer: "Preposition",
-                        explanation: "คำว่า 'on' เป็นคำบุพบทบอกตำแหน่ง (บน) (ส่วนที่ 5.2)"
-                      },
-                      {
-                        sentence: "I will meet you <highlight>at</highlight> 3 PM to discuss the contract.",
-                        highlightedWord: "at",
-                        correctAnswer: "Preposition",
-                        explanation: "คำว่า 'at' เป็นคำบุพบทบอกเวลา (ส่วนที่ 5.2)"
-                      },
-                      {
-                        sentence: "The staff are responsible <highlight>for</highlight> managing the stock.",
-                        highlightedWord: "for",
-                        correctAnswer: "Preposition",
-                        explanation: "คำว่า 'for' เป็นคำบุพบทตามหลังสำนวน 'responsible for' (ส่วนที่ 5.2)"
-                      },
-                      {
-                        sentence: "Please refer <highlight>to</highlight> the manual for more instructions.",
-                        highlightedWord: "to",
-                        correctAnswer: "Preposition",
-                        explanation: "คำว่า 'to' เป็นคำบุพบทตามหลังสำนวน 'refer to' (ส่วนที่ 5.2)"
-                      },
-                      // ---
-                      // 7. คำนามขยายทำหน้าที่เป็น Adjective (Noun as Adj) - (ส่วนที่ 6.1)
-                      {
-                        sentence: "We are holding a <highlight>team</highlight> meeting this afternoon.",
-                        highlightedWord: "team",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'team' (ทีม) เป็นคำนามตัวแรกที่มาขยายคำนาม 'meeting' (การประชุม) ใน Noun Compound (ส่วนที่ 6.1)"
-                      },
-                      {
-                        sentence: "The company announced a new <highlight>product</highlight> development project.",
-                        highlightedWord: "product",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'product' (ผลิตภัณฑ์) เป็นคำนามตัวแรกที่มาขยายคำนาม 'development' ใน Noun Compound (ส่วนที่ 6.1)"
-                      },
-                      {
-                        sentence: "The <highlight>sales</highlight> figures for this month look promising.",
-                        highlightedWord: "sales",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'sales' (ยอดขาย) เป็นคำนามตัวแรกที่มาขยายคำนาม 'figures' ใน Noun Compound (ส่วนที่ 6.1)"
-                      },
-                      {
-                        sentence: "All employees must follow the new <highlight>safety</highlight> procedure.",
-                        highlightedWord: "safety",
-                        correctAnswer: "Noun",
-                        explanation: "คำว่า 'safety' (ความปลอดภัย) เป็นคำนามตัวแรกที่มาขยายคำนาม 'procedure' ใน Noun Compound (ส่วนที่ 6.1)"
-                      }
+                    // {
+                    //     sentence: "The chief executive thanked the team for their <highlight>dedication</highlight>.",
+                    //     highlightedWord: "dedication",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'dedication' (ความทุ่มเท) ลงท้ายด้วย -tion (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'their' (ส่วนที่ 1)"
+                    // },
+                    // {
+                    //     sentence: "The staff remain <highlight>attentive</highlight> during the long seminar.",
+                    //     highlightedWord: "attentive",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'attentive' (เอาใจใส่) อยู่หลัง Linking Verb 'remain' (ยังคง) ทำหน้าที่บอกลักษณะของประธาน (ส่วนที่ 2)"
+                    // },
+                    // {
+                    //     sentence: "Please read the manual <highlight>carefully</highlight> before starting.",
+                    //     highlightedWord: "carefully",
+                    //     correctAnswer: "Adverb",
+                    //     explanation: "คำว่า 'carefully' ลงท้ายด้วย -ly (รหัสลับ Adverb) ทำหน้าที่ขยายกริยา 'read' บอกว่า 'อ่านอย่างระมัดระวัง' (ส่วนที่ 4)"
+                    // },
+                    // {
+                    //     sentence: "She <highlight>attends</highlight> the weekly meeting without fail.",
+                    //     highlightedWord: "attends",
+                    //     correctAnswer: "Verb",
+                    //     explanation: "คำว่า 'attends' (เข้าร่วม) คือกริยาหลักของประโยค ที่ผันตามประธาน 'She' (ส่วนที่ 3)"
+                    // },
+                    // // คำถามที่เพิ่มเข้ามาใหม่
+                    // {
+                    //     sentence: "The <highlight>travel</highlight> budget was approved yesterday.",
+                    //     highlightedWord: "travel",
+                    //     correctAnswer: "Adjective", // Functioning as Adjective in Noun Compound
+                    //     explanation: "คำว่า 'travel' (การเดินทาง) เป็นคำนามที่ทำหน้าที่เป็น Adjective เพื่อขยายคำนามหลักคือ 'budget' (งบประมาณ) (ส่วนที่ 6.1)"
+                    // },
+                    // {
+                    //     sentence: "He drives very <highlight>fast</highlight> on the highway.",
+                    //     highlightedWord: "fast",
+                    //     correctAnswer: "Adverb",
+                    //     explanation: "คำว่า 'fast' (เร็ว) เป็น Adverb รูปแบบพิเศษที่ไม่มี -ly ทำหน้าที่ขยายกริยา 'drives' (ขับ) (ส่วนที่ 4.2)"
+                    // },
+                    // {
+                    //     sentence: "We felt very <highlight>tired</highlight> after the long journey.",
+                    //     highlightedWord: "tired",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'tired' (เหนื่อย) เป็น Adjective ที่ลงท้ายด้วย -ed บอกว่าประธาน 'เรารู้สึก' (Section 2.2)"
+                    // },
+                    // {
+                    //     sentence: "The company provides its employees with <highlight>new</highlight> technology.",
+                    //     highlightedWord: "new",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'new' (ใหม่) ทำหน้าที่เป็น Adjective เพื่อขยายคำนาม 'technology' (ส่วนที่ 2)"
+                    // },
+                    // // 1. คำนาม (Nouns) - (ส่วนที่ 1)
+                    //   {
+                    //     sentence: "The new system provides accurate <highlight>information</highlight> for all departments.",
+                    //     highlightedWord: "information",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'information' (ข้อมูล) ลงท้ายด้วย -tion (รหัสลับคำนาม) และอยู่หลัง Adj. 'accurate' (ส่วนที่ 1.1)"
+                    //   },
+                    //   {
+                    //     sentence: "We need time to finish the <highlight>project</highlight> before the deadline.",
+                    //     highlightedWord: "project",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'project' (โครงการ) ทำหน้าที่เป็นกรรมของประโยค และอยู่หลังคำนำหน้า 'the' (ส่วนที่ 1.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The committee is focusing on improving <highlight>safety</highlight> measures.",
+                    //     highlightedWord: "safety",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'safety' (ความปลอดภัย) ลงท้ายด้วย -ty (รหัสลับคำนาม) และทำหน้าที่เป็นตัวขยายคำนาม 'measures' (Noun Compound) (ส่วนที่ 1.1, 1.3)"
+                    //   },
+                    //   {
+                    //     sentence: "The manager showed great <highlight>leadership</highlight> during the crisis.",
+                    //     highlightedWord: "leadership",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'leadership' (ความเป็นผู้นำ) ลงท้ายด้วย -ship (รหัสลับคำนาม) และอยู่หลัง Adj. 'great' (ส่วนที่ 1.1)"
+                    //   },
+                    //   {
+                    //     sentence: "His <highlight>investment</highlight> in the company was very profitable.",
+                    //     highlightedWord: "investment",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'investment' (การลงทุน) ลงท้ายด้วย -ment (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'His' (ส่วนที่ 1.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The staff expressed their <highlight>kindness</highlight> by helping the new colleague.",
+                    //     highlightedWord: "kindness",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'kindness' (ความใจดี) ลงท้ายด้วย -ness (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'their' (ส่วนที่ 1.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The <highlight>teacher</highlight> always grades homework fairly.",
+                    //     highlightedWord: "teacher",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'teacher' (คุณครู) ลงท้ายด้วย -er (รหัสลับคำนามสำหรับบุคคล) และทำหน้าที่เป็นประธานของประโยค (ส่วนที่ 1.1, 1.2)"
+                    //   },
+                    //   {
+                    //     sentence: "We discussed the final <highlight>proposal</highlight> yesterday.",
+                    //     highlightedWord: "proposal",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'proposal' (ข้อเสนอ) ทำหน้าที่เป็นกรรม และอยู่หลัง Adj. 'final' (ส่วนที่ 1.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The board gave its <highlight>approval</highlight> for the new marketing plan.",
+                    //     highlightedWord: "approval",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'approval' (การอนุมัติ) ลงท้ายด้วย -al (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'its' (ส่วนที่ 1.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The team’s <highlight>performance</highlight> in the last quarter was excellent.",
+                    //     highlightedWord: "performance",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'performance' (การแสดง) ลงท้ายด้วย -ance (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'team’s' (ส่วนที่ 1.1)"
+                    //   },
+                    //   // ---
+                    //   // 2. คำคุณศัพท์ (Adjectives) - (ส่วนที่ 2)
+                    //   {
+                    //     sentence: "The manager provided a <highlight>quick</highlight> response to the email.",
+                    //     highlightedWord: "quick",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'quick' (รวดเร็ว) ทำหน้าที่ขยายคำนาม 'response' และอยู่หน้าคำนามนั้น (ส่วนที่ 2.1)"
+                    //   },
+                    //   {
+                    //     sentence: "She is very <highlight>happy</highlight> about the promotion.",
+                    //     highlightedWord: "happy",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'happy' (มีความสุข) ทำหน้าที่บอกลักษณะของประธาน และอยู่หลัง Verb to be ('is') (ส่วนที่ 2.1)"
+                    //   },
+                    //   {
+                    //     sentence: "This is an <highlight>exciting</highlight> opportunity for the whole team.",
+                    //     highlightedWord: "exciting",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'exciting' (น่าตื่นเต้น) ลงท้ายด้วย -ing ขยายคำนาม 'opportunity' บอกว่า 'น่า' ตื่นเต้น (ส่วนที่ 2.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The employees are <highlight>satisfied</highlight> with the new pay structure.",
+                    //     highlightedWord: "satisfied",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'satisfied' (รู้สึกพอใจ) ลงท้ายด้วย -ed อยู่หลัง Verb to be บอกว่าประธาน 'รู้สึก' พอใจ (ส่วนที่ 2.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The policy looks <highlight>complicated</highlight> but is easy to follow.",
+                    //     highlightedWord: "complicated",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'complicated' (ซับซ้อน) อยู่หลัง Linking Verb ('looks') ทำหน้าที่บอกลักษณะของประธาน (ส่วนที่ 2.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The task was <highlight>challenging</highlight>, but we finished on time.",
+                    //     highlightedWord: "challenging",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'challenging' (ท้าทาย) ลงท้ายด้วย -ing ทำหน้าที่บอกว่างานนั้น 'น่า' ท้าทาย (ส่วนที่ 2.2)"
+                    //   },
+                    //   {
+                    //     sentence: "It was a very <highlight>productive</highlight> meeting.",
+                    //     highlightedWord: "productive",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'productive' (มีประสิทธิผล) ทำหน้าที่ขยายคำนาม 'meeting' (ส่วนที่ 2.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The children felt <highlight>confused</highlight> by the long instructions.",
+                    //     highlightedWord: "confused",
+                    //     correctAnswer: "Adjective",
+                    //     explanation: "คำว่า 'confused' (รู้สึกสับสน) ลงท้ายด้วย -ed อยู่หลัง Verb ('felt') บอกว่าเด็ก ๆ 'รู้สึก' สับสน (ส่วนที่ 2.2)"
+                    //   },
+                    //   // ---
+                    //   // 3. คำกริยา (Verbs) - (ส่วนที่ 3)
+                    //   {
+                    //     sentence: "The manager <highlight>knows</highlight> the answer to the complex question.",
+                    //     highlightedWord: "knows",
+                    //     correctAnswer: "Verb",
+                    //     explanation: "คำว่า 'knows' (รู้) เป็นคำกริยา ทำหน้าที่บอกการกระทำและผันตามประธานเอกพจน์ ('manager') โดยการเติม -s (ส่วนที่ 3.1)"
+                    //   },
+                    //   {
+                    //     sentence: "They <highlight>work</highlight> very hard to meet the quarterly goal.",
+                    //     highlightedWord: "work",
+                    //     correctAnswer: "Verb",
+                    //     explanation: "คำว่า 'work' (ทำงาน) เป็นคำกริยา ทำหน้าที่บอกการกระทำและไม่เติม -s เพราะประธาน ('They') เป็นพหูพจน์ (ส่วนที่ 3.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The new printer <highlight>uses</highlight> less ink than the previous model.",
+                    //     highlightedWord: "uses",
+                    //     correctAnswer: "Verb",
+                    //     explanation: "คำว่า 'uses' (ใช้) เป็นคำกริยา ผันตามประธานเอกพจน์ ('printer') โดยการเติม -s (ส่วนที่ 3.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The results <highlight>indicate</highlight> strong growth in sales.",
+                    //     highlightedWord: "indicate",
+                    //     correctAnswer: "Verb",
+                    //     explanation: "คำว่า 'indicate' (ชี้ให้เห็น) เป็นคำกริยา และไม่เติม -s เพราะประธาน ('results') เป็นพหูพจน์ (ส่วนที่ 3.1)"
+                    //   },
+                    //   {
+                    //     sentence: "I <highlight>attend</highlight> the meeting every Monday morning.",
+                    //     highlightedWord: "attend",
+                    //     correctAnswer: "Verb",
+                    //     explanation: "คำว่า 'attend' (เข้าร่วม) เป็นคำกริยา และไม่เติม -s เพราะประธานคือ 'I' (ข้อยกเว้น) (ส่วนที่ 3.1)"
+                    //   },
+                    //   // ---
+                    //   // 4. คำกริยาวิเศษณ์ (Adverbs) - (ส่วนที่ 4)
+                    //   {
+                    //     sentence: "He walks <highlight>slowly</highlight> to observe all the details.",
+                    //     highlightedWord: "slowly",
+                    //     correctAnswer: "Adverb",
+                    //     explanation: "คำว่า 'slowly' (อย่างช้าๆ) ลงท้ายด้วย -ly ทำหน้าที่ขยายคำกริยา 'walks' บอกว่า 'เดินอย่างไร' (ส่วนที่ 4.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The staff are <highlight>clearly</highlight> aware of the policy changes.",
+                    //     highlightedWord: "clearly",
+                    //     correctAnswer: "Adverb",
+                    //     explanation: "คำว่า 'clearly' (อย่างชัดเจน) ลงท้ายด้วย -ly ทำหน้าที่ขยาย Adjective 'aware' (ส่วนที่ 4.1)"
+                    //   },
+                    //   {
+                    //     sentence: "We have <highlight>recently</highlight> updated the security system.",
+                    //     highlightedWord: "recently",
+                    //     correctAnswer: "Adverb",
+                    //     explanation: "คำว่า 'recently' (เมื่อไม่นานมานี้) ลงท้ายด้วย -ly ทำหน้าที่ขยายคำกริยา 'updated' บอกเวลา (ส่วนที่ 4.1)"
+                    //   },
+                    //   {
+                    //     sentence: "She wrote the report <highlight>carefully</highlight> to avoid errors.",
+                    //     highlightedWord: "carefully",
+                    //     correctAnswer: "Adverb",
+                    //     explanation: "คำว่า 'carefully' (อย่างรอบคอบ) ลงท้ายด้วย -ly ทำหน้าที่ขยายคำกริยา 'wrote' (ส่วนที่ 4.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The plane flew <highlight>low</highlight> over the restricted area.",
+                    //     highlightedWord: "low",
+                    //     correctAnswer: "Adverb",
+                    //     explanation: "คำว่า 'low' (ต่ำ) เป็น Adverb รูปแบบพิเศษ (ไม่เติม -ly) ทำหน้าที่ขยายคำกริยา 'flew' (ส่วนที่ 4.2)"
+                    //   },
+                    //   {
+                    //     sentence: "You must study <highlight>hard</highlight> to pass the certification test.",
+                    //     highlightedWord: "hard",
+                    //     correctAnswer: "Adverb",
+                    //     explanation: "คำว่า 'hard' (หนัก) เป็น Adverb รูปแบบพิเศษ (ไม่เติม -ly) ทำหน้าที่ขยายคำกริยา 'study' (ส่วนที่ 4.2)"
+                    //   },
+                    //   // ---
+                    //   // 5. คำสรรพนาม (Pronouns) - (ส่วนที่ 5.1)
+                    //   {
+                    //     sentence: "<highlight>She</highlight> bought a new house near the office.",
+                    //     highlightedWord: "She",
+                    //     correctAnswer: "Pronoun",
+                    //     explanation: "คำว่า 'She' (เธอ) เป็นสรรพนามบุรุษที่ 3 ทำหน้าที่เป็นประธานของประโยค (ส่วนที่ 5.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The cat loves <highlight>her</highlight> very much.",
+                    //     highlightedWord: "her",
+                    //     correctAnswer: "Pronoun",
+                    //     explanation: "คำว่า 'her' (เธอ) เป็นสรรพนามบุรุษที่ 3 ทำหน้าที่เป็นกรรมของประโยค (ส่วนที่ 5.1)"
+                    //   },
+                    //   {
+                    //     sentence: "That book is <highlight>mine</highlight>, not yours.",
+                    //     highlightedWord: "mine",
+                    //     correctAnswer: "Pronoun",
+                    //     explanation: "คำว่า 'mine' (ของฉัน) เป็นสรรพนามแสดงความเป็นเจ้าของที่ไม่ต้องมีคำนามตามหลัง (ส่วนที่ 5.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The report <highlight>which</highlight> is complete is ready for submission.",
+                    //     highlightedWord: "which",
+                    //     correctAnswer: "Pronoun",
+                    //     explanation: "คำว่า 'which' เป็น Relative Pronoun ทำหน้าที่แทนคำนาม 'report' ซึ่งเป็นสิ่งของ (ส่วนที่ 5.1)"
+                    //   },
+                    //   // ---
+                    //   // 6. คำบุพบท (Prepositions) - (ส่วนที่ 5.2)
+                    //   {
+                    //     sentence: "The box is <highlight>on</highlight> the table, next to the lamp.",
+                    //     highlightedWord: "on",
+                    //     correctAnswer: "Preposition",
+                    //     explanation: "คำว่า 'on' เป็นคำบุพบทบอกตำแหน่ง (บน) (ส่วนที่ 5.2)"
+                    //   },
+                    //   {
+                    //     sentence: "I will meet you <highlight>at</highlight> 3 PM to discuss the contract.",
+                    //     highlightedWord: "at",
+                    //     correctAnswer: "Preposition",
+                    //     explanation: "คำว่า 'at' เป็นคำบุพบทบอกเวลา (ส่วนที่ 5.2)"
+                    //   },
+                    //   {
+                    //     sentence: "The staff are responsible <highlight>for</highlight> managing the stock.",
+                    //     highlightedWord: "for",
+                    //     correctAnswer: "Preposition",
+                    //     explanation: "คำว่า 'for' เป็นคำบุพบทตามหลังสำนวน 'responsible for' (ส่วนที่ 5.2)"
+                    //   },
+                    //   {
+                    //     sentence: "Please refer <highlight>to</highlight> the manual for more instructions.",
+                    //     highlightedWord: "to",
+                    //     correctAnswer: "Preposition",
+                    //     explanation: "คำว่า 'to' เป็นคำบุพบทตามหลังสำนวน 'refer to' (ส่วนที่ 5.2)"
+                    //   },
+                    //   // ---
+                    //   // 7. คำนามขยายทำหน้าที่เป็น Adjective (Noun as Adj) - (ส่วนที่ 6.1)
+                    //   {
+                    //     sentence: "We are holding a <highlight>team</highlight> meeting this afternoon.",
+                    //     highlightedWord: "team",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'team' (ทีม) เป็นคำนามตัวแรกที่มาขยายคำนาม 'meeting' (การประชุม) ใน Noun Compound (ส่วนที่ 6.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The company announced a new <highlight>product</highlight> development project.",
+                    //     highlightedWord: "product",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'product' (ผลิตภัณฑ์) เป็นคำนามตัวแรกที่มาขยายคำนาม 'development' ใน Noun Compound (ส่วนที่ 6.1)"
+                    //   },
+                    //   {
+                    //     sentence: "The <highlight>sales</highlight> figures for this month look promising.",
+                    //     highlightedWord: "sales",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'sales' (ยอดขาย) เป็นคำนามตัวแรกที่มาขยายคำนาม 'figures' ใน Noun Compound (ส่วนที่ 6.1)"
+                    //   },
+                    //   {
+                    //     sentence: "All employees must follow the new <highlight>safety</highlight> procedure.",
+                    //     highlightedWord: "safety",
+                    //     correctAnswer: "Noun",
+                    //     explanation: "คำว่า 'safety' (ความปลอดภัย) เป็นคำนามตัวแรกที่มาขยายคำนาม 'procedure' ใน Noun Compound (ส่วนที่ 6.1)"
+                    //   }
+                    // 1. Noun (คำนาม) - Suffixes & Position (ส่วนที่ 1)
+  {
+    sentence: "The <highlight>information</highlight> in the Burn Book spread like wildfire.",
+    highlightedWord: "information",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'information' (ข้อมูล) ลงท้ายด้วย -tion (รหัสลับคำนาม) และทำหน้าที่เป็นประธานของประโยค (ส่วนที่ 1.1, 1.2)"
+  },
+  {
+    sentence: "Cady's <highlight>investment</highlight> in her new identity led to problems.",
+    highlightedWord: "investment",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'investment' (การลงทุน/ความทุ่มเท) ลงท้ายด้วย -ment (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'Cady's' (ส่วนที่ 1.1)"
+  },
+  {
+    sentence: "Gretchen's <highlight>kindness</highlight> towards Cady was quickly overshadowed by jealousy.",
+    highlightedWord: "kindness",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'kindness' (ความใจดี) ลงท้ายด้วย -ness (รหัสลับคำนาม) และทำหน้าที่เป็นประธาน (ส่วนที่ 1.1)"
+  },
+  {
+    sentence: "Regina had immense <highlight>confidence</highlight> in her own popularity.",
+    highlightedWord: "confidence",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'confidence' (ความมั่นใจ) ลงท้ายด้วย -ence (รหัสลับคำนาม) และทำหน้าที่เป็นกรรมหลัง Adj. 'immense' (ส่วนที่ 1.1)"
+  },
+  {
+    sentence: "The school needed a swift <highlight>recovery</highlight> after the chaos of the Burn Book.",
+    highlightedWord: "recovery",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'recovery' (การฟื้นตัว) ลงท้ายด้วย -y (รหัสลับคำนาม) และทำหน้าที่เป็นกรรมหลัง Adj. 'swift' (ส่วนที่ 1.1)"
+  },
+  {
+    sentence: "Principal Duvall offered his <highlight>approval</highlight> for the Spring Fling dance.",
+    highlightedWord: "approval",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'approval' (การอนุมัติ) ลงท้ายด้วย -al (รหัสลับคำนาม) และอยู่หลังคำแสดงความเป็นเจ้าของ 'his' (ส่วนที่ 1.1)"
+  },
+  {
+    sentence: "Janis became the true <highlight>leader</highlight> of Cady's anti-Plastics mission.",
+    highlightedWord: "leader",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'leader' (ผู้นำ) ลงท้ายด้วย -er (รหัสลับคำนามสำหรับบุคคล) และอยู่หลัง Adj. 'true' (ส่วนที่ 1.1)"
+  },
+  {
+    sentence: "The Plastics only wore pink on Wednesdays by group <highlight>decision</highlight>.",
+    highlightedWord: "decision",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'decision' (การตัดสินใจ) ลงท้ายด้วย -tion (รหัสลับคำนาม) และอยู่หลังคำนาม 'group' ใน Noun Compound (ส่วนที่ 1.1, 1.3)"
+  },
+  {
+    sentence: "Kevin Gnapoor is an excellent Mathlete <highlight>inspector</highlight>.",
+    highlightedWord: "inspector",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'inspector' (ผู้ตรวจสอบ) ลงท้ายด้วย -or (รหัสลับคำนามสำหรับบุคคล) และทำหน้าที่หลักในประโยค (ส่วนที่ 1.1)"
+  },
+  {
+    sentence: "The final <highlight>performance</highlight> at the Spring Fling was Cady's speech.",
+    highlightedWord: "performance",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'performance' (การแสดง) ลงท้ายด้วย -ance (รหัสลับคำนาม) และทำหน้าที่เป็นประธาน (ส่วนที่ 1.1)"
+  },
+  // ---
+  // 2. Adjective (คำคุณศัพท์) - Position & -ing/-ed (ส่วนที่ 2)
+  {
+    sentence: "Cady found the high school cliques highly <highlight>confusing</highlight>.",
+    highlightedWord: "confusing",
+    correctAnswer: "Adjective",
+    explanation: "คำว่า 'confusing' (น่าสับสน) ลงท้ายด้วย -ing และทำหน้าที่ขยายคำนาม 'cliques' ว่าเป็นสิ่งที่ 'น่า' สับสน (ส่วนที่ 2.2)"
+  },
+  {
+    sentence: "Damian was <highlight>surprised</highlight> by the intensity of the girl drama.",
+    highlightedWord: "surprised",
+    correctAnswer: "Adjective",
+    explanation: "คำว่า 'surprised' (รู้สึกประหลาดใจ) ลงท้ายด้วย -ed อยู่หลัง Verb to be ('was') บอกว่า Damian 'รู้สึก' ประหลาดใจ (ส่วนที่ 2.2)"
+  },
+  {
+    sentence: "The new girl, Cady, seemed so <highlight>innocent</highlight> at first.",
+    highlightedWord: "innocent",
+    correctAnswer: "Adjective",
+    explanation: "คำว่า 'innocent' (ไร้เดียงสา) อยู่หลัง Linking Verb ('seemed') ทำหน้าที่บอกลักษณะของประธาน (ส่วนที่ 2.1)"
+  },
+  {
+    sentence: "Fighting for Aaron Samuels made Cady <highlight>bored</highlight> with the mathletes.",
+    highlightedWord: "bored",
+    correctAnswer: "Adjective",
+    explanation: "คำว่า 'bored' (รู้สึกเบื่อ) ลงท้ายด้วย -ed อยู่หลังกริยา ('made') บอกว่า Cady 'รู้สึก' เบื่อ (ส่วนที่ 2.2)"
+  },
+  {
+    sentence: "It was an <highlight>exciting</highlight> moment when Cady won the Mathletes trophy.",
+    highlightedWord: "exciting",
+    correctAnswer: "Adjective",
+    explanation: "คำว่า 'exciting' (น่าตื่นเต้น) ลงท้ายด้วย -ing ขยายคำนาม 'moment' บอกว่า 'น่า' ตื่นเต้น (ส่วนที่ 2.2)"
+  },
+  {
+    sentence: "The new North Shore High <highlight>policy</highlight> promoted kindness.",
+    highlightedWord: "policy",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'policy' (นโยบาย) เป็นคำนาม ทำหน้าที่เป็นประธาน อยู่หลัง Adj. 'new' (ส่วนที่ 1.2)"
+  },
+  {
+    sentence: "The school cafeteria looks quite <highlight>large</highlight> in the movie.",
+    highlightedWord: "large",
+    correctAnswer: "Adjective",
+    explanation: "คำว่า 'large' (ใหญ่) อยู่หลัง Linking Verb ('looks') ทำหน้าที่บอกลักษณะ (ส่วนที่ 2.1)"
+  },
+  {
+    sentence: "Cady felt <highlight>satisfied</highlight> after she finally defeated Regina.",
+    highlightedWord: "satisfied",
+    correctAnswer: "Adjective",
+    explanation: "คำว่า 'satisfied' (รู้สึกพอใจ) ลงท้ายด้วย -ed อยู่หลัง Verb ('felt') บอกว่า Cady 'รู้สึก' พอใจ (ส่วนที่ 2.2)"
+  },
+  // ---
+  // 3. Verb (คำกริยา) - Subject-Verb Agreement (ส่วนที่ 3)
+  {
+    sentence: "Every Tuesday, the Plastics <highlight>wear</highlight> track pants.",
+    highlightedWord: "wear",
+    correctAnswer: "Verb",
+    explanation: "คำว่า 'wear' (สวมใส่) เป็นคำกริยา และไม่เติม -s เพราะประธาน ('the Plastics' = They/หลายคน) เป็นพหูพจน์ (ส่วนที่ 3.1)"
+  },
+  {
+    sentence: "Regina <highlight>finishes</highlight> her French class homework quickly.",
+    highlightedWord: "finishes",
+    correctAnswer: "Verb",
+    explanation: "คำว่า 'finishes' (ทำเสร็จ) เป็นคำกริยา และต้องเติม -es เพราะประธาน ('Regina') เป็นเอกพจน์ (ส่วนที่ 3.1)"
+  },
+  {
+    sentence: "The Burn Book <highlight>causes</highlight> widespread panic among the students.",
+    highlightedWord: "causes",
+    correctAnswer: "Verb",
+    explanation: "คำว่า 'causes' (ก่อให้เกิด) เป็นคำกริยา และต้องเติม -s เพราะประธาน ('The Burn Book') เป็นเอกพจน์ (ส่วนที่ 3.1)"
+  },
+  {
+    sentence: "Janis and Damian <highlight>agree</highlight> to help Cady with the mission.",
+    highlightedWord: "agree",
+    correctAnswer: "Verb",
+    explanation: "คำว่า 'agree' (เห็นด้วย) เป็นคำกริยา และไม่เติม -s เพราะประธานรวม ('Janis and Damian') เป็นพหูพจน์ (ส่วนที่ 3.1)"
+  },
+  {
+    sentence: "Mr. Duvall <highlight>provides</highlight> guidance to the student body.",
+    highlightedWord: "provides",
+    correctAnswer: "Verb",
+    explanation: "คำว่า 'provides' (จัดหา/ให้) เป็นคำกริยา และต้องเติม -s เพราะประธาน ('Mr. Duvall') เป็นเอกพจน์ (ส่วนที่ 3.1)"
+  },
+  // ---
+  // 4. Adverb (คำกริยาวิเศษณ์) - -ly & Special Forms (ส่วนที่ 4)
+  {
+    sentence: "Gretchen spoke <highlight>quickly</highlight> to Cady about the unspoken rules.",
+    highlightedWord: "quickly",
+    correctAnswer: "Adverb",
+    explanation: "คำว่า 'quickly' (อย่างรวดเร็ว) ลงท้ายด้วย -ly ทำหน้าที่ขยายคำกริยา 'spoke' บอกว่า 'พูดอย่างไร' (ส่วนที่ 4.1)"
+  },
+  {
+    sentence: "Regina was <highlight>personally</highlight> responsible for many of the rumors.",
+    highlightedWord: "personally",
+    correctAnswer: "Adverb",
+    explanation: "คำว่า 'personally' (ด้วยตัวเอง) ลงท้ายด้วย -ly ทำหน้าที่ขยาย Adj. 'responsible' (ส่วนที่ 4.1)"
+  },
+  {
+    sentence: "The mathletes worked <highlight>hard</highlight> to beat their rivals.",
+    highlightedWord: "hard",
+    correctAnswer: "Adverb",
+    explanation: "คำว่า 'hard' (หนัก) เป็น Adverb รูปแบบพิเศษ (ไม่เติม -ly) ทำหน้าที่ขยายคำกริยา 'worked' (ส่วนที่ 4.2)"
+  },
+  {
+    sentence: "Cady drove <highlight>fast</highlight> in her car after she became Queen Bee.",
+    highlightedWord: "fast",
+    correctAnswer: "Adverb",
+    explanation: "คำว่า 'fast' (เร็ว) เป็น Adverb รูปแบบพิเศษ (ไม่เติม -ly) ทำหน้าที่ขยายคำกริยา 'drove' (ส่วนที่ 4.2)"
+  },
+  {
+    sentence: "The girls' fighting was <highlight>extremely</highlight> disruptive to the school day.",
+    highlightedWord: "extremely",
+    correctAnswer: "Adverb",
+    explanation: "คำว่า 'extremely' (อย่างมาก) ลงท้ายด้วย -ly ทำหน้าที่ขยาย Adj. 'disruptive' (ส่วนที่ 4.1)"
+  },
+  // ---
+  // 5. Pronoun (คำสรรพนาม) & Preposition (คำบุพบท) (ส่วนที่ 5)
+  {
+    sentence: "Ms. Norbury, <highlight>whose</highlight> room was used for Mathletes, was accused.",
+    highlightedWord: "whose",
+    correctAnswer: "Pronoun",
+    explanation: "คำว่า 'whose' เป็น Relative Pronoun แสดงความเป็นเจ้าของ แทน 'Ms. Norbury' (ส่วนที่ 5.1)"
+  },
+  {
+    sentence: "That pink shirt is <highlight>mine</highlight> because I bought it on Wednesday.",
+    highlightedWord: "mine",
+    correctAnswer: "Pronoun",
+    explanation: "คำว่า 'mine' (ของฉัน) เป็นสรรพนามแสดงความเป็นเจ้าของที่ไม่ต้องมีคำนามตามหลัง (ส่วนที่ 5.1)"
+  },
+  {
+    sentence: "The rumor about the bus was about <highlight>her</highlight> for a few hours.",
+    highlightedWord: "her",
+    correctAnswer: "Pronoun",
+    explanation: "คำว่า 'her' (เธอ) เป็นสรรพนามบุรุษที่ 3 ทำหน้าที่เป็นกรรมหลังคำบุพบท 'about' (ส่วนที่ 5.1)"
+  },
+  {
+    sentence: "Regina relies <highlight>on</highlight> her power to maintain control.",
+    highlightedWord: "on",
+    correctAnswer: "Preposition",
+    explanation: "คำว่า 'on' เป็นคำบุพบทตามหลังสำนวน 'relies on' (พึ่งพา) (ส่วนที่ 5.2)"
+  },
+  {
+    sentence: "The student body was responsible <highlight>for</highlight> cleaning up the mess.",
+    highlightedWord: "for",
+    correctAnswer: "Preposition",
+    explanation: "คำว่า 'for' เป็นคำบุพบทตามหลังสำนวน 'responsible for' (รับผิดชอบต่อ) (ส่วนที่ 5.2)"
+  },
+  {
+    sentence: "The whole drama started <highlight>in</highlight> the cafeteria.",
+    highlightedWord: "in",
+    correctAnswer: "Preposition",
+    explanation: "คำว่า 'in' เป็นคำบุพบทบอกตำแหน่ง (ภายใน) (ส่วนที่ 5.2)"
+  },
+  // ---
+  // 6. Tricky Parts (คำเปลี่ยนร่าง) - Noun as Adj & Position (ส่วนที่ 6.1, 1.2)
+  {
+    sentence: "The girls had a secret <highlight>team</highlight> meeting at Janis's house.",
+    highlightedWord: "team",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'team' (ทีม) เป็นคำนามตัวแรก ทำหน้าที่ขยายคำนาม 'meeting' (การประชุม) ใน Noun Compound (ส่วนที่ 6.1)"
+  },
+  {
+    sentence: "This is a <highlight>progress</highlight> report on Cady's mission.",
+    highlightedWord: "progress",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'progress' (ความคืบหน้า) เป็นคำนามตัวแรก ทำหน้าที่ขยายคำนาม 'report' (รายงาน) ใน Noun Compound (ส่วนที่ 6.1)"
+  },
+  {
+    sentence: "The school needed to hire a new <highlight>sales</highlight> manager for the bake sale.",
+    highlightedWord: "sales",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'sales' (ยอดขาย) เป็นคำนามตัวแรก ทำหน้าที่ขยายคำนาม 'manager' (ผู้จัดการ) ใน Noun Compound (ส่วนที่ 6.1)"
+  },
+  {
+    sentence: "The Burn Book was the final <highlight>catalyst</highlight> for the school meltdown.",
+    highlightedWord: "catalyst",
+    correctAnswer: "Noun",
+    explanation: "คำว่า 'catalyst' (ตัวเร่ง) เป็นคำนาม ทำหน้าที่เป็นส่วนเติมเต็มของประธาน อยู่หลัง Adj. 'final' (ส่วนที่ 1.2)"
+  }
                 ];
 
                 $scope.initRoleGame = function() {
