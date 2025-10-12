@@ -1,0 +1,1394 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.428571; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-width: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; border-right-style: none; border-right-color: currentcolor; background-color: inherit; }
+.CodeMirror-linenumber { -webkit-user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: medium; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; border-bottom-style: none; border-bottom-color: currentcolor; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: medium; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.428571rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+
+
+:root {
+  --mermaid-theme: night;
+}
+
+[lang='mermaid'] .label {
+  color: #333;
+}
+
+/* CSS Document */
+
+/** code highlight */
+
+.cm-s-inner .cm-variable,
+.cm-s-inner .cm-operator,
+.cm-s-inner .cm-property {
+    color: #b8bfc6;
+}
+
+.cm-s-inner .cm-keyword {
+    color: #C88FD0;
+}
+
+.cm-s-inner .cm-tag {
+    color: #7DF46A;
+}
+
+.cm-s-inner .cm-attribute {
+    color: #7575E4;
+}
+
+.CodeMirror div.CodeMirror-cursor {
+    border-left: 1px solid #b8bfc6;
+    z-index: 3;
+}
+
+.cm-s-inner .cm-string {
+    color: #D26B6B;
+}
+
+.cm-s-inner .cm-comment,
+.cm-s-inner.cm-comment {
+    color: #DA924A;
+}
+
+.cm-s-inner .cm-header,
+.cm-s-inner .cm-def,
+.cm-s-inner.cm-header,
+.cm-s-inner.cm-def {
+    color: #8d8df0;
+}
+
+.cm-s-inner .cm-quote,
+.cm-s-inner.cm-quote {
+    color: #57ac57;
+}
+
+.cm-s-inner .cm-hr {
+    color: #d8d5d5;
+}
+
+.cm-s-inner .cm-link {
+    color: #d3d3ef;
+}
+
+.cm-s-inner .cm-negative {
+    color: #d95050;
+}
+
+.cm-s-inner .cm-positive {
+    color: #50e650;
+}
+
+.cm-s-inner .cm-string-2 {
+    color: #f50;
+}
+
+.cm-s-inner .cm-meta,
+.cm-s-inner .cm-qualifier {
+    color: #b7b3b3;
+}
+
+.cm-s-inner .cm-builtin {
+    color: #f3b3f8;
+}
+
+.cm-s-inner .cm-bracket {
+    color: #997;
+}
+
+.cm-s-inner .cm-atom,
+.cm-s-inner.cm-atom {
+    color: #84B6CB;
+}
+
+.cm-s-inner .cm-number {
+    color: #64AB8F;
+}
+
+.cm-s-inner .cm-variable {
+    color: #b8bfc6;
+}
+
+.cm-s-inner .cm-variable-2 {
+    color: #9FBAD5;
+}
+
+.cm-s-inner .cm-variable-3 {
+    color: #1cc685;
+}
+
+.CodeMirror-selectedtext,
+.CodeMirror-selected {
+    background: #4a89dc;
+    color: #fff !important;
+    text-shadow: none;
+}
+
+.CodeMirror-gutters {
+    border-right: none;
+}
+
+/* CSS Document */
+
+/** markdown source **/
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property
+{
+    color: #cebcca;
+}
+
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor{
+    border-left: 3px solid #b8bfc6;
+}
+
+.cm-s-typora-default .cm-comment {
+    color: #9FB1FF;
+}
+
+.cm-s-typora-default .cm-string {
+    color: #A7A7D9
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+    color: #848695;
+    font-style: italic;
+}
+
+.cm-s-typora-default .cm-link {
+    color: #95B94B;
+}
+
+.cm-s-typora-default .CodeMirror-activeline-background {
+    background: rgba(51, 51, 51, 0.72);
+}
+
+.cm-s-typora-default .cm-comment, .cm-s-typora-default .cm-code {
+	color: #8aa1e1;
+}@import "";
+@import "";
+@import "";
+
+:root {
+    --bg-color:  #363B40;
+    --side-bar-bg-color: #2E3033;
+    --text-color: #b8bfc6;
+
+    --select-text-bg-color:#4a89dc;
+
+    --item-hover-bg-color: #0a0d16;
+    --control-text-color: #b7b7b7;
+    --control-text-hover-color: #eee;
+    --window-border: 1px solid #555;
+
+    --active-file-bg-color: rgb(34, 34, 34);
+    --active-file-border-color: #8d8df0;
+
+    --primary-color: #a3d5fe;
+
+    --active-file-text-color: white;
+    --item-hover-bg-color: #70717d;
+    --item-hover-text-color: white;
+    --primary-color: #6dc1e7;
+
+    --rawblock-edit-panel-bd: #333;
+
+    --search-select-bg-color: #428bca;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    background: #363B40;
+    background: var(--bg-color);
+    fill: currentColor;
+    line-height: 1.625rem;
+}
+
+#write {
+    max-width: 914px;
+}
+
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+div.code-tooltip-content {
+    color: #b8bfc6;
+    border-color: transparent;
+}
+
+div.code-tooltip,
+.md-hover-tip .md-arrow:after {
+    background: #333;
+}
+
+.native-window #md-notification {
+    border: 1px solid #70717d;
+}
+
+.popover.bottom > .arrow:after {
+    border-bottom-color: #333;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+}
+
+hr {
+    height: 2px;
+    border: 0;
+    margin: 24px 0 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lucida Grande", "Corbel", sans-serif;
+    font-weight: normal;
+    clear: both;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    color: #DEDEDE
+}
+
+h1 {
+    font-size: 2.5rem;
+    /* 36px */
+    line-height: 2.75rem;
+    /* 40px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1.5px;
+}
+
+h2 {
+    font-size: 1.63rem;
+    /* 24px */
+    line-height: 1.875rem;
+    /* 30px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.17rem;
+    /* 18px */
+    line-height: 1.5rem;
+    /* 24px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.12rem;
+    /* 16px */
+    line-height: 1.375rem;
+    /* 22px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    color: white;
+}
+
+h5 {
+    font-size: 0.97rem;
+    /* 16px */
+    line-height: 1.25rem;
+    /* 22px */
+    margin-bottom: 1.5rem;
+    /* 24px */
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 0.93rem;
+    /* 16px */
+    line-height: 1rem;
+    /* 16px */
+    margin-bottom: 0.75rem;
+    color: white;
+}
+
+@media (min-width: 980px) {
+    h3.md-focus:before,
+    h4.md-focus:before,
+    h5.md-focus:before,
+    h6.md-focus:before {
+        color: #ddd;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        position: absolute;
+        left: -1.642857143rem;
+        top: .357142857rem;
+        float: left;
+        font-size: 9px;
+        padding-left: 2px;
+        padding-right: 2px;
+        vertical-align: bottom;
+        font-weight: normal;
+        line-height: normal;
+    }
+
+    h3.md-focus:before {
+        content: 'h3';
+    }
+
+    h4.md-focus:before {
+        content: 'h4';
+    }
+
+    h5.md-focus:before {
+        content: 'h5';
+        top: 0px;
+    }
+
+    h6.md-focus:before {
+        content: 'h6';
+        top: 0px;
+    }
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+
+a:hover {
+    outline: 0;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+sup.md-footnote {
+    background-color: #555;
+    color: #ddd;
+}
+
+p {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+p,
+ul,
+dd,
+ol,
+hr,
+address,
+pre,
+table,
+iframe,
+.wp-caption,
+.wp-audio-shortcode,
+.wp-video-shortcode {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    /* 24px */
+}
+
+audio:not([controls]) {
+    display: none;
+}
+
+[hidden] {
+    display: none;
+}
+
+::-moz-selection {
+    background: #4a89dc;
+    color: #fff;
+    text-shadow: none;
+}
+
+*.in-text-selection,
+::selection {
+    background: #4a89dc;
+    color: #fff;
+    text-shadow: none;
+}
+
+ul,
+ol {
+    padding: 0 0 0 1.875rem;
+    /* 30px */
+}
+
+ul {
+    list-style: square;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+    margin: 0;
+}
+
+b,
+th,
+dt,
+strong {
+    font-weight: bold;
+}
+
+i,
+em,
+dfn,
+cite {
+    font-style: italic;
+}
+
+blockquote {
+    padding-left: 1.875rem;
+    margin: 0 0 1.875rem 1.875rem;
+    border-left: solid 2px #474d54;
+    padding-left: 30px;
+    margin-top: 35px;
+}
+
+pre,
+code,
+kbd,
+tt,
+var {
+    font-size: 0.875em;
+    font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+code,
+tt,
+var {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+kbd {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #fff;
+    background-color: #333;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+pre.md-fences {
+    padding: 10px 10px 10px 30px;
+    margin-bottom: 20px;
+    background: #333;
+}
+
+.CodeMirror-gutters {
+    background: #333;
+    border-right: 1px solid transparent;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -2.2em;
+    right: 4px;
+}
+
+code,
+kbd,
+tt,
+var {
+    padding: 2px 5px;
+}
+
+table {
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    vertical-align: top;
+}
+
+a {
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+hr {
+    background: #474d54;
+    /* variable */
+}
+
+h1 {
+    margin-top: 2em;
+}
+
+a {
+    color: #e0e0e0;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.md-inline-math script {
+    color: #81b1db;
+}
+
+b,
+th,
+dt,
+strong {
+    color: #DEDEDE;
+    /* variable */
+}
+
+mark {
+    background: #D3D40E;
+}
+
+blockquote {
+    color: #9DA2A6;
+}
+
+table a {
+    color: #DEDEDE;
+    /* variable */
+}
+
+th,
+td {
+    border: solid 1px #474d54;
+    /* variable */
+}
+
+.task-list {
+    padding-left: 0;
+}
+
+.md-task-list-item {
+    padding-left: 1.25rem;
+}
+
+.md-task-list-item > input {
+    top: auto;
+}
+
+.md-task-list-item > input:before {
+    content: "";
+    display: inline-block;
+    width: 0.875rem;
+    height: 0.875rem;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #b8bfc6;
+    background-color: #363B40;
+    margin-top: -0.4rem;
+}
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before {
+    content: '\221A';
+    /*◘*/
+    font-size: 0.625rem;
+    line-height: 0.625rem;
+    color: #DEDEDE;
+}
+
+/** quick open **/
+.auto-suggest-container {
+    border: 0px;
+    background-color: #525C65;
+}
+
+#typora-quick-open {
+    background-color: #525C65;
+}
+
+#typora-quick-open input{
+    background-color: #525C65;
+    border: 0;
+    border-bottom: 1px solid grey;
+}
+
+.typora-quick-open-item {
+    background-color: inherit;
+    color: inherit;
+}
+
+.typora-quick-open-item.active,
+.typora-quick-open-item:hover {
+    background-color: #4D8BDB;
+    color: white;
+}
+
+.typora-quick-open-item:hover {
+    background-color: rgba(77, 139, 219, 0.8);
+}
+
+.typora-search-spinner > div {
+  background-color: #fff;
+}
+
+#write pre.md-meta-block {
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    padding-bottom: 0.6em;
+    line-height: 1.6em;
+}
+
+.btn,
+.btn .btn-default {
+    background: transparent;
+    color: #b8bfc6;
+}
+
+.ty-table-edit {
+    border-top: 1px solid gray;
+    background-color: #363B40;
+}
+
+.popover-title {
+    background: transparent;
+}
+
+.md-image>.md-meta {
+    color: #BBBBBB;
+    background: transparent;
+}
+
+.md-expand.md-image>.md-meta {
+    color: #DDD;
+}
+
+#write>h3:before,
+#write>h4:before,
+#write>h5:before,
+#write>h6:before {
+    border: none;
+    border-radius: 0px;
+    color: #888;
+    text-decoration: underline;
+    left: -1.4rem;
+    top: 0.2rem;
+}
+
+#write>h3.md-focus:before {
+    top: 2px;
+}
+
+#write>h4.md-focus:before {
+    top: 2px;
+}
+
+.md-toc-item {
+    color: #A8C2DC;
+}
+
+#write div.md-toc-tooltip {
+    background-color: #363B40;
+}
+
+.dropdown-menu .btn:hover,
+.dropdown-menu .btn:focus,
+.md-toc .btn:hover,
+.md-toc .btn:focus {
+    color: white;
+    background: black;
+}
+
+#toc-dropmenu {
+    background: rgba(50, 54, 59, 0.93);
+    border: 1px solid rgba(253, 253, 253, 0.15);
+}
+
+#toc-dropmenu .divider {
+    background-color: #9b9b9b;
+}
+
+.outline-expander:before {
+    top: 2px;
+}
+
+#typora-sidebar {
+    box-shadow: none;
+    border-right: 1px dashed;
+    border-right: none;
+}
+
+.sidebar-tabs {
+    border-bottom:0;
+}
+
+#typora-sidebar:hover .outline-title-wrapper {
+    border-left: 1px dashed;
+}
+
+.outline-title-wrapper .btn {
+    color: inherit;
+}
+
+.outline-item:hover {
+    border-color: #363B40;
+    background-color: #363B40;
+    color: white;
+}
+
+h1.md-focus .md-attr,
+h2.md-focus .md-attr,
+h3.md-focus .md-attr,
+h4.md-focus .md-attr,
+h5.md-focus .md-attr,
+h6.md-focus .md-attr,
+.md-header-span .md-attr {
+    color: #8C8E92;
+    display: inline;
+}
+
+.md-comment {
+    color: #5a95e3;
+    opacity: 0.8;
+}
+
+.md-inline-math svg {
+    color: #b8bfc6;
+}
+
+#math-inline-preview .md-arrow:after {
+    background: black;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    border: 0;
+}
+
+.modal-title {
+    font-size: 1.5em;
+}
+
+.modal-content input {
+    background-color: rgba(26, 21, 21, 0.51);
+    color: white;
+}
+
+.modal-content .input-group-addon {
+    color: white;
+}
+
+.modal-backdrop {
+    background-color: rgba(174, 174, 174, 0.7);
+}
+
+.modal-content .btn-primary {
+    border-color: var(--primary-color);
+}
+
+.md-table-resize-popover {
+    background-color: #333;
+}
+
+.form-inline .input-group .input-group-addon {
+    color: white;
+}
+
+#md-searchpanel {
+    border-bottom: 1px dashed grey;
+}
+
+/** UI for electron */
+
+.context-menu,
+#spell-check-panel,
+#footer-word-count-info {
+    background-color: #42464A;
+}
+
+.context-menu.dropdown-menu .divider,
+.dropdown-menu .divider {
+    background-color: #777777;
+    opacity: 1;
+}
+
+footer {
+    color: inherit;
+}
+
+@media (max-width: 1000px) {
+    footer {
+        border-top: none;
+    }
+    footer:hover {
+        color: inherit;
+    }
+}
+
+#file-info-file-path .file-info-field-value:hover {
+    background-color: #555;
+    color: #dedede;
+}
+
+.megamenu-content,
+.megamenu-opened header {
+    background: var(--bg-color);
+}
+
+.megamenu-menu-panel h2,
+.megamenu-menu-panel h1,
+.long-btn {
+    color: inherit;
+}
+
+.megamenu-menu-panel input[type='text'] {
+    background: inherit;
+    border: 0;
+    border-bottom: 1px solid;
+}
+
+#recent-file-panel-action-btn {
+    background: inherit;
+    border: 1px grey solid;
+}
+
+.megamenu-menu-panel .dropdown-menu > li > a {
+    color: inherit;
+    background-color: #2F353A;
+    text-decoration: none;
+}
+
+.megamenu-menu-panel table td:nth-child(1) {
+    color: inherit;
+    font-weight: bold;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
+    color: white;
+}
+
+.modal-footer .btn-default, 
+.modal-footer .btn-primary,
+.modal-footer .btn-default:not(:hover) {
+    border: 1px solid;
+    border-color: transparent;
+}
+
+.btn-primary {
+    color: white;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    color: white;
+    border: 1px solid #ddd;
+    background-color: inherit;
+}
+
+.modal-header {
+    border-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+#recent-file-panel tbody tr:nth-child(2n-1) {
+    background-color: transparent !important;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+    border: 1px solid #eee;
+    background: transparent;
+}
+
+.mouse-hover .toolbar-icon.btn:hover,
+#w-full.mouse-hover,
+#w-pin.mouse-hover {
+    background-color: inherit;
+}
+
+.typora-node::-webkit-scrollbar {
+    width: 5px;
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical {
+    background: rgba(250, 250, 250, 0.3);
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(250, 250, 250, 0.5);
+}
+
+#w-unpin {
+    background-color: #4182c4;
+}
+
+#top-titlebar, #top-titlebar * {
+    color: var(--item-hover-text-color);
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+#footer-word-count:hover,
+.ty-show-word-count #footer-word-count {
+    background: #333333;
+}
+
+#toggle-sourceview-btn:hover {
+    color: #eee;
+    background: #333333;
+}
+
+/** focus mode */
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-end-block:not(.md-focus) img,
+.on-focus-mode .md-task-list-item:not(.md-focus-container)>input {
+    opacity: #686868 !important;
+}
+
+.on-focus-mode li[cid]:not(.md-focus-container){
+    color: #686868;
+}
+
+.on-focus-mode .md-fences.md-focus .CodeMirror-code>*:not(.CodeMirror-activeline) *,
+.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-focus,
+.on-focus-mode .md-focus-container {
+    color: #fff;
+}
+
+.on-focus-mode #typora-source .CodeMirror-code>*:not(.CodeMirror-activeline) * {
+    color: #686868 !important;
+}
+
+
+/*diagrams*/
+#write .md-focus .md-diagram-panel {
+    border: 1px solid #ddd;
+    margin-left: -1px;
+    width: calc(100% + 2px);
+}
+
+/*diagrams*/
+#write .md-focus.md-fences-with-lineno .md-diagram-panel {
+    margin-left: auto;
+}
+
+.md-diagram-panel-error {
+    color: #f1908e;
+}
+
+.active-tab-files #info-panel-tab-file,
+.active-tab-files #info-panel-tab-file:hover,
+.active-tab-outline #info-panel-tab-outline,
+.active-tab-outline #info-panel-tab-outline:hover {
+    color: #eee;
+}
+
+.sidebar-footer-item:hover,
+.footer-item:hover {
+    background: inherit;
+    color: white;
+}
+
+.ty-side-sort-btn.active,
+.ty-side-sort-btn:hover,
+.selected-folder-menu-item a:after {
+    color: white;
+}
+
+#sidebar-files-menu {
+    border:solid 1px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.79);
+    background-color: var(--bg-color);
+}
+
+.file-list-item {
+    border-bottom:none;
+}
+
+.file-list-item-summary {
+    opacity: 1;
+}
+
+.file-list-item.active:first-child {
+    border-top: none;
+}
+
+.file-node-background {
+    height: 32px;
+}
+
+.file-library-node.active>.file-node-content,
+.file-list-item.active {
+    color: white;
+    color: var(--active-file-text-color);
+}
+
+.file-library-node.active>.file-node-background{
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+.file-list-item.active {
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+
+#ty-tooltip {
+    background-color: black;
+    color: #eee;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+    margin-top: 0.3rem;
+    -webkit-appearance: none;
+}
+
+.md-mathjax-midline {
+    background-color: #57616b;
+    border-bottom: none;
+}
+
+footer.ty-footer {
+    border-color: #656565;
+}
+
+.ty-preferences .btn-default {
+    background: transparent;
+}
+.ty-preferences .btn-default:hover {
+    background: #57616b;
+}
+
+.ty-preferences select {
+    border: 1px solid #989698;
+    height: 21px;
+}
+
+.ty-preferences .nav-group-item.active,
+.export-item.active,
+.export-items-list-control,
+.export-detail {
+    background: var(--item-hover-bg-color);
+}
+
+.ty-preferences input[type="search"] {
+    border-color: #333;
+    background: #333;
+    line-height: 22px;
+    border-radius: 6px;
+    color: white;
+}
+
+.ty-preferences input[type="search"]:focus {
+    box-shadow: none;
+}
+
+[data-is-directory="true"] .file-node-content {
+    margin-bottom: 0;
+}
+
+.file-node-title {
+    line-height: 22px;
+}
+
+.html-for-mac .file-node-open-state, .html-for-mac .file-node-icon {
+    line-height: 26px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(230, 230, 230, 0.30);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: rgba(230, 230, 230, 0.50);
+}
+
+#typora-sidebar:hover div.sidebar-content-content::-webkit-scrollbar-thumb:horizontal {
+    background: rgba(230, 230, 230, 0.30);
+}
+
+.nav-group-item:active {
+    background-color: #474d54 !important;
+}
+
+.md-search-hit {
+    background: rgba(199, 140, 60, 0.81);
+    color: #eee;
+}
+
+.md-search-hit * {
+    color: #eee;
+}
+
+#md-searchpanel input {
+    color: white;
+}
+
+.modal-backdrop.in {
+    opacity: 1;
+    backdrop-filter: blur(1px);
+}
+
+.clear-btn-icon {
+    top: 8px;
+}
+
+/* try fix https://github.com/typora/typora-issues/issues/5253 */
+.file-node-expanded>.file-node-children {
+    display: grid;
+  }
+
+ @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
+</style><title></title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><h2 id='บทที่-1'><span>บทที่ 1</span></h2><p>&nbsp;</p><p><strong><span>CHAPTER ONE</span></strong></p><p><span>บทที่ 1</span></p><hr /><p><strong><span>The Very Secret Society of Witches met on the third Thursday of every third month, but that was just about the only thing that never changed.</span></strong></p><p><span>ชมรมแม่มดลับสุดยอด (ชื่อที่ตั้งเองนะ) เนี่ย จะมาเจอกันทุกวันพฤหัสบดีที่สามของทุกสามเดือน และดูเหมือนว่านี่จะเป็นสิ่งเดียวที่ไม่เคยเปลี่ยนเลย</span></p><hr /><p><strong><span>They never met in the same place twice; the last meeting, for instance, had been in Belinda Nkala’s front room and had involved freshly baked scones, and the one before that had been in the glorious sunshine of Agatha Jones’s garden.</span></strong></p><p><span>พวกเขาไม่เคยนัดเจอที่เดิมซ้ำสอง อย่างครั้งที่แล้วก็ไปเจอกันที่ห้องนั่งเล่นหน้าบ้านของเบลินดา อึนคาลา (Belinda Nkala) มีสโคนอบใหม่ๆ ให้กินด้วย ส่วนครั้งก่อนหน้านั้นก็นัดกันในสวนสวยๆ แสงแดดดีๆ ของอากาธา โจนส์ (Agatha Jones)</span></p><hr /><p><strong><span>This meeting, on a cold, wet October afternoon, happened to be taking place on a tiny, abandoned pier in the Outer Hebrides.</span></strong></p><p><span>แต่ครั้งนี้เนี่ยสิ ในบ่ายเดือนตุลาคมที่ทั้งหนาวและเปียกปอน ดันมาจัดกันบนสะพานเทียบเรือเล็กๆ ที่ถูกทิ้งร้างแห่งหนึ่งที่หมู่เกาะเอาเตอร์เฮบริดีส (Outer Hebrides) 🌊 (เป็นหมู่เกาะห่างไกลในสกอตแลนด์)</span></p><hr /><p><strong><span>A pier. In the Outer Hebrides. In October.</span></strong></p><p><span>สะพานเทียบเรือเหรอ? ที่เอาเตอร์เฮบริดีสเหรอ? แถมเป็นเดือนตุลาคมอีก! (ฟังดูก็รู้ว่าหนาวมาก) 🥶</span></p><hr /><p><strong><span>Of course, they weren’t actually called the Very Secret Society of Witches.</span></strong></p><p><span>แน่นอนว่าจริงๆ แล้วพวกเขาไม่ได้ใช้ชื่อว่า ชมรมแม่มดลับสุดยอด หรอกนะ</span></p><hr /><p><strong><span>They weren’t called anything at all, which was why Mika Moon had decided to come up with a name for them herself.</span></strong></p><p><span>พวกเขาไม่มีชื่อเรียกอะไรเลยต่างหาก ซึ่งเป็นเหตุผลที่ทำให้มิก้า มูน (Mika Moon) ตัดสินใจตั้งชื่อให้พวกเขาเองซะเลย</span></p><hr /><p><strong><span>She had cycled through several alternatives first, like the League of Extraordinary Witches and the Super Secret Society of Witchy Witches.</span></strong></p><p><span>ตอนแรกเธอก็คิดชื่อไว้หลายชื่อเลยนะ อย่างเช่น สมาพันธ์แม่มดมหัศจรรย์ (League of Extraordinary Witches) หรือ สมาคมลับสุดยอดของแม่มดสุดแซ่บ (Super Secret Society of Witchy Witches)</span></p><hr /><p><strong><span>She was still rather fond of the latter.</span></strong></p><p><span>เธอยังค่อนข้างชอบชื่อหลังอยู่เลยล่ะ 😉</span></p><hr /><p><strong><span>The ridiculous names were mostly to annoy Primrose, the ancient and very proper head of the group, a position Primrose had presumably bestowed upon herself at some point in the past hundred years or so.</span></strong></p><p><span>ชื่อที่ดูตลกๆ พวกนี้ส่วนใหญ่แล้วตั้งขึ้นมาเพื่อกวนใจพริมโรส (Primrose) หัวหน้ากลุ่มที่ดูเคร่งครัดและแก่มากๆ ซึ่งตำแหน่งนี้พริมโรสน่าจะแต่งตั้งตัวเองขึ้นมาในช่วงร้อยปีที่ผ่านมาอะไรทำนองนั้นแหละ</span></p><hr /><p><strong><span>(This might have been something of an exaggeration on Mika’s part, but it was impossible to tell how old Primrose really was. She wouldn’t say.)</span></strong></p><p><span>(มิก้าอาจจะพูดเกินจริงไปหน่อย แต่ก็เป็นไปไม่ได้ที่จะรู้ว่าพริมโรสอายุเท่าไหร่กันแน่ เพราะเธอไม่เคยยอมบอกเลย)</span></p><hr /><p><strong><span>Now, huddled as deep into her coat as she could get, Mika rocked impatiently on the balls of her feet as twenty other witches joined her on the pier.</span></strong></p><p><span>ตอนนี้ มิก้าที่ซุกตัวอยู่ในเสื้อโค้ตหนาๆ ก็ได้แต่โยกตัวไปมาด้วยความกระวนกระวายใจอยู่บนปลายเท้า ขณะที่แม่มดอีกยี่สิบคนทยอยเดินมารวมกันที่สะพานเทียบเรือ</span></p><hr /><p><strong><span>This, she supposed, was another thing that almost never changed: their number.</span></strong></p><p><span>มิก้าคิดว่านี่ก็เป็นอีกเรื่องที่แทบจะไม่เคยเปลี่ยนเลย นั่นก็คือจำนวนของพวกเขา</span></p><hr /><p><strong><span>Mika was one of the newest additions to the thing-that-was-definitely-not-a-society, and she’d been part of it for almost ten years, which meant it had been a very long time since they’d welcomed anyone new.</span></strong></p><p><span>มิก้าเป็นหนึ่งในสมาชิกที่ &quot;ใหม่ที่สุด&quot; ของสิ่งที่ &quot;ไม่ใช่สมาคม&quot; อย่างแน่นอนนี้ และเธอก็เข้าร่วมมาเกือบสิบปีแล้ว นั่นหมายความว่าพวกเขาไม่ได้ต้อนรับสมาชิกใหม่มานานมากแล้ว</span></p><hr /><p><strong><span>This was not to say that there were only twenty-one adult witches in all of Britain; witches were uncommon, certainly, but Mika knew that there were others out there.</span></strong></p><p><span>ไม่ได้หมายความว่าแม่มดผู้ใหญ่ในอังกฤษมีแค่ยี่สิบเอ็ดคนเท่านั้นนะ แม่มดน่ะหายากก็จริง แต่มิก้ารู้ว่ายังมีคนอื่นๆ อยู่อีก</span></p><hr /><p><strong><span>Primrose, who had appointed herself the duty of finding and inviting new witches to the not-society, had mentioned that some had turned her down over the years.</span></strong></p><p><span>พริมโรสซึ่งแต่งตั้งตัวเองให้ทำหน้าที่ตามหาและเชิญแม่มดใหม่ๆ มาเข้า &quot;สิ่งที่ไม่ได้เป็นสมาคม&quot; นี้ เคยบอกว่ามีบางคนปฏิเสธเธอในช่วงหลายปีที่ผ่านมา</span></p><hr /><p><strong><span>Mika found it difficult to believe anyone had been able to resist Primrose’s persuasions (which an uncharitable person might say better resembled genteel bullying), but still, it was rather comforting to know that this small, soaked group on the pier wasn’t all that was left of them.</span></strong></p><p><span>มิก้ารู้สึกว่ามันยากที่จะเชื่อว่าจะมีใครต้านทานการโน้มน้าวของพริมโรสได้ (ซึ่งถ้าคนใจร้ายหน่อยอาจจะบอกว่ามันเหมือนกับการข่มขู่แบบสุภาพมากกว่า) แต่ถึงอย่างนั้น การรู้ว่ากลุ่มเล็กๆ ที่เปียกปอนบนสะพานเทียบเรือนี้ไม่ใช่ทั้งหมดที่เหลืออยู่ของพวกเขาก็ทำให้รู้สึกสบายใจดี</span></p><hr /><p><strong><span>Not that their numbers mattered.</span></strong></p><p><span>ไม่ใช่ว่าจำนวนของพวกเขามีความสำคัญอะไรหรอกนะ</span></p><hr /><p><strong><span>These meetings were the only time any of them were ever supposed to speak to one another.</span></strong></p><p><span>การประชุมเหล่านี้เป็นเพียงเวลาเดียวที่ทุกคนได้รับอนุญาตให้พูดคุยกันได้</span></p><hr /><p><strong><span>Primrose Beatrice Everly would never dream of telling anyone how to live their lives (so she said), but she was of the firm opinion that Rules would keep them all safe and so those Rules really ought to be followed.</span></strong></p><p><span>พริมโรส บีทริซ เอเวอร์ลี่ (Primrose Beatrice Everly) จะไม่คิดฝันที่จะไปบอกใครว่าควรใช้ชีวิตยังไง (เธอพูดแบบนั้นนะ) แต่เธอก็มีความเห็นที่หนักแน่นว่า </span><strong><span>กฎ</span></strong><span> จะทำให้ทุกคนปลอดภัย ดังนั้นจึงควรปฏิบัติตามกฎเหล่านั้นจริงๆ</span></p><hr /><p><strong><span>Too much magic left unchecked in one place, she said, would draw attention.</span></strong></p><p><span>เธอบอกว่า ถ้ามีเวทมนตร์จำนวนมากมารวมกันโดยไม่มีการควบคุมในที่เดียว มันจะดึงดูดความสนใจ</span></p><hr /><p><strong><span>For the sake of all of them, they had to lead separate lives.</span></strong></p><p><span>เพื่อความปลอดภัยของทุกคน พวกเขาจะต้องแยกกันอยู่และใช้ชีวิตของตัวเอง</span></p><hr /><p><strong><span>There could be no connection between any of them, no visits, no texts, no emails—nothing, in short, that could lead anybody from one witch to another.</span></strong></p><p><span>พวกเขาจะไม่มีการติดต่อกัน ไม่มีการไปมาหาสู่ ไม่มีส่งข้อความ ไม่มีอีเมล—พูดง่ายๆ คือ ไม่มีอะไรเลยที่จะทำให้ใครสามารถสาวไปถึงแม่มดอีกคนได้</span></p><hr /><p><strong><span>(Primrose, of course, was an exception to the Rules. Mika supposed it was just one of the many privileges of being the oldest, most powerful, and most bossy.)</span></strong></p><p><span>(แน่นอนว่าพริมโรสเป็นข้อยกเว้นของกฎนี้ มิก้าคิดว่านี่คงเป็นแค่หนึ่งในสิทธิพิเศษมากมายของการเป็นคนที่แก่ที่สุด ทรงพลังที่สุด และขี้บงการที่สุด)</span></p><hr /><p><strong><span>Consequently, any sense of community and kinship in the group had to be crammed into these short hours once every three months, which made it a very nebulous sense of community indeed.</span></strong></p><p><span>ดังนั้น ความรู้สึกของการเป็นส่วนหนึ่งและมิตรภาพในกลุ่มจึงต้องถูกอัดแน่นอยู่ในเวลาสั้นๆ เพียงไม่กี่ชั่วโมงนี้ ทุกๆ สามเดือน ซึ่งทำให้ความรู้สึกของการเป็น &quot;ชุมชน&quot; นั้นช่างคลุมเครือเหลือเกิน</span></p><hr /><p><strong><span>As rain dripped steadily down from the cold, muddy-grey sky, Primrose cleared her throat. “How are we all, dears?”</span></strong></p><p><span>ขณะที่ฝนยังคงตกปรอยๆ ลงมาจากท้องฟ้าสีเทาหม่นๆ พริมโรสก็กระแอมไอ “ทุกคนเป็นยังไงกันบ้างจ๊ะ ที่รัก”</span></p><hr /><p><strong><span>“Wet,” Mika couldn’t resist pointing out.</span></strong></p><p><span>“เปียกค่ะ” มิก้าอดไม่ได้ที่จะตอบตรงๆ</span></p><hr /><p><strong><span>“Your contribution is noted, thank you, poppet,” said Primrose, unperturbed.</span></strong></p><p><span>“รับทราบความเห็นแล้วจ้ะ ขอบใจนะหนู” พริมโรสพูดอย่างไม่สะทกสะท้าน (คำว่า </span><em><span>poppet</span></em><span> เป็นคำที่ใช้เรียกคนอื่นแบบน่ารักๆ คล้ายๆ &#39;หนู&#39; หรือ &#39;น้อง&#39; ในภาษาไทย)</span></p><hr /><p><strong><span>“We’re pretending to be a book club, Primrose,” Mika replied, exasperated. “We don’t need to hide in the middle of nowhere! Why couldn’t we just meet for a sodding coffee somewhere with central heating?”</span></strong></p><p><span>“เราแค่แกล้งทำเป็นชมรมหนังสือนะคะพริมโรส” มิก้าตอบอย่างหัวเสีย “เราไม่จำเป็นต้องมาหลบซ่อนอยู่กลางป่ากลางเขาแบบนี้ก็ได้นี่นา! ทำไมเราไม่ไปเจอกันที่ร้านกาแฟบ้าบอที่มีฮีตเตอร์อุ่นๆ บ้างล่ะ?”</span></p><hr /><p><strong><span>“I, for one, think our safety is worth more than our comfort,” Primrose said, and then went straight for the jugular. “But, considering the most irregular way you spend your time, dear, I am not in the least surprised that you don’t seem to feel the same way.”</span></strong></p><p><span>“สำหรับฉันนะ ฉันคิดว่าความปลอดภัยของเรามีค่ามากกว่าความสบาย” พริมโรสพูด แล้วก็โจมตีจุดอ่อนของมิก้าทันที “แต่เมื่อพิจารณาจากการใช้เวลาที่ผิดปกติของเธอแล้ว ฉันไม่แปลกใจเลยสักนิดจ้ะ ที่รัก ที่เธอไม่รู้สึกแบบเดียวกัน”</span></p><hr /><p><strong><span>Mika sighed. She’d walked right into that one.</span></strong></p><p><span>มิก้าถอนหายใจ เธอพลาดท่าให้พริมโรสเข้าแล้ว (โดนแขวะเรื่องใช้ชีวิตที่ไม่ปกติ)</span></p><hr /><p><strong><span>At thirty-one, she was a rather young witch in a group that mostly skewed older.</span></strong></p><p><span>ในวัยสามสิบเอ็ดปี เธอเป็นแม่มดที่ค่อนข้างอายุน้อยในกลุ่มที่ส่วนใหญ่มีอายุมากกว่า</span></p><hr /><p><strong><span>While she didn’t exactly have a handy spreadsheet with each witch’s age on it, she was quite sure that she, Hilda Kim, and Sophie Clarke were the only ones this side of forty, so she should perhaps have been a lot more intimidated by Primrose than she actually was.</span></strong></p><p><span>ถึงแม้เธอจะไม่มีตารางอายุของแม่มดทุกคน แต่เธอก็ค่อนข้างมั่นใจว่ามีแค่เธอ ฮิลดา คิม (Hilda Kim) และโซฟี คลาร์ก (Sophie Clarke) เท่านั้นที่ยังไม่ถึงสี่สิบ ดังนั้นบางทีเธอควรจะเกรงกลัวพริมโรสมากกว่านี้ แต่นั่นก็ไม่ใช่สิ่งที่เกิดขึ้นจริง</span></p><hr /><p><strong><span>But the truth was, she knew Primrose a lot better than most of the other witches here, and she and Primrose had had a wobbly relationship since before Mika could remember.</span></strong></p><p><span>แต่ความจริงก็คือ เธอรู้จักพริมโรสดีกว่าแม่มดคนอื่นๆ ส่วนใหญ่ที่นี่ และความสัมพันธ์ของเธอกับพริมโรสก็ไม่ค่อยราบรื่นมาตั้งแต่ก่อนที่มิก้าจะจำความได้เสียอีก</span></p><hr /><p><strong><span>The problem, really, was that witches were always orphans.</span></strong></p><p><span>ปัญหาจริงๆ ก็คือ แม่มดทุกคนจะเป็นเด็กกำพร้าเสมอ</span></p><hr /><p><strong><span>According to Primrose, this was because of a spell that went wrong in some bygone era.</span></strong></p><p><span>ตามที่พริมโรสเล่า นี่เป็นเพราะมีคาถาผิดพลาดในยุคอดีตกาล</span></p><hr /><p><strong><span>Mika was certain this tale was a figment of Primrose’s imagination, but she also had no better explanation because the fact remained: when a witch was born, she would find herself orphaned shortly thereafter.</span></strong></p><p><span>มิก้ามั่นใจว่าเรื่องนี้เป็นเรื่องที่พริมโรสแต่งขึ้นเอง แต่เธอก็ไม่มีคำอธิบายที่ดีกว่านี้ เพราะความจริงมันเป็นแบบนั้นจริงๆ: เมื่อแม่มดถือกำเนิดขึ้น ไม่นานหลังจากนั้นเธอก็จะกลายเป็นเด็กกำพร้า</span></p><hr /><p><strong><span>It didn’t matter where in the world the witch was born, and the cause of death could be anything from innocuous illnesses to everyday accidents, but it was inevitable.</span></strong></p><p><span>ไม่สำคัญว่าแม่มดคนนั้นเกิดที่ไหนในโลก และสาเหตุการตายก็อาจจะเป็นอะไรก็ได้ตั้งแต่โรคที่ไม่ร้ายแรงไปจนถึงอุบัติเหตุในชีวิตประจำวัน แต่มันเป็นสิ่งที่หลีกเลี่ยงไม่ได้</span></p><hr /><p><strong><span>Some witches were then raised by grandparents or other relatives and, in time, came to discover the existence of their own magic.</span></strong></p><p><span>แม่มดบางคนก็ได้รับการเลี้ยงดูโดยปู่ย่าตายายหรือญาติคนอื่นๆ และเมื่อเวลาผ่านไป พวกเธอก็จะค้นพบการมีอยู่ของเวทมนตร์ของตัวเอง</span></p><hr /><p><strong><span>All things considered, assuming that they weren’t catastrophically reckless with their spellwork, they grew up to lead quite normal lives.</span></strong></p><p><span>เมื่อพิจารณาดูแล้ว ถ้าพวกเธอไม่ใช้เวทมนตร์อย่างประมาทจนเกิดเรื่องร้ายแรง พวกเธอก็จะเติบโตขึ้นมามีชีวิตที่ค่อนข้างปกติ</span></p><hr /><p><strong><span>But some witches, like Mika, were the daughters of witches.</span></strong></p><p><span>แต่แม่มดบางคน อย่างมิก้า ก็เป็นลูกสาวของแม่มด</span></p><hr /><p><strong><span>And some of those witches, like Mika, were also the granddaughters of witches.</span></strong></p><p><span>และแม่มดบางคนในกลุ่มนั้น เช่นมิก้า ก็เป็นหลานสาวของแม่มดด้วย</span></p><hr /><p><strong><span>It was unusual, certainly; most witches, only too mindful of the axe over their heads, chose not to have children of their own, but it did sometimes happen.</span></strong></p><p><span>แน่นอนว่ามันไม่ปกติ แม่มดส่วนใหญ่ตระหนักถึงความเสี่ยงของการเป็นแม่มดมากเกินไป (เหมือนมีขวานจ่อคอหอย) จึงเลือกที่จะไม่มีลูกเป็นของตัวเอง แต่มันก็เกิดขึ้นได้ในบางครั้ง</span></p><hr /><p><strong><span>And so, when Mika Moon, the orphaned child of an orphaned child of an orphaned child, found herself left in the care of an overworked social worker in India in the early nineties, Primrose found her, brought her to England, and deposited her in a perfectly proper, comfortable home with perfectly proper, comfortable nannies.</span></strong></p><p><span>และดังนั้น เมื่อมิก้า มูน เด็กกำพร้าของเด็กกำพร้าของเด็กกำพร้า ถูกทิ้งให้อยู่ในการดูแลของนักสังคมสงเคราะห์ที่ทำงานหนักเกินไปในอินเดียในช่วงต้นยุคเก้าศูนย์ พริมโรสก็ไปพบเธอ พาเธอกลับมาอังกฤษ และพาไปฝากไว้ในบ้านที่เหมาะสมและสะดวกสบาย พร้อมกับพี่เลี้ยงเด็กที่เหมาะสมและสบายๆ</span></p><hr /><p><strong><span>Mika remembered none of this, of course, but she remembered growing up in the care of nannies and tutors of all genders, ethnicities, and temperaments, each of whom was only permitted to stay for as long as it took to catch a glimpse of something magical (which was not long) before they were replaced.</span></strong></p><p><span>แน่นอนว่ามิก้าจำเรื่องราวเหล่านี้ไม่ได้เลย แต่เธอจำได้ว่าเติบโตมาภายใต้การดูแลของพี่เลี้ยงและครูสอนพิเศษที่มีเพศ เชื้อชาติ และอุปนิสัยที่แตกต่างกัน ซึ่งแต่ละคนได้รับอนุญาตให้อยู่ได้นานเท่าที่พวกเขาจะยังไม่เห็นอะไรที่ </span><strong><span>วิเศษ</span></strong><span> (ซึ่งก็อยู่ได้ไม่นาน) ก่อนจะถูกเปลี่ยนคนใหม่</span></p><hr /><p><strong><span>So Mika remembered having plenty to eat, a warm bed, and all the books she could possibly read, but very little in the way of companionship or love.</span></strong></p><p><span>ดังนั้น มิก้าจึงจำได้ว่าเธอมีอาหารกินอิ่ม มีเตียงอุ่นๆ และมีหนังสือให้อ่านมากมายเท่าที่ต้องการ แต่มีเพื่อนและความรักน้อยมากๆ</span></p><hr /><p><strong><span>And she remembered Primrose, who visited from time to time, usually to hire a new caregiver or to remind Mika of the Rules.</span></strong></p><p><span>และเธอก็จำพริมโรสได้ ที่มาเยี่ยมเป็นครั้งคราว ส่วนใหญ่มักจะมาจ้างผู้ดูแลคนใหม่ หรือไม่ก็มาเตือนมิก้าเรื่องกฎต่างๆ</span></p><hr /><p><strong><span>Mika’s feelings about Primrose were, thus, mixed.</span></strong></p><p><span>ความรู้สึกของมิก้าต่อพริมโรสจึงเป็นแบบ </span><strong><span>รักปนแค้น</span></strong></p><hr /><p><strong><span>Primrose had kept her safe, for which she was grateful, but she also resented having such an inconsistent, autocratic figure in her life.</span></strong></p><p><span>พริมโรสทำให้เธอปลอดภัย ซึ่งเธอก็รู้สึกขอบคุณ แต่เธอก็รู้สึกไม่พอใจที่มีคนแบบพริมโรส—ที่เดี๋ยวมาเดี๋ยวหายและชอบเผด็จการ—อยู่ในชีวิตของเธอ</span></p><hr /><p><strong><span>Once she reached adulthood, the nannies and tutors went away and Mika declined Primrose’s offer to stay.</span></strong></p><p><span>เมื่อเธอเป็นผู้ใหญ่ พี่เลี้ยงและครูสอนพิเศษก็หายไป และมิก้าก็ปฏิเสธข้อเสนอของพริมโรสที่จะให้อยู่ต่อ</span></p><hr /><p><strong><span>She moved out of the house and, for the past thirteen years, she had more or less only seen Primrose on the third Thursday of every third month.</span></strong></p><p><span>เธอย้ายออกจากบ้าน และตลอดสิบสามปีที่ผ่านมา เธอก็เจอพริมโรสเพียงแค่ในวันพฤหัสบดีที่สามของทุกๆ สามเดือนเท่านั้น</span></p><hr /><p><strong><span>While it seemed to Mika that she had never done anything Primrose approved of, she had not done anything Primrose especially disapproved of, either.</span></strong></p><p><span>ถึงแม้ว่าดูเหมือนมิก้าจะไม่เคยทำอะไรที่พริมโรสพอใจเลย แต่เธอก็ไม่เคยทำอะไรที่พริมโรส &quot;ไม่พอใจเป็นพิเศษ&quot; ด้วยเช่นกัน</span></p><hr /><p><strong><span>At least, not until last year, when Mika had started uploading videos to her social media accounts.</span></strong></p><p><span>อย่างน้อยก็จนกระทั่งปีที่แล้ว เมื่อมิก้าเริ่มอัปโหลดวิดีโอลงในโซเชียลมีเดียของตัวเอง</span></p><hr /><p><strong><span>Witchy videos.</span></strong></p><p><span>วิดีโอเกี่ยวกับแม่มดนั่นแหละ</span></p><hr /><p><strong><span>Hence their present feud.</span></strong></p><p><span>นี่จึงเป็นสาเหตุของความบาดหมางในปัจจุบันของพวกเธอ</span></p><hr /><p><strong><span>For the moment, Primrose seemed to have moved on. “Is anyone having any trouble?” she asked the gathering.</span></strong></p><p><span>ตอนนี้ พริมโรสดูเหมือนจะเปลี่ยนเรื่องแล้ว “มีใครมีปัญหาอะไรบ้างไหมจ๊ะ?” เธอถามกลุ่มที่รวมตัวกัน</span></p><hr /><p><strong><span>“I’m having a hard time not telling my fiancée the truth about my magic,” Hilda Kim offered. “I feel like I’m hiding so much of myself from her, and I hate it.”</span></strong></p><p><span>“ฉันลำบากใจที่จะไม่บอกความจริงเรื่องเวทมนตร์กับคู่หมั้นของฉันค่ะ” ฮิลดา คิม เสนอความคิดเห็น “ฉันรู้สึกเหมือนฉันกำลังซ่อนส่วนใหญ่ของตัวเองจากเธออยู่ และฉันเกลียดมันเลย”</span></p><hr /><p><strong><span>“You could always try not getting married,” said Primrose, who felt it was everyone’s duty to make sacrifices for the greater good.</span></strong></p><p><span>“เธอก็ลองไม่ต้องแต่งงานดูสิ” พริมโรสพูด ซึ่งเธอมองว่ามันเป็นหน้าที่ของทุกคนที่จะต้องเสียสละเพื่อส่วนรวม</span></p><hr /><p><strong><span>“And while you ponder that, dear,” she went on as Hilda opened her mouth and then shut it again as if she’d thought better of whatever she was about to say, “Is anyone having any actual trouble? Any inquisitive neighbours asking too many questions? Any uncontrollable magical outbursts?”</span></strong></p><p><span>“และระหว่างที่เธอคิดเรื่องนั้นอยู่นะจ๊ะ ที่รัก” เธอกล่าวต่อ ขณะที่ฮิลดาอ้าปากแล้วก็หุบลงอีกครั้งเหมือนว่าเธอเปลี่ยนใจจากสิ่งที่กำลังจะพูด “มีใครมี </span><strong><span>ปัญหาจริงๆ</span></strong><span> บ้างไหม? พวกเพื่อนบ้านขี้สงสัยถามมากเกินไปหรือเปล่า? มีเวทมนตร์ระเบิดออกมาโดยควบคุมไม่ได้บ้างไหม?”</span></p><hr /><p><strong><span>There was a round of shrugs and heads shaking.</span></strong></p><p><span>ทุกคนต่างส่ายหน้าและยักไหล่</span></p><hr /><p><strong><span>Primrose shifted her gimlet eyes from one witch to the next, lingering a little too long on Mika.</span></strong></p><p><span>พริมโรสเหลือบตามองจากแม่มดคนหนึ่งไปยังอีกคนหนึ่ง โดยจ้องมิก้านานเป็นพิเศษ (เหมือนตาเหยี่ยวเลย)</span></p><hr /><p><strong><span>She looked rather disappointed when no one spoke, like she’d been hoping to be able to chastise someone for being careless.</span></strong></p><p><span>เธอออกจะดูผิดหวังเล็กน้อยเมื่อไม่มีใครพูดอะไร ราวกับว่าเธอหวังว่าจะได้ตำหนิใครสักคนที่ไม่ระมัดระวัง</span></p><hr /><p><strong><span>“Then,” Primrose continued, an enormous spellbook materialising in her hands, “does anyone have any new spells to share?”</span></strong></p><p><span>“ถ้าอย่างนั้น” พริมโรสพูดต่อ ขณะที่หนังสือคาถาเล่มมหึมาปรากฏขึ้นในมือของเธอ “มีใครมีคาถาใหม่ๆ ที่จะแบ่งปันบ้างไหม?”</span></p><hr /><p><strong><span>There were a few: a spell for more restful sleep, a potion that would temporarily turn cat fur pink (only cat fur, and only pink), a spell for the finding of a lost thing, and a spell to instantly vanish dark circles under the eyes.</span></strong></p><p><span>ก็มีมาบ้าง: คาถาสำหรับการนอนหลับที่สบายขึ้น, ยาที่ทำให้ขนแมวเปลี่ยนเป็นสีชมพูชั่วคราว (เฉพาะขนแมวเท่านั้น และต้องสีชมพูเท่านั้นด้วย), คาถาสำหรับการค้นหาสิ่งของที่หายไป และคาถาที่ทำให้รอยคล้ำใต้ตาดำหายไปในทันที</span></p><hr /><p><strong><span>(Upon hearing this last one, Primrose, who hoarded her own spells like a dragon hoards gold, looked incredibly annoyed that she hadn’t been able to figure it out first.)</span></strong></p><p><span>(เมื่อได้ยินคาถาสุดท้ายนี้ พริมโรส ซึ่งชอบสะสมคาถาของตัวเองเหมือนมังกรสะสมทองคำ ก็ดูหงุดหงิดอย่างมากที่เธอคิดค้นมันไม่ได้ก่อน) 😒</span></p><hr /><p><strong><span>When the spellwork part of the meeting was complete, Primrose cleared her throat. “Finally, does anyone have any news they’d like to share?”</span></strong></p><p><span>เมื่อส่วนของการแบ่งปันคาถาสิ้นสุดลง พริมโรสก็กระแอม “สุดท้ายนี้ มีใครมีข่าวอะไรที่อยากจะแบ่งปันบ้างไหม?”</span></p><hr /><p><strong><span>“It’s okay to say it’s time to gossip, Primrose,” Mika said merrily. “We all know that’s what comes after the spellwork.”</span></strong></p><p><span>“บอกว่าถึงเวลาเม้าท์มอยก็ได้ค่ะพริมโรส” มิก้าพูดอย่างร่าเริง “เราทุกคนรู้ว่านี่คือสิ่งที่ต้องทำหลังจบเรื่องคาถา”</span></p><hr /><p><strong><span>“Witches don’t gossip,” sniffed Primrose.</span></strong></p><p><span>“แม่มดไม่ </span><strong><span>เม้าท์มอย</span></strong><span> หรอกจ้ะ” พริมโรสพูดด้วยท่าทางเหยียดหยาม</span></p><hr /><p><strong><span>This was patently untrue, however, because gossiping was precisely what they proceeded to do.</span></strong></p><p><span>อย่างไรก็ตาม นี่เป็นเรื่องที่ไม่จริงอย่างชัดเจน เพราะสิ่งที่พวกเขากำลังจะทำต่อไปก็คือการเม้าท์มอยนั่นแหละ</span></p><hr /><p><strong><span>“My ex-husband wanted to get back together last week,” said Belinda Nkala, who was in her forties and never had time for anyone’s nonsense.</span></strong></p><p><span>“อดีตสามีของฉันอยากกลับมาคืนดีเมื่อสัปดาห์ที่แล้ว” เบลินดา อึนคาลา พูด ซึ่งเธออยู่ในวัยสี่สิบและไม่เคยเสียเวลากับเรื่องไร้สาระของใคร</span></p><hr /><p><strong><span>“When I turned him down, he informed me that I am apparently nothing without him. Then he left,” she added calmly, “but I fear he’s going to be suffering from an inexplicable itch in his groin for a few weeks.”</span></strong></p><p><span>“พอฉันปฏิเสธ เขาก็บอกว่าฉันมันไม่มีค่าอะไรเลยถ้าไม่มีเขา จากนั้นเขาก็ไป” เธอพูดเสริมอย่างใจเย็น “แต่ฉันเกรงว่าเขาจะต้องทนทุกข์ทรมานกับอาการคันที่อวัยวะเพศที่หาสาเหตุไม่ได้ไปอีกสองสามสัปดาห์นะ” 😈</span></p><hr /><p><strong><span>Several witches laughed, but Primrose set her lips in a thin line. “And have you been playing such petty tricks lately, Mika?”</span></strong></p><p><span>แม่มดหลายคนหัวเราะ แต่พริมโรสทำปากเม้มเป็นเส้นตรง “แล้วเธอได้เล่นกลอุบายเล็กๆ น้อยๆ แบบนี้บ้างไหมจ๊ะ มิก้า?”</span></p><hr /><p><strong><span>“Oh, for the love of fucking god, Primrose, what does this have to do with me?”</span></strong></p><p><span>“โอ๊ย ตายจริงพริมโรส มันเกี่ยวอะไรกับฉันด้วยเนี่ย?” มิก้าพูดด้วยความโมโห</span></p><hr /><p><strong><span>“It’s not an unreasonable question, precious. You do like to take risks.”</span></strong></p><p><span>“มันไม่ใช่คำถามที่ไร้เหตุผลนะจ๊ะ ที่รัก เธอก็ชอบเสี่ยงอยู่แล้วนี่”</span></p><hr /><p><strong><span>“For the millionth time,” Mika said, irked beyond belief, “I post videos online pretending to be a witch. It’s just a performance.”</span></strong></p><p><span>“เป็นล้านครั้งแล้วนะคะ” มิก้าพูดอย่างหงุดหงิดสุดขีด “ฉันแค่ลงวิดีโอออนไลน์ </span><strong><span>แกล้งทำ</span></strong><span> เป็นแม่มด มันก็แค่การแสดงเท่านั้นแหละ”</span></p><hr /><p><strong><span>Primrose raised her eyebrows. Mika raised hers right back. “Hundreds of people do the same thing, you know. The whole witch aesthetic is very popular!”</span></strong></p><p><span>พริมโรสเลิกคิ้วขึ้น มิก้าก็เลิกคิ้วกลับไป “คนหลายร้อยคนก็ทำแบบเดียวกัน คุณก็รู้ ธีมแม่มดมันกำลังฮิตจะตายไป!”</span></p><hr /><p><strong><span>“Witchcore,” Hilda said, nodding wisely. “Not quite as popular as cottagecore or fairycore, but it’s up there.”</span></strong></p><p><span>“Witchcore” (สไตล์แม่มด) ฮิลดาพูดพลางพยักหน้าอย่างรู้ทัน “อาจจะไม่ดังเท่า </span><em><span>cottagecore</span></em><span> (สไตล์บ้านชนบท) หรือ </span><em><span>fairycore</span></em><span> (สไตล์นางฟ้า) แต่มันก็ติดอันดับอยู่”</span></p><hr /><p><strong><span>Everyone stared at her.</span></strong></p><p><span>ทุกคนจ้องมองฮิลดา</span></p><hr /><p><strong><span>“I didn’t know fairies were real!” shouted Agatha Jones, who was almost as old as Primrose and tended to believe all young people needed to be shouted at lest they miss the import of her pronouncements. “Whatever next!”</span></strong></p><p><span>“ฉันไม่รู้ว่านางฟ้ามีอยู่จริง!” อากาธา โจนส์ ตะโกน ซึ่งเธออายุเกือบเท่าพริมโรสและมักจะคิดว่าต้องตะโกนใส่คนหนุ่มสาวทุกคน ไม่อย่างนั้นพวกเขาจะไม่เข้าใจสิ่งที่เธอพูด “อะไรต่อไปอีกเนี่ย!”</span></p><hr /><p><strong><span>“You see, Primrose?” said Mika, ignoring this interruption. “People call themselves witches all the time. I’m not putting myself or you or anyone else at risk. Nobody who watches my videos thinks I’m actually a witch.”</span></strong></p><p><span>“เห็นไหมคะพริมโรส?” มิก้าพูด โดยไม่สนใจเสียงตะโกนนั้น “คนทั่วไปก็เรียกตัวเองว่าแม่มดตลอดเวลา ฉันไม่ได้ทำให้ตัวเองหรือคุณ หรือใครก็ตามตกอยู่ในความเสี่ยงสักหน่อย ไม่มีใครที่ดูวิดีโอของฉันคิดว่าฉันเป็นแม่มด </span><strong><span>จริงๆ</span></strong><span> หรอก”</span></p><hr /><p><strong><span>It was unfortunate for Mika, then, that at that precise moment, over five hundred miles away, in a big house in a quiet, windy corner of the Norfolk countryside, a skinny old man in a magnificent rainbow scarf and enormous fluffy slippers was saying exactly the opposite.</span></strong></p><p><span>แต่น่าเสียดายสำหรับมิก้า ที่ในขณะนั้นเอง ห่างออกไปกว่าห้าร้อยไมล์ ในบ้านหลังใหญ่ในมุมที่เงียบสงบและมีลมพัดแรงของชนบทนอร์ฟอล์ก (Norfolk) ชายชราผอมๆ ที่สวมผ้าพันคอสีรุ้งสุดอลังการและรองเท้าแตะขนปุยขนาดใหญ่ กำลังพูดในสิ่งที่ตรงกันข้ามกับเธออย่างสิ้นเชิง</span></p><hr /><p><strong><span>“Absolutely not!”</span></strong></p><p><span>“ไม่ได้เด็ดขาด!”</span></p><hr /><p><strong><span>This came from Jamie, the scowling librarian, who was not in fact the skinny old man in the scarf and slippers.</span></strong></p><p><span>เสียงนี้มาจากเจมี่ (Jamie) บรรณารักษ์หน้าบึ้ง ซึ่งไม่ใช่ชายชราผอมๆ ที่สวมผ้าพันคอและรองเท้าแตะ</span></p><hr /><p><strong><span>That was Ian. And the third person in the library was Lucie, the housekeeper, a chubby, round-cheeked woman in her fifties, who sighed as if she knew exactly how this argument was going to go. (She did know, and she was right.)</span></strong></p><p><span>ชายคนนั้นคือเอียน (Ian) ส่วนคนที่สามในห้องสมุดคือลูซี่ (Lucie) แม่บ้าน รูปร่างอวบ มีแก้มกลมๆ ในวัยห้าสิบกว่าๆ ซึ่งถอนหายใจราวกับว่าเธอรู้ดีว่าการโต้เถียงนี้จะจบลงอย่างไร (ซึ่งเธอก็รู้จริงๆ และเธอก็คิดถูก)</span></p><hr /><p><strong><span>Ian smoothed down the tail of his scarf and replied, in the deep voice that had charmed audiences in many a small theatre over his eighty-odd years, “Don’t be difficult, dear. It doesn’t become you.”</span></strong></p><p><span>เอียนลูบชายผ้าพันคอของเขาเบาๆ แล้วตอบด้วยเสียงทุ้มลึกที่เคยสะกดผู้ชมในโรงละครเล็กๆ มานับไม่ถ้วนตลอดช่วงอายุแปดสิบกว่าปีของเขาว่า “อย่าทำตัวยากนักสิ ที่รัก มันไม่เข้ากับเธอเลย”</span></p><hr /><p><strong><span>Jamie was unmoved by this criticism. “You can’t seriously be considering bringing that”—and here he jabbed a finger at the dewy, sparkly face on the screen of Ian’s phone—“into the house?”</span></strong></p><p><span>เจมี่ไม่สะทกสะท้านกับคำวิจารณ์นี้ “คุณคิดจะเอาคนนั้น—” แล้วเขาก็ชี้ไปที่ใบหน้าสวยใสวิบวับบนหน้าจอโทรศัพท์ของเอียน—“เข้ามาในบ้านจริงจังเหรอ?”</span></p><hr /><p><strong><span>“Why not?” Ian asked.</span></strong></p><p><span>“ทำไมจะไม่ได้ล่ะ?” เอียนถาม</span></p><hr /><p><strong><span>“Well, for one thing, there’s no way she’s a real witch,” Jamie said irritably. This was not unusual. Most of the things Jamie said were said irritably. “What kind of witch would show off her magic on a platform with millions of viewers?”</span></strong></p><p><span>“อย่างแรกเลยนะ เธอไม่มีทางเป็นแม่มดจริงหรอก” เจมี่พูดอย่างหัวเสีย ซึ่งนี่ไม่ใช่เรื่องแปลก ส่วนใหญ่สิ่งที่เจมี่พูดก็จะพูดด้วยความหัวเสีย “แม่มดที่ไหนจะอวดเวทมนตร์ของตัวเองบนแพลตฟอร์มที่มีคนดูเป็นล้านๆ กัน?”</span></p><hr /><p><strong><span>Mika would have been immensely gratified to hear this, had she been there, but it looked like her double bluff had not hoodwinked Ian.</span></strong></p><p><span>มิก้าคงจะรู้สึกดีใจมากถ้าเธอได้ยินคำพูดนี้ แต่ดูเหมือนว่าการที่เธอแสร้งทำเป็นว่าเธอไม่ได้เป็นแม่มด (double bluff) จะหลอกเอียนไม่ได้</span></p><hr /><p><strong><span>“She’s a real witch,” he insisted.</span></strong></p><p><span>“เธอเป็นแม่มดจริง” เขายืนยัน</span></p><hr /><p><strong><span>“How the hell can you possibly know that?”</span></strong></p><p><span>“คุณจะรู้ได้อย่างไรกันเนี่ย?”</span></p><hr /><p><strong><span>“I have excellent observation skills. Just watch part of the video.” Ian wiggled his phone like he was dangling a lollipop in front of a toddler. “A minute. That’s all I ask.”</span></strong></p><p><span>“ฉันมีทักษะการสังเกตที่ดีเยี่ยม ดูวิดีโอส่วนหนึ่งสิ” เอียนเขย่าโทรศัพท์เหมือนกำลังจะยื่นอมยิ้มให้เด็กเล็ก “หนึ่งนาทีเท่านั้น ฉันขอแค่นั้นแหละ”</span></p><hr /><p><strong><span>Jamie’s glare stayed firmly in place, but he crossed his arms over his chest and leaned back against his desk to look over Ian’s shoulder.</span></strong></p><p><span>เจมี่ยังคงจ้องตาเขม็ง แต่เขาก็กอดอกแล้วเอนหลังพิงโต๊ะทำงานเพื่อมองข้ามไหล่ของเอียน</span></p><hr /><p><strong><span>Gleeful, Ian tapped the screen and the video started to play.</span></strong></p><p><span>เอียนดี๊ด๊า แล้วก็แตะที่หน้าจอ วิดีโอก็เริ่มเล่น</span></p><hr /><p><strong><span>The woman on the screen looked like she was in her late twenties or so, and was pretty in the way most people with bright eyes and merry smiles are pretty.</span></strong></p><p><span>ผู้หญิงบนหน้าจอคนนั้นดูเหมือนจะอายุยี่สิบปลายๆ และเธอก็น่ารักแบบที่คนส่วนใหญ่ที่มีดวงตาสดใสและรอยยิ้มร่าเริงจะน่ารัก</span></p><hr /><p><strong><span>Jamie narrowed his eyes, trying to figure out what had caught Ian’s attention.</span></strong></p><p><span>เจมี่หรี่ตาลง พยายามคิดว่าอะไรที่ดึงดูดความสนใจของเอียน</span></p><hr /><p><strong><span>Nothing about the woman seemed out of the ordinary.</span></strong></p><p><span>ไม่มีอะไรเกี่ยวกับผู้หญิงคนนี้ที่ดูผิดปกติเลย</span></p><hr /><p><strong><span>Her hair was a very dark brown, long and curling loosely around her bare shoulders.</span></strong></p><p><span>ผมของเธอเป็นสีน้ำตาลเข้มมาก ยาวและม้วนเป็นลอนหลวมๆ รอบไหล่เปลือยเปล่าของเธอ</span></p><hr /><p><strong><span>Brown eyes, large like a doe’s and framed by thick black eyelashes, blinked cheerfully out at them from a dewy face that had been dusted with some sort of sort of shimmery powder, presumably to make her look more otherworldly.</span></strong></p><p><span>ดวงตาสีน้ำตาลของเธอใหญ่โตเหมือนลูกกวาง มีขนตาหนาสีดำล้อมกรอบ กระพริบตาอย่างร่าเริงมองมาที่พวกเขาจากใบหน้าที่ดูชุ่มชื้น ซึ่งถูกปัดด้วยผงแวววาวบางอย่าง คงจะเพื่อให้เธอดูเหมือนมาจากโลกอื่นมากขึ้น</span></p><hr /><p><strong><span>She obviously wasn’t white, but it was hard to pinpoint her ethnicity beyond that: her skin was a peachy, browny, goldeny something, but maybe that was the glitter.</span></strong></p><p><span>เห็นได้ชัดว่าเธอไม่ใช่คนผิวขาว แต่ก็ยากที่จะระบุเชื้อชาติของเธอได้มากกว่านั้น: ผิวของเธอเป็นสีพีช สีน้ำตาล สีทองอะไรสักอย่าง แต่บางทีนั่นอาจจะเป็นผลจากประกายกากเพชร</span></p><hr /><p><strong><span>The name at the top corner of the video, @MikaMoon, didn’t offer any answers, either.</span></strong></p><p><span>ชื่อที่มุมบนของวิดีโอคือ @MikaMoon ก็ไม่ได้ให้คำตอบอะไรเช่นกัน</span></p><hr /><p><strong><span>“The secret,” she was saying, her smile full of mischief, “is to harvest the moonlight at exactly two minutes past midnight.”</span></strong></p><p><span>“เคล็ดลับ” เธอกำลังพูดด้วยรอยยิ้มเจ้าเล่ห์ “คือการเก็บเกี่ยวแสงจันทร์ให้ตรงเวลาเป๊ะตอนตีสองนาที”</span></p><hr /><p><strong><span>Her accent was English, but he couldn’t pin it down to any one part of the country.</span></strong></p><p><span>สำเนียงของเธอเป็นสำเนียงอังกฤษ แต่เขาระบุไม่ได้ว่าเป็นสำเนียงของท้องที่ใดในประเทศ</span></p><hr /><p><strong><span>She held up a bowl of liquid silver. “Take a tiny spoonful of the harvested moonlight,” she went on, stirring the silver substance with a glass spoon that tinkled pleasantly against the sides of the bowl, “and add it to your cauldron.”</span></strong></p><p><span>เธอชูชามที่บรรจุของเหลวสีเงิน “ตักแสงจันทร์ที่เก็บเกี่ยวมาแล้วแค่ช้อนเล็กๆ” เธอกล่าวต่อ พร้อมกับคนสารสีเงินนั้นด้วยช้อนแก้วที่กระทบกับขอบชามเบาๆ “แล้วเติมลงในหม้อต้มของเธอ”</span></p><hr /><p><strong><span>As she emptied a spoonful of the supposed moonlight into a cauldron, tiny sparkles drifted up from within, dancing in the air like fireflies before fading away.</span></strong></p><p><span>ขณะที่เธอเทแสงจันทร์ที่กล่าวอ้างไปหนึ่งช้อนลงในหม้อต้ม ประกายเล็กๆ ก็ลอยขึ้นจากข้างใน เต้นระยิบระยับในอากาศเหมือนหิ่งห้อยก่อนจะเลือนหายไป</span></p><hr /><p><strong><span>“And there you have it!” she said triumphantly. “The perfect potion for a wounded heart.”</span></strong></p><p><span>“และนี่ไงล่ะ!” เธอกล่าวอย่างผู้ชนะ “ยาเสน่ห์ที่สมบูรณ์แบบสำหรับหัวใจที่บอบช้ำ”</span></p><hr /><p><strong><span>Ian paused the video. Jamie looked at him in confusion. “Was I supposed to be impressed by the special effects she added to the cauldron? The nonsense about a wounded heart?”</span></strong></p><p><span>เอียนหยุดวิดีโอ เจมี่มองเขาด้วยความสับสน “ผมควรจะประทับใจกับสเปเชียลเอฟเฟกต์ที่เธอใส่ลงไปในหม้อต้มเหรอ? เรื่องไร้สาระเกี่ยวกับหัวใจที่บอบช้ำนั่นเหรอ?”</span></p><hr /><p><strong><span>Ian scoffed. “The cauldron? No, I’m not interested in the cauldron. She’s what interests me. Don’t you see it? She’s practically aglow with magic.”</span></strong></p><p><span>เอียนเยาะเย้ย “หม้อต้มน่ะเหรอ? ไม่ ฉันไม่สนใจหม้อต้มหรอก </span><strong><span>เธอ</span></strong><span> ต่างหากที่ฉันสนใจ เธอไม่เห็นเหรอ? เธอแทบจะ </span><strong><span>เปล่งประกายด้วยเวทมนตร์</span></strong><span> เลยนะ”</span></p><hr /><p><strong><span>At this, Lucie spoke for the first time. “You’re using your stage voice, love,” she said sensibly, patting Ian’s hand. “It never works on Jamie. But,” she added, this time to Jamie, “I reckon we should hear Ian out. You know he has a knack for this sort of thing. If he says she’s a witch, he’s probably right.”</span></strong></p><p><span>เมื่อถึงจุดนี้ ลูซี่ก็พูดขึ้นเป็นครั้งแรก “คุณกำลังใช้เสียงสำหรับแสดงละครนะ ที่รัก” เธอพูดอย่างมีเหตุผล พร้อมกับตบมือเอียนเบาๆ “มันใช้กับเจมี่ไม่ได้ผลหรอก” “แต่” เธอกล่าวเสริม คราวนี้พูดกับเจมี่ “ฉันว่าเราควรรับฟังเอียนนะ คุณก็รู้ว่าเขามีพรสวรรค์เรื่องแบบนี้ ถ้าเขาบอกว่าเธอเป็นแม่มด เขาน่าจะพูดถูก”</span></p><hr /><p><strong><span>“See?” said Ian, looking rather pleased with himself. “She’d be perfect!”</span></strong></p><p><span>“เห็นไหม?” เอียนพูด พลางดูพอใจกับตัวเอง “เธอจะสมบูรณ์แบบเลยล่ะ!”</span></p><hr /><p><strong><span>“Ian!” Jamie was incredulous. “Even if she’s a witch, her face is all over the fucking internet! The risk—”</span></strong></p><p><span>“เอียน!” เจมี่ไม่เชื่อ “ถึงแม้เธอจะเป็นแม่มดจริง ใบหน้าของเธอก็อยู่ทั่วอินเทอร์เน็ตไปหมดแล้ว! ความเสี่ยง—”</span></p><hr /><p><strong><span>Rolling his eyes so dramatically that they practically vanished into the back of his head, Ian said, “She has fourteen thousand followers. I’m more famous than that and you don’t seem to mind me being here.”</span></strong></p><p><span>เอียนกรอกตาอย่างหนักหน่วงจนแทบจะหายไปในหัวของเขา แล้วพูดว่า “เธอมีผู้ติดตามแค่หนึ่งหมื่นสี่พันคนเองนะ ฉันดังกว่านั้นตั้งเยอะ เธอยังไม่เห็นจะรังเกียจฉันที่อยู่ที่นี่เลย”</span></p><hr /><p><strong><span>“Of course,” he added quickly, lest Jamie take the opportunity to inform him otherwise, “we’ll make it clear that if she does come to stay, neither Nowhere House nor the girls are to appear in her footage in any way.”</span></strong></p><p><span>“แน่นอนว่า” เขารีบเสริมอย่างรวดเร็ว เพื่อป้องกันไม่ให้เจมี่โต้แย้ง “เราจะทำให้ชัดเจนว่า ถ้าเธอมาอยู่ที่นี่ ทั้งบ้านโนแวร์เฮาส์ (Nowhere House) และเด็กๆ จะไม่ปรากฏในวิดีโอของเธอไม่ว่าจะในรูปแบบใดก็ตาม”</span></p><hr /><p><strong><span>“And what makes you think this woodland sprite will even want to be involved?”</span></strong></p><p><span>“แล้วอะไรทำให้คุณคิดว่านางไม้คนนี้จะอยากเข้ามาเกี่ยวข้องด้วยล่ะ?”</span></p><hr /><p><strong><span>“We won’t know until we ask.”</span></strong></p><p><span>“เราจะไม่รู้จนกว่าจะได้ถาม”</span></p><hr /><p><strong><span>Lucie stood, obviously fed up. “A vote is the only way to settle this,” she said.</span></strong></p><p><span>ลูซี่ยืนขึ้น เห็นได้ชัดว่าเธอเบื่อหน่าย “การโหวตเป็นทางเดียวที่จะตัดสินเรื่องนี้ได้” เธอกล่าว</span></p><hr /><p><strong><span>Ian shrugged. “Then we’ll need my husband, won’t we?”</span></strong></p><p><span>เอียนยักไหล่ “ถ้าอย่างนั้นเราก็ต้องรอสามีของฉันด้วยสิ จริงไหม?”</span></p><hr /><p><strong><span>“Ken must have gotten the girls to bed by now,” said Lucie. “I’ll fetch him.”</span></strong></p><p><span>“ตอนนี้เคนคงจะพาเด็กๆ เข้าไปนอนแล้ว” ลูซี่พูด “ฉันจะไปตามเขามา”</span></p><hr /><p><strong><span>“I get the tiebreaker,” Jamie reminded them.</span></strong></p><p><span>“ผมได้สิทธิ์โหวตตัดสินนะ” เจมี่เตือนพวกเขา (หมายถึงถ้าคะแนนเสมอกัน เจมี่เป็นคนตัดสิน)</span></p><hr /><p><strong><span>“Which is only useful if there’s a tie, dear,” said Ian.</span></strong></p><p><span>“ซึ่งจะมีประโยชน์ก็ต่อเมื่อมีคะแนนเสมอกันเท่านั้นแหละ ที่รัก” เอียนกล่าว</span></p><hr /><p><strong><span>The library door clattered shut as Lucie left. Gritting his teeth, Jamie stormed up and down the rows of old wooden shelves, putting books back where they belonged.</span></strong></p><p><span>ประตูห้องสมุดปิดลงอย่างมีเสียงดังเมื่อลูซี่ออกไป เจมี่กัดฟัน เดินไปมาตามชั้นวางไม้เก่าๆ จัดหนังสือกลับเข้าที่</span></p><hr /><p><strong><span>The library at Nowhere House had been built as an extension to the main house fifty or so years ago and it was beautiful, with big windows and a spiral staircase leading up to the second floor, and crammed full of books, manuscripts, and globes.</span></strong></p><p><span>ห้องสมุดที่โนแวร์เฮาส์ถูกสร้างเป็นส่วนต่อเติมจากตัวบ้านหลักเมื่อประมาณห้าสิบปีที่แล้ว และมันก็สวยงาม มีหน้าต่างบานใหญ่ บันไดวนนำขึ้นไปสู่ชั้นสอง และอัดแน่นไปด้วยหนังสือ ต้นฉบับ และลูกโลกจำลอง</span></p><hr /><p><strong><span>On one side, the windows looked out at the sea below the dunes, and on the other, you could see the trees, swing set, and lavender in the front garden.</span></strong></p><p><span>ด้านหนึ่ง หน้าต่างมองออกไปเห็นทะเลเบื้องล่างเนินทราย และอีกด้านหนึ่ง คุณสามารถเห็นต้นไม้ ชุดชิงช้า และดอกลาเวนเดอร์ในสวนหน้าบ้าน</span></p><hr /><p><strong><span>It was easily Jamie’s favourite place in the world, but just at that moment, he couldn’t appreciate it.</span></strong></p><p><span>มันเป็นสถานที่ที่เจมี่ชอบที่สุดในโลกอย่างไม่ต้องสงสัย แต่ในขณะนั้น เขาก็ไม่สามารถชื่นชมมันได้เลย</span></p><hr /><p><strong><span>He was too busy picturing all their secrets coming unburied and all their lives coming undone.</span></strong></p><p><span>เขายุ่งอยู่กับการจินตนาการว่าความลับทั้งหมดของพวกเขาจะถูกเปิดเผย และชีวิตทั้งหมดของพวกเขาจะพังทลายลง</span></p><hr /><p><strong><span>When he returned to the front of the library, Ian was exactly where he’d left him, watching the video again.</span></strong></p><p><span>เมื่อเขากลับมาที่ด้านหน้าของห้องสมุด เอียนก็ยังคงอยู่ที่เดิมที่เขาจากมา กำลังดูวิดีโอซ้ำอีกครั้ง</span></p><hr /><p><strong><span>“I wish you could see what I see,” Ian said a little wistfully. “There’s so much magic around her, it’s like she’s on fire. Like the girls.”</span></strong></p><p><span>“ฉันหวังว่าเธอจะเห็นในสิ่งที่ฉันเห็นนะ” เอียนพูดอย่างอาลัยเล็กน้อย “มีเวทมนตร์อยู่รอบตัวเธอมากมาย เหมือนกับว่าเธอกำลังลุกเป็นไฟเลย เหมือนกับเด็กๆ”</span></p><hr /><p><strong><span>Jamie loved Ian dearly, but Christ, it was like the man had wandered straight out of a book of poetry and no one had had the good sense to send him back in.</span></strong></p><p><span>เจมี่รักเอียนมาก แต่ให้ตายเถอะ ผู้ชายคนนี้เหมือนหลุดออกมาจากหนังสือกวีนิพนธ์ แล้วไม่มีใครมีสติพอที่จะส่งเขากลับเข้าไปเลย</span></p><hr /><p><strong><span>“As none of the girls look like they’re on fire to me, Ian,” he replied somewhat acidly, “that’s not much help. And like I said, it doesn’t matter if she is a witch. It’s too much of a risk to bring someone new into this.”</span></strong></p><p><span>“ในเมื่อเด็กๆ ไม่มีใครดูเหมือนกำลังลุกเป็นไฟสำหรับผมเลยสักคน เอียน” เขาตอบอย่างแสบๆ คันๆ “นั่นก็ไม่ได้ช่วยอะไรมากนัก และอย่างที่ผมบอกไป มันไม่สำคัญหรอกว่าเธอจะเป็นแม่มด </span><strong><span>จริง</span></strong><span> หรือไม่ การพาคนใหม่เข้ามาในเรื่องนี้มันเสี่ยงเกินไป”</span></p><hr /><p><strong><span>Ian put a hand over Jamie’s and held tight. “We have no other ideas, James. We’re running out of time.”</span></strong></p><p><span>เอียนวางมือทับบนมือของเจมี่แล้วจับไว้แน่น “เราไม่มีทางเลือกอื่นแล้ว เจมส์ เรากำลังจะหมดเวลา”</span></p><hr /><p><strong><span>“Edward will—”</span></strong></p><p><span>“เอ็ดเวิร์ดจะ—”</span></p><hr /><p><strong><span>“It’s not just Edward,” Ian cut him off. “He’s absolutely our biggest problem right now, but I’m also thinking about what comes later. After. This is about the rest of the girls’ lives, too.”</span></strong></p><p><span>“ไม่หยุดแค่เอ็ดเวิร์ดเท่านั้นนะ” เอียนพูดแทรก “เขาเป็นปัญหาใหญ่ที่สุดของเราตอนนี้อย่างแน่นอน แต่ฉันกำลังคิดถึงสิ่งที่ตามมาทีหลังด้วย นี่มันเกี่ยวกับชีวิตที่เหลือของเด็กๆ ด้วยนะ”</span></p><hr /><p><strong><span>“Lillian, God love her, has well and truly cocked this up. Is this life really what we want for those beautiful, precious children? They can’t go to school. They almost never leave Nowhere House. All they have is each other.”</span></strong></p><p><span>“ลิลเลียน (Lillian) พระเจ้าอวยพรเธอ เธอได้ทำเรื่องนี้พังไม่เป็นท่าจริงๆ นี่คือชีวิตที่เราต้องการให้เด็กๆ ที่น่ารักและมีค่าเหล่านั้นจริงๆ เหรอ? พวกเขาไปโรงเรียนไม่ได้ แทบไม่เคยออกจากโนแวร์เฮาส์เลย พวกเขามีกันและกันเท่านั้น”</span></p><hr /><p><strong><span>“And us.”</span></strong></p><p><span>“และพวกเรา”</span></p><hr /><p><strong><span>“And us.” For a moment, the ever-present twinkle in Ian’s eyes was gone.</span></strong></p><p><span>“และพวกเรา” ชั่วขณะหนึ่ง แววตาที่สดใสอยู่เสมอในดวงตาของเอียนก็หายไป</span></p><hr /><p><strong><span>He pointed at a photograph propped against a stack of books on Jamie’s desk. “Look at us. Even with the best of intentions, we can’t give the girls everything they need. I’m eighty-two years old. I know what it is to hide who I am. I know what it’s like to live on the edges of society.”</span></strong></p><p><span>เขาชี้ไปที่ภาพถ่ายที่วางพิงอยู่กับกองหนังสือบนโต๊ะทำงานของเจมี่ “ดูพวกเราสิ แม้จะมีความตั้งใจที่ดีที่สุด แต่เราก็ไม่สามารถให้ทุกสิ่งที่เด็กๆ ต้องการได้ ฉันอายุแปดสิบสองปีแล้ว ฉันรู้ว่าการซ่อนตัวตนของตัวเองเป็นอย่างไร ฉันรู้ว่าการใช้ชีวิตอยู่ชายขอบของสังคมมันเป็นอย่างไร”</span></p><hr /><p><strong><span>“The girls may always have to keep a part of themselves secret, but I still want them to be able to go out there and live. They need someone who knows what that’s like, what it is to look like they do and feel like they do, and who can show them how to bravely and safely chart a course across the rest of their lives.”</span></strong></p><p><span>“เด็กๆ อาจจะต้องเก็บความลับบางส่วนของตัวเองไว้ตลอดไป แต่ฉันก็ยังต้องการให้พวกเขาได้ออกไปใช้ชีวิตจริงๆ พวกเขาต้องการใครสักคนที่รู้ว่าความรู้สึกแบบนั้นเป็นอย่างไร การที่มีรูปลักษณ์และความรู้สึกแบบที่พวกเขาเป็นนั้นเป็นอย่างไร และใครสักคนที่สามารถแสดงให้พวกเขาเห็นถึงวิธีที่จะใช้ชีวิตในช่วงที่เหลืออย่างกล้าหาญและปลอดภัย”</span></p><hr /><p><strong><span>“I know that,” Jamie said gruffly. “I know, Ian. But that can wait until after Edward. And trusting this hypothetical witch to help us is a massive gamble. I’m not so sure it’s going to pay off.”</span></strong></p><p><span>“ผมรู้” เจมี่พูดด้วยน้ำเสียงห้วนๆ “ผมรู้ เอียน แต่เรื่องนั้นสามารถรอได้จนกระทั่งผ่านเรื่องเอ็ดเวิร์ดไปก่อน และการเชื่อใจแม่มดที่สมมติขึ้นคนนี้ให้มาช่วยเรา มันคือการเดิมพันครั้งใหญ่ ผมไม่ค่อยแน่ใจเลยว่ามันจะคุ้มค่า”</span></p><hr /><p><strong><span>“Unless you have a better idea, it’s a chance we can’t afford not to take.”</span></strong></p><p><span>“นอกจากว่าเธอจะมีไอเดียที่ดีกว่านี้ ไม่อย่างนั้นนี่คือโอกาสที่เราไม่สามารถปฏิเสธได้”</span></p><hr /><p><strong><span>By the time Lucie returned to the library with Ken in tow, the vote wasn’t necessary.</span></strong></p><p><span>เมื่อลูซี่กลับมาที่ห้องสมุดพร้อมกับเคน (Ken) การโหวตก็ไม่จำเป็นอีกต่อไปแล้ว</span></p><hr /><p><strong><span>All that was left to decide was how to convince Mika Moon to come to Nowhere House. (Ian wanted to send her a message that would start with the words WITCH WANTED. It would, he felt, set exactly the right tone. The others did not agree.)</span></strong></p><p><span>สิ่งที่เหลืออยู่ให้ตัดสินใจก็คือ จะทำอย่างไรให้มิก้า มูน ตกลงที่จะมาที่โนแวร์เฮาส์ (เอียนอยากจะส่งข้อความไปหาเธอโดยขึ้นต้นด้วยคำว่า </span><strong><span>รับสมัครแม่มด</span></strong><span> เขาคิดว่ามันจะสร้างบรรยากาศที่เหมาะสมได้อย่างลงตัว แต่คนอื่นๆ ไม่เห็นด้วย) 😂</span></p><hr /><p><strong><span>And all the way up in Scotland, Mika continued to shiver on a rainy pier, completely unaware of the wrecking ball headed her way.</span></strong></p><p><span>และตลอดทางขึ้นไปทางเหนือในสกอตแลนด์ มิก้าก็ยังคงยืนตัวสั่นอยู่บนสะพานเทียบเรือที่ฝนตก โดยไม่รู้ตัวเลยว่า </span><strong><span>ก้อนหินยักษ์กำลังจะกลิ้งมาหาเธอ</span></strong><span> (หมายถึงเรื่องวุ่นวายครั้งใหญ่กำลังจะมา)</span></p></div></div>
+</body>
+</html>
