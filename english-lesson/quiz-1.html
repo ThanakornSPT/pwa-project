@@ -56,33 +56,35 @@
             gap: 10px;
             flex-wrap: wrap;
         }
-        div#topup {
+        div#bottomdown{
             display: flex;
             position: fixed;
-            width: 100px;
-            height: 100px;
+            width: 50px;
+            height: 50px;
             background-color: #c6c6c6;
             z-index: 99;
-            bottom: 1px;
-            left: 10px;
-            border-radius: 17px;
-            justify-content: center;
-            align-items: center;
-            color: #ecebeb;
-        }        
-        div#bottomdown {
-            display: flex;
-            position: fixed;
-            width: 100px;
-            height: 100px;
-            background-color: #c6c6c6;
-            z-index: 99;
-            bottom: 1px;
+            bottom: 46%;
             right: 10px;
             border-radius: 17px;
             justify-content: center;
             align-items: center;
             color: #ecebeb;
+            font-size: 10px;
+        }        
+        div#topup {
+            display: flex;
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            background-color: #c6c6c6;
+            z-index: 99;
+            bottom: 53%;
+            right: 10px;
+            border-radius: 17px;
+            justify-content: center;
+            align-items: center;
+            color: #ecebeb;
+            font-size: 10px;
         }
                 </style>
             </meta>
@@ -2058,10 +2060,10 @@
                 };
 
                 $scope.scrollUp = function() {
-                  window.scrollBy({top: -800, behavior: 'smooth' });
+                  window.scrollBy({top: -900, behavior: 'smooth' });
                 }
                 $scope.scrollDown = function() {
-                  window.scrollBy({top: 800, behavior: 'smooth' });
+                  window.scrollBy({top: 900, behavior: 'smooth' });
                   // window.scrollTo({ bottom: -200, behavior: 'smooth' });
                 }
 
