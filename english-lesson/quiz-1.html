@@ -56,6 +56,34 @@
             gap: 10px;
             flex-wrap: wrap;
         }
+        div#topup {
+            display: flex;
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background-color: #c6c6c6;
+            z-index: 99;
+            bottom: 1px;
+            left: 10px;
+            border-radius: 17px;
+            justify-content: center;
+            align-items: center;
+            color: #ecebeb;
+        }        
+        div#bottomdown {
+            display: flex;
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background-color: #c6c6c6;
+            z-index: 99;
+            bottom: 1px;
+            right: 10px;
+            border-radius: 17px;
+            justify-content: center;
+            align-items: center;
+            color: #ecebeb;
+        }
                 </style>
             </meta>
         </meta>
@@ -188,6 +216,9 @@
                     </div>
                 </div>
             </div>
+
+            <div id="topup" ng-click="scrollUp()">UP</div>
+            <div id="bottomdown" ng-click="scrollDown()">DOWN</div>
         </div>
         <!-- AngularJS Script -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
@@ -2025,6 +2056,14 @@
                     }).join('');
                     return $sce.trustAsHtml(html);
                 };
+
+                $scope.scrollUp = function() {
+                  window.scrollBy({top: -800, behavior: 'smooth' });
+                }
+                $scope.scrollDown = function() {
+                  window.scrollBy({top: 800, behavior: 'smooth' });
+                  // window.scrollTo({ bottom: -200, behavior: 'smooth' });
+                }
 
                 // --- Global Initialization ---
                 $scope.initSortGame();
