@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#007bff">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MyPWA">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Mastery - 21 Days Tracker</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #27ae60;
+            --accent: #e67e22;
+            --bg: #f4f7f6;
+            --text: #333;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .progress-container {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .progress-bar {
+            background: #eee;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        #progress-fill {
+            background: var(--secondary);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card.completed {
+            border-left: 8px solid var(--secondary);
+            opacity: 0.8;
+        }
+
+        .card-content h3 {
+            margin: 0 0 5px 0;
+            color: var(--primary);
+        }
+
+        .card-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .btn-check {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-check.undo {
+            background: #95a5a6;
+        }
+
+        .reset-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .card { flex-direction: column; text-align: center; }
+            .btn-check { margin-top: 15px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>English Mastery Tracker</h1>
+    <p>เปลี่ยนคุณเป็นคนใหม่ด้วยวินัย 21 วัน</p>
+</header>
+
+<div class="container">
+    <div class="progress-container">
+        <h2>ความก้าวหน้าของคุณ</h2>
+        <div class="progress-bar">
+            <div id="progress-fill"></div>
+        </div>
+        <p id="progress-text">เสร็จสิ้น 0 / 6 หัวข้อ</p>
+        <button class="reset-btn" onclick="resetProgress()">รีเซ็ตการฝึกวันนี้</button>
+    </div>
+
+    <div id="task-list">
+        </div>
+</div>
+
+<script>
+    // ข้อมูลเทคนิคจากไฟล์ที่คุณอัปโหลด
+    const techniques = [
+        { id: 't1', title: '21-Day Mindset', desc: 'ปลูกฝังความเชื่อว่าภาษาอังกฤษเป็นเรื่องง่ายและเริ่มฝึกอย่างเป็นระบบ' },
+        { id: 't2', title: 'Mouth Training', desc: 'ฝึกกล้ามเนื้อปากด้วยเทคนิคคาบปากกาเพื่อให้การออกเสียงชัดเจน' },
+        { id: 't3', title: 'Think in English', desc: 'เลิกแปลในหัว เชื่อมโยงภาพและความรู้สึกเข้ากับคำศัพท์โดยตรง' },
+        { id: 't4', title: 'Talk in Your Brain', desc: 'ฝึกคุยกับตัวเองในความคิดตลอดวันเพื่อสร้างความคุ้นเคย' },
+        { id: 't5', title: 'Silent Power', desc: 'สร้างความเคารพในตัวเองผ่านการฝึกฝนในความเงียบและรักษาวินัย' },
+        { id: 't6', title: 'Teach the Wall', desc: 'พูดสรุปสิ่งที่เรียนออกมาดังๆ เพื่อบันทึกความจำระยะยาว' }
+    ];
+
+    // โหลดข้อมูลจาก Local Storage
+    let completedTasks = JSON.parse(localStorage.getItem('englishMasteryProgress')) || [];
+
+    function renderTasks() {
+        const taskList = document.getElementById('task-list');
+        taskList.innerHTML = '';
+
+        techniques.forEach(tech => {
+            const isCompleted = completedTasks.includes(tech.id);
+            const card = document.createElement('div');
+            card.className = `card ${isCompleted ? 'completed' : ''}`;
+            
+            card.innerHTML = `
+                <div class="card-content">
+                    <h3>${tech.title}</h3>
+                    <p>${tech.desc}</p>
+                </div>
+                <button class="btn-check ${isCompleted ? 'undo' : ''}" onclick="toggleTask('${tech.id}')">
+                    ${isCompleted ? 'ยกเลิก' : 'ทำแล้ว'}
+                </button>
+            `;
+            taskList.appendChild(card);
+        });
+
+        updateProgress();
+    }
+
+    function toggleTask(id) {
+        if (completedTasks.includes(id)) {
+            completedTasks = completedTasks.filter(taskId => taskId !== id);
+        } else {
+            completedTasks.push(id);
+        }
+        saveAndRender();
+    }
+
+    function updateProgress() {
+        const total = techniques.length;
+        const done = completedTasks.length;
+        const percentage = (done / total) * 100;
+        
+        document.getElementById('progress-fill').style.width = percentage + '%';
+        document.getElementById('progress-text').innerText = `เสร็จสิ้น ${done} / ${total} หัวข้อ`;
+    }
+
+    function saveAndRender() {
+        localStorage.setItem('englishMasteryProgress', JSON.stringify(completedTasks));
+        renderTasks();
+    }
+
+    function resetProgress() {
+        if (confirm('คุณต้องการรีเซ็ตความก้าวหน้าทั้งหมดใช่หรือไม่?')) {
+            completedTasks = [];
+            saveAndRender();
+        }
+    }
+
+    // เริ่มต้นรันแอป
+    renderTasks();
+
+    // ตรวจสอบว่า Browser รองรับ Service Worker หรือไม่
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('SW registered with scope:', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('SW registration failed:', err);
+                    });
+            });
+        }
+
+</script>
+
+</body>
+</html>
