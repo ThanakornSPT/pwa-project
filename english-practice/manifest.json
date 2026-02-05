@@ -3,8 +3,8 @@
     "short_name": "OfflineApp",
     "start_url": "index.html",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#007bff",
+    "background_color": "#2c3e50",
+    "theme_color": "#2c3e50",
     "icons": [
         {
             "src": "images/icon-192.png",
